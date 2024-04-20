@@ -1,0 +1,132 @@
+html{
+  box-sizing: border-box;
+}
+body{
+  font-size: 2rem;
+  background-color: #fff;
+  max-width: 100vw;
+}
+
+nav{
+  background-color: var(--blue);
+  display:flex;
+  max-width:100vw;
+  height: 10vh;
+  overflow: hidden;
+}
+
+.company{
+  font-size: 5rem;
+  color: var(--zinc-300);
+  width:20%;
+  margin:auto;
+  text-align: center;
+  font-weight: bold;
+}
+.middle{
+  display: flex;
+  flex-direction: row;
+  width:70%;
+  display:flex;
+  flex-direction: row;
+  justify-content: right;
+  margin-top: auto;
+  margin-bottom: auto;
+
+}
+.opt{
+  color: var(--zinc-300);
+  width:auto;
+  margin: 0 2vw 0 2vw;
+  font-weight: bold;
+}
+.end{
+  width:30%;
+  display: flex;
+  margin:auto 0 auto 0;
+  padding-right: 5vw;
+}
+.btn{
+  color: var(--zinc-300);
+  width:33%;
+  border: 2px solid var(--grey);
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--zinc-700);
+  border-radius: 20px;
+}
+.home{
+  width:100%;
+  display: flex;
+}
+.bgimage{
+  height: 80vh;
+  max-width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+#bgimage{
+  max-height:100vh;
+  width:auto;
+  filter:none;
+}
+#bgimage:hover{
+  filter: drop-shadow(30px 10px 4px #e1e1e4);
+  
+}
+.content{
+  max-width: 50%;
+  padding:10vw;
+  align-content: center;
+  height:80vh;
+}
+
+a:hover{
+  color:var(--orange);
+}
+.btn:hover{
+  border: 2px solid var(--orange);
+  color: var(--orange);
+}
+.company:hover{
+  color: var(--orange);
+  cursor: pointer;
+}
+.head{
+  font-size: 4.7rem;
+  font-weight: bolder;
+  color: var(--blue);
+}
+.subhead{
+  font-size: 2.2rem;
+  font-weight:400;
+  color: var(--zinc-700);
+  font-style: italic;
+}
+.subhead:hover{
+  color: var(--orange);
+}
+.text{
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+.readmore{
+  /* width:100vw; */
+  /* border:4px solid red; */
+  padding:30px;
+}
+.about-us{
+  border:4px solid red;
+  height: 20vh;
+  width: 100%;
+  background-color: var(--zinc-200);
+  /* background-image: linear-gradient(#fff, var(--zinc-300),var(--zinc-200),var(--zinc-300),#fff); */
+}
+.features-cards{
+  max-width: 100vw;
+  border: 2px solid red;
+}
