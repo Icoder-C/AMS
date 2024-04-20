@@ -5,10 +5,15 @@ require basePath("/Config/Database.php");
 $config =require basePath('/Config/config.php');
 
 
-$db = new Database($config);
-$users = $db->query("SELECT * FROM users;")->fetchAll();
+$db = new Database($config['mysql']);
 
-// dd($users);
+$id =$_GET["id"];
+
+$query = "SELECT * FROM users WHERE user_id= ?;";
+
+$users = $db->query($query,[$id])->fetch();
+
+dd($users);
 
 foreach ($users as $user) {
     echo "<li>" . $user['name'] . "</li>";

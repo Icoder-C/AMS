@@ -2,11 +2,7 @@
 
 $uri=parse_url($_SERVER['REQUEST_URI'])["path"];
 
-$routes=[
-    '/'=> basePath('/App/controllers/index.php'),
-    '/sign-in'=> basePath('/App/controllers/sign-in.php'),
-    '/sign-up'=> basePath('/App/controllers/sign-up.php'),
-];
+$routes= require basePath("/Core/Routes.php");
 
 function routeToController($uri, $routes)
 {

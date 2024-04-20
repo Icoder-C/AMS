@@ -6,7 +6,6 @@ require BASE_PATH."/Utils/functions.php";
 
 require basePath("/Core/router.php");
 
-// $url = parse_url($_SERVER["REQUEST_URI"])["path"];
 
 
 // require view("admin/dashboard");

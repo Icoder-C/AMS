@@ -3,7 +3,7 @@ $mainLayoutContent=view("index");
 $pageTitle='Attendance Management System (A.M.S.)';
 
 $styles=[
-    css("index")
+    css("landing/index")
 ];
 
 $headScripts=[
