@@ -1,11 +1,11 @@
 <?php
-$dashboardLayout=view("user/dashboard");
+$dashboardLayout=view("admin/admin.dashboard");
 
 $pageTitle='Dashboard | Admin';
 
 
 $styles=[
-    css("nav")
+    css("app/partials/nav")
 ];
 
 $headScripts=[
@@ -21,4 +21,4 @@ $bodyScripts=[
     js("body/index")
 ];
 
-require view("partials/dashboardLayout");
+require view("app");

@@ -4,14 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="<?= css('reset') ?>">
     <link rel="stylesheet" href="<?= css('variables') ?>">
-    <link rel="stylesheet" href="<?= css('font') ?>">
     <link rel="stylesheet" href="<?= css('global') ?>">
+    <link rel="stylesheet" href="<?= css('font') ?>">
     <?php foreach ($styles as $style) : ?>
         <link rel="stylesheet" <?= is_array($style) ? arrayToAttributesString($style) : "href=\"{$style}\"" ?> />
     <?php endforeach; ?>
@@ -25,8 +22,14 @@
 <body>
 
     <main>
-    <?php require view("partials/nav"); ?>
-        <?php require $dashboardLayout ?>
+        <div class="parent">
+            <div class="child">
+            <?php require view("partials/nav"); ?>
+            </div>
+            <div class="child2">
+                <?php require $dashboardLayout ?>
+            </div>
+        </div>
     </main>
 
     <?php foreach ($bodyScripts as $bodyScript) : ?>

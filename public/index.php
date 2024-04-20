@@ -4,8 +4,8 @@ require BASE_PATH."/Utils/functions.php";
 
 // require basePath("/Config/database.mysqli.php");
 
-require basePath("/Core/router.php");
+// require basePath("/Core/router.php");
 
 
 
-// require view("admin/dashboard");
+require view("admin/dashboard");
