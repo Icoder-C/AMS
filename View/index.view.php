@@ -26,6 +26,6 @@
   <div class="features">
     <h1>FEATURES</h1>
     <div class="features-cards">
-    <p>   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Obcaecati ad ipsa facere enim nobis. Quod aut laudantium temporibus non? Dolorum similique odio fugit praesentium exercitationem, eveniet minima explicabo eum. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Consequatur, voluptatibus repellat accusamus commodi odio illo. Odio, laudantium molestiae in, animi fugiat explicabo ex qui tenetur reiciendis exercitationem maiores, repellendus officiis! Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae, ratione fugiat minima totam iste recusandae molestias rerum commodi libero delectus, sunt eligendi voluptatem obcaecati! Perferendis ea doloribus adipisci! Laborum, eius. Lorem ipsum dolor sit amet consectetur adipisicing elit. Et consectetur assumenda iste similique quas odit, ipsa placeat facilis nihil perferendis ut quaerat, corporis dolores culpa voluptatibus rem, sequi suscipit! Vitae.</p>
-    </div>
+
+  </div>
   </div>
