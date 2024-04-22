@@ -2,11 +2,12 @@
 
 namespace Core;
 
-class Container{
+class Container
+{
     public function bind(){
 
     }
     public function reslove(){
-        
+
     }
 }
