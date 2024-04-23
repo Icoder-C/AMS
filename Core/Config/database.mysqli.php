@@ -1,13 +1,6 @@
 <?php
 
-use Core\Config\Database;
-
-require basePath("/Config/Database.php");
-
-$config =require basePath('/Config/config.php');
-
-
-$db = new Database($config['mysql']);
+use Core\Database;
 
 $id =$_GET["id"];
 

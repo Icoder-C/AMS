@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\Config;
+namespace Core;
 
 use PDO;
 
@@ -10,10 +10,8 @@ class Database
 
     public function __construct($config, $user = 'root', $password = '')
     {
-
         //Seting DSN
         $dsn = 'mysql:' . http_build_query($config, '', ';');
-        // dd($dsn);
 
         // Create a PDO instance
         $this->connection = new PDO($dsn, $user, $password, [
