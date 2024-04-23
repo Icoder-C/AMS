@@ -4,10 +4,12 @@ namespace Core;
 
 class Container
 {
-    public function bind(){
+    public function bind($key, $resolver)
+    {
 
     }
-    public function reslove(){
+    public function resolve($key)
+    {
 
     }
 }
