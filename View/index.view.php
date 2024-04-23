@@ -19,7 +19,7 @@
       <div class="head">Attendance Management System (A.M.S.)</div>
       <div class="subhead">Streamline Attendance Tracking with A.M.S.</div>
     </div>
-    <div class="bgimage"> <img src="<?= res("bg2-v2.png") ?>" id="bgimage"></div>
+    <div class="bgimage"> <img src="<?= res("backgrounds/bg2-v2.png") ?>" id="bgimage"></div>
   </div>
 
 
