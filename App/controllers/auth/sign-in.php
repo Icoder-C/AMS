@@ -20,3 +20,4 @@ $bodyScripts=[
 ];
 
 require view("mainLayout");
+

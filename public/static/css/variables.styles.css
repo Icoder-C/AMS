@@ -105,7 +105,7 @@
     /* My site*/
     --blue: #023e8a;
     /* --blue: #2563eb; */
-    --blue-light:#2658c4;
+    --blue-light:#BAC1DA;
     --dark-blue:#003566;
     --grey: #e5e7eb;
     /* --grey: #dad3d3; */
@@ -114,5 +114,5 @@
     --zinc:
     --dark_green:
     --black:#0d1b2a; */
-    --icons-m: min(5vw, 5vh); /* Adjust the values as needed */
+    --icons-m: min(7vw, 5vh); /* Adjust the values as needed */
   }

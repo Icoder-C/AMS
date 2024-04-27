@@ -9,6 +9,8 @@ spl_autoload_register(function ($class) {
 });
 
 require basePath("/Core/db_connect.php");
+
+
 // require basePath("/Core/Config/database.mysqli.php");
 
 $router = new \Core\Router();

@@ -1,24 +1,12 @@
-<?php
-$dashboardLayout=view("admin/admin.dashboard");
+<div class="main-container">
+    <div class="accounts-icon">
+        <img src="<?= res('icons/user-blue.svg'); ?>" alt="user">
+    </div>
 
-$pageTitle='Dashboard | Admin';
-
-
-$styles=[
-    css("app/partials/nav")
-];
-
-$headScripts=[
-    [
-        "src"=>'https://code.jquery.com/jquery-3.7.1.min.js',
-        "integrity"=>"sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=",
-        "crossorigin"=>"anonymous"
-    ],
-    // js("index")
-
-];
-$bodyScripts=[
-    js("body/index")
-];
-
-require view("app");
+    <div class="notification-bar">
+        <h1>Welcome <?= $user ?> !!!</h1>
+        <span id="time"></span>
+        <span id="date"></span>
+    <script src="<?= js('date-time') ?>"></script>
+    </div>
+</div>

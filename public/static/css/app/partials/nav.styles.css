@@ -1,10 +1,4 @@
-*{
-  box-sizing: border-box;
-}
 
-body{
-  background-color: rgb(63, 148, 228);
-}
 nav {
   position: fixed;
   width: 20%;
@@ -28,14 +22,12 @@ nav {
 #cmp_name{
   /* margin: 0 auto 0 auto; */
   text-align: center;
-  font-size: 4rem;
-}
-#cmp_name:hover{
-  /* margin: 0 auto 0 auto; */
-  text-align: center;
   font-size: 5rem;
-  cursor: text;
-  color: var(--orange);
+  font-weight: bolder;
+  font-style: italic;
+}
+li img{
+  width: var(--icons-m);
 }
 .nav-list{
   list-style-type: none;
@@ -68,4 +60,5 @@ li:hover{
 .nav-list span{
   margin-left: 5px;
   font-size: 2rem;
+  font-weight: bold;
 }

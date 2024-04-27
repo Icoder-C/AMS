@@ -23,12 +23,13 @@
     <main>
         <div class="parent">
             <div class="child">
-            <?php require view("partials/nav"); ?>
+            <?php require $navLayout ?>
             </div>
             <div class="child2">
                 <?php require $dashboardLayout ?>
             </div>
         </div>
+
     </main>
 
     <?php foreach ($bodyScripts as $bodyScript) : ?>
