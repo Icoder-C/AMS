@@ -6,7 +6,7 @@
 
   <div class="main-container">
 
-   <div class="signup-panel">
+    <div class="signup-panel">
       <div class="signup-header">Sign Up</div>
       <form action="#" method="post">
         <div class="form-group">
@@ -46,6 +46,6 @@
         <a href="/sign-up">Sign Up</a>
       </div>
     </div>
-    
+
   </div>
 </div>
