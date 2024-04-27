@@ -1,4 +1,19 @@
 <?php
+
+use Core\Validation;
+
+// dd($_SERVER);
+
+if($_SERVER['REQUEST_METHOD']==='POST'){
+    Validation::nameValidation(trim($_POST['fname'])?? NULL);
+    Validation::emailValidation(trim($_POST['email'])?? NULL);
+    Validation::dateOfAppointmentValidation(trim($_POST['doa'])?? NULL);
+    Validation::passwordValidation(trim($_POST['password'])?? NULL);
+    Validation::confirmPasswordValidation(trim($_POST['password']), trim($_POST['cpassword'])?? NULL);
+
+    $errors=Validation::getErrors();
+}
+
 $mainLayoutContent=view("auth/sign-up");
 $pageTitle='Sign UP | AMS';
 

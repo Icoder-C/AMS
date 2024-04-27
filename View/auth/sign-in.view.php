@@ -7,25 +7,30 @@
   <div class="main-container">
 
     <div class="signup-panel">
-      <div class="signup-header">Sign Up</div>
-      <form action="#" method="post">
+      <div class="signup-header">Sign In</div>
+      <form action="#" method="POST">
         <div class="form-group">
           <label for="fname">
             <img src="<?= res('icons/user-blue.svg') ?>" alt="User Icon" class="icon" />
             Username
-            <input type="text" name="username" id="username" />
+            <input type="text" name="username" id="username" value="<?= $_POST['username'] ?? ''; ?>"/>
           </label>
-          <span class="error-msg"></span>
+          <span class="error-msg">
+          </span>
         </div>
 
 
         <div class="form-group">
-          <label for="password1">
+          <label for="password">
             <img src="<?= res('icons/key-blue.svg') ?>" alt="Password Icon" class="icon" />
             Password
-            <input type="password" name="password1" id="password1" />
+            <input type="password" name="password" id="password" />
           </label>
-          <span class="error-msg">Incorrect password</span>
+          <span class="error-msg">
+          <?php if (isset($errors['password'])): ?>
+          <?= $errors['password']?>
+          <?php endif; ?>
+          </span>
         </div>
 
         <div class="terms-checkbox">
@@ -33,7 +38,7 @@
         </div>
 
         <div class="submit-button">
-          <button type="submit">Sign Up</button>
+          <button type="submit">Sign In</button>
         </div>
 
       </form>

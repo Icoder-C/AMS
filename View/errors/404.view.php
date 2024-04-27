@@ -1,5 +1,7 @@
 <?php
 // bootstrap template for 404 page used
+
+dd($_SERVER);
 ?>
 
 <!DOCTYPE html>

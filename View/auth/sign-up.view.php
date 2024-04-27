@@ -14,58 +14,66 @@
 
     <div class="signup-panel">
       <div class="signup-header">Sign Up</div>
-      <form action="#" method="post">
+      <form action="#" method="post" novalidate>
         <div class="form-group">
           <label for="fname">
             <img src="<?= res('icons/user-blue.svg') ?>" alt="User Icon" class="icon" />
             Full Name
-            <input type="text" name="fname" id="fname" placeholder="Full Name" />
-          </label>
-          <span class="error-msg"></span>
+            <input type="text" name="fname" id="fname" placeholder="Full Name" value="<?= $_POST['fname'] ?? ''; ?>"/>
+          </label><span class="error-msg">
+          <?php if (isset($errors['fname'])): ?>
+          <?= $errors['fname']?>
+          <?php endif; ?></span>
         </div>
 
         <div class="form-group">
           <label for="email">
             <img src="<?= res('icons/email-blue.svg') ?>" alt="Email Icon" class="icon" />
             Email
-            <input type="email" name="email" id="email" placeholder="emailme@gmail.com" />
-          </label>
-          <span class="error-msg"></span>
+            <input type="email" name="email" id="email" placeholder="emailme@gmail.com" value="<?= $_POST['email'] ?? ''; ?>"/>
+          </label><span class="error-msg">
+          <?php if (isset($errors['email'])): ?>
+          <?= $errors['email']?>
+          <?php endif; ?></span>
         </div>
 
         <div class="form-group">
           <label for="appointment">
             <img src="<?= res('icons/calendar-blue.svg') ?>" alt="Calendar Icon" class="icon" />
             Date of Appointment
-            <input type="date" name="appointment" id="appointment" placeholder="dd/mm/yyyy" />
-          </label>
-          <span class="error-msg"></span>
+            <input type="date" name="doa" id="doa" placeholder="dd/mm/yyyy" value="<?= $_POST['doa'] ?? ''; ?>"/>
+          </label><span class="error-msg">
+          <?php if (isset($errors['doa'])): ?>
+          <?= $errors['doa']?>
+          <?php endif; ?></span>
         </div>
 
         <div class="form-group">
-          <label for="password1">
+          <label for="password">
             <img src="<?= res('icons/key-blue.svg') ?>" alt="Password Icon" class="icon" />
             Password
-            <input type="password" name="password1" id="password1" placeholder="**********" />
-          </label>
-          <span class="error-msg">Incorrect password</span>
+            <input type="password" name="password" id="password" placeholder="**********" />
+          </label><span class="error-msg">
+          <?php if (isset($errors['password'])): ?>
+          <?= $errors['password']?>
+          <?php endif; ?></span>
         </div>
 
         <div class="form-group">
-          <label for="password2">
+          <label for="cpassword">
             <img src="<?= res('icons/key-blue.svg') ?>" alt="Confirm Password Icon" class="icon" />
             Confirm Password
-            <input type="password" name="password2" id="password2" placeholder="**********" />
-          </label>
-          <span class="error-msg">Incorrect password</span>
+            <input type="password" name="cpassword" id="cpassword" placeholder="**********" />
+          </label><span class="error-msg">
+          <?php if (isset($errors['cpassword'])): ?>
+          <?= $errors['cpassword']?>>
+          <?php endif; ?></span
         </div>
-
 
         <label for="terms" class="terms-checkbox">
           <input type="checkbox" name="terms" id="terms" required />
           I have read all <a href="./terms_&_Condition.html"> Terms & Conditions</a>.
         </label>
-
 
         <div class="submit-button">
           <button type="submit">Sign Up</button>
