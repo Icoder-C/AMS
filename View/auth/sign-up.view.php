@@ -1,63 +1,76 @@
-  <div class="header">
-    <div class="title-name">
-      <h2>Attendance Management System (A.M.S.)</h2>
-    </div>
+<div class="header">
+  <div class="title-name">
+    <h2>Attendance Management System (A.M.S.)</h2>
   </div>
 
   <div class="main-container">
-    <div class="optionPanel">
-      <div class="big-text">Welcome</div>
-      <div class="small-text">Already a User?</div>
-      <div class="sign_up">
+    <div class="option-panel">
+      <div class="welcome-message">Welcome</div>
+      <div class="user-check">Already a User?</div>
+      <div class="login-link">
         <a href="/sign-in">Sign In</a>
       </div>
     </div>
 
-    <div class="detailsPanel">
-      <div class="topic">Sign Up</div>
+    <div class="signup-panel">
+      <div class="signup-header">Sign Up</div>
       <form action="#" method="post">
-        <div class="input">
+        <div class="form-group">
           <label for="fname">
-            <img src="./../../resources/user-blue.svg" alt="user" class="icon" />
+            <img src="<?= res('icons/user-blue.svg') ?>" alt="User Icon" class="icon" />
             Full Name
-            <input type="text" name="fname" id="fname" placeholder="First-Name last-Name" /> </label><span class="error-msg"></span>
+            <input type="text" name="fname" id="fname" placeholder="Full Name" />
+          </label>
+          <span class="error-msg"></span>
         </div>
 
-        <div class="input">
+        <div class="form-group">
           <label for="email">
-            <img src="./../../resources/email-blue.svg" alt="email" class="icon" />
+            <img src="<?= res('icons/email-blue.svg') ?>" alt="Email Icon" class="icon" />
             Email
-            <input type="email" name="email" id="email" placeholder="xyz@gmail.com" /> </label><span class="error-msg"></span>
+            <input type="email" name="email" id="email" placeholder="emailme@gmail.com" />
+          </label>
+          <span class="error-msg"></span>
         </div>
 
-        <div class="input">
+        <div class="form-group">
           <label for="appointment">
-            <img src="./../../resources/calendar-blue.svg" alt="DOA" class="icon" />
+            <img src="<?= res('icons/calendar-blue.svg') ?>" alt="Calendar Icon" class="icon" />
             Date of Appointment
-            <input type="date" name="appointment" id="appointment" placeholder="dd/mm/yyyy" /> </label><span class="error-msg"></span>
+            <input type="date" name="appointment" id="appointment" placeholder="dd/mm/yyyy" />
+          </label>
+          <span class="error-msg"></span>
         </div>
 
-        <div class="input">
-          <label for="password">
-            <img src="./../../resources/key-blue.svg" alt="password" class="icon" />
+        <div class="form-group">
+          <label for="password1">
+            <img src="<?= res('icons/key-blue.svg') ?>" alt="Password Icon" class="icon" />
             Password
-            <input type="text" name="password" id="password" placeholder="**********" /> </label><span class="error-msg"></span>
+            <input type="password" name="password1" id="password1" placeholder="**********" />
+          </label>
+          <span class="error-msg">Incorrect password</span>
         </div>
 
-        <div class="input">
-          <label for="password">
-            <img src="./../../resources/key-blue.svg" alt="cpassword" class="icon" />
+        <div class="form-group">
+          <label for="password2">
+            <img src="<?= res('icons/key-blue.svg') ?>" alt="Confirm Password Icon" class="icon" />
             Confirm Password
-            <input type="text" name="password" id="password" placeholder="**********" /> </label><span class="error-msg"></span>
+            <input type="password" name="password2" id="password2" placeholder="**********" />
+          </label>
+          <span class="error-msg">Incorrect password</span>
         </div>
-        <label for="terms" class="terms">
-          <input type="checkbox" name="terms" id="terms" required /> I have read all <a href="./terms_&_Condition.html">Terms & Conditions.</a>
+
+
+        <label for="terms" class="terms-checkbox">
+          <input type="checkbox" name="terms" id="terms" required />
+          I have read all <a href="./terms_&_Condition.html"> Terms & Conditions</a>.
         </label>
 
-        <div class="sign_in">
-          <button type="submit">Sign In</button>
-        </div>
 
+        <div class="submit-button">
+          <button type="submit">Sign Up</button>
+        </div>
       </form>
     </div>
   </div>
+</div>

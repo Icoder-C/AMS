@@ -7,6 +7,7 @@
 
     <link rel="stylesheet" href="<?= css('reset') ?>">
     <link rel="stylesheet" href="<?= css('variables') ?>">
+    <link rel="stylesheet" href="<?= css('global') ?>">
     <link rel="stylesheet" href="<?= css('font') ?>">
     <?php foreach ($styles as $style) : ?>
         <link rel="stylesheet" <?= is_array($style) ? arrayToAttributesString($style) : "href=\"{$style}\"" ?> />
