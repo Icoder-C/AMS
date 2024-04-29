@@ -2,42 +2,97 @@
 
 namespace Core;
 
-class Router{
+
+use Core\middlewares\Middleware;
+
+class Router
+{
 
     protected $routes = [];
 
-    public function add($method, $uri, $controller){
-        return $this->routes[]= compact('method','uri','controller');
+    public function add($method, $uri, $controller)
+    {
+        $this->routes[]=[
+            'uri'=>$uri, 
+            'method'=> $method, 
+            'controller'=>$controller,
+            'middleware'=>null
+        ];
+
+        return $this;
     }
-    public function get($uri, $controller){
-        return $this->add('GET',$uri,$controller);
+
+
+    public function get($uri, $controller)
+    {
+        return $this->add('GET', $uri, $controller);
     }
-    public function post($uri,$controller){
-        return $this->add('POST',$uri,$controller);
+
+
+    public function post($uri, $controller)
+    {
+        return $this->add('POST', $uri, $controller);
     }
-    public function delete($uri,$controller){
-        return $this->add('DELETE',$uri,$controller);
+
+
+    public function delete($uri, $controller)
+    {
+        return $this->add('DELETE', $uri, $controller);
     }
-    public function patch($uri,$controller){
-        return $this->add('PATCH',$uri,$controller);
+
+
+    public function patch($uri, $controller)
+    {
+        return $this->add('PATCH', $uri, $controller);
     }
-    public function put($uri,$controller){
-        return $this->add('PUT',$uri,$controller);
+
+
+    public function put($uri, $controller)
+    {
+        return $this->add('PUT', $uri, $controller);
     }
-    public function route($uri, $method){
-        foreach($this->routes as $route){
-            if($route['uri']===$uri && $route['method']===strtoupper($method)){
+
+    public function only($key){
+        $this->routes[array_key_last($this->routes)]['middleware']=$key;
+
+    }
+
+
+    public function route($uri, $method)
+    {
+        foreach ($this->routes as $route) {
+            if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
+            
+            if($route['middleware']){
+                $middlewawre=Middleware::MAP[$route['middleware']];
+
+                (new $middlewawre)->handle();
+                // Middleware::resolve();
+            }
+            
+            
+                // if($route['middleware']==='guest'){
+                //     (new Guest)->handle();
+                // }
+                // if($route['middleware']==='auth'){
+                    
+                // }
+
                 return require basePath($route['controller']);
             }
         }
-        $this->abort(); 
+        $this->abort();
     }
+
+
     protected function abort($code = 404)
     {
         http_response_code($code);
-    
+
         require view("errors/{$code}");
-    
+
         die();
     }
+
+
 }

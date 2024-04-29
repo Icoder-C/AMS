@@ -14,7 +14,7 @@ function view($viewPath)
 
 function controller($controllerPath)
 {
-    return basePath("/App/controllers/" .$controllerPath. ".php");
+    return basePath("/App/controllers/" . $controllerPath . ".php");
 }
 
 function css($cssPath)
@@ -77,13 +77,14 @@ function abort($code = 404)
 
     die();
 }
-function authorize($condition, $status=Response::FORBIDDEN){
-    if(! $condition){
+function authorize($condition, $status = Response::FORBIDDEN)
+{
+    if (!$condition) {
         abort($status);
     }
 }
 
-function login($user){
-    session_start();
-    $_SESSION['$user']=$user;
+function login($user)
+{
+    $_SESSION['$user'] = $user;
 }
