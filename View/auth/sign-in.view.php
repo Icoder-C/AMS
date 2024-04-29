@@ -8,7 +8,7 @@
 
     <div class="signup-panel">
       <div class="signup-header">Sign In</div>
-      <form action="#" method="POST">
+      <form action="/sign-in" method="POST">
         <div class="form-group">
           <label for="fname">
             <img src="<?= res('icons/user-blue.svg') ?>" alt="User Icon" class="icon" />

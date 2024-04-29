@@ -14,7 +14,7 @@
 
     <div class="signup-panel">
       <div class="signup-header">Sign Up</div>
-      <form action="#" method="post" novalidate>
+      <form action="/sign-up" method="post" novalidate>
         <div class="form-group">
           <label for="fname">
             <img src="<?= res('icons/user-blue.svg') ?>" alt="User Icon" class="icon" />
@@ -71,7 +71,7 @@
         </div>
 
         <label for="terms" class="terms-checkbox">
-          <input type="checkbox" name="terms" id="terms" required />
+          <input type="checkbox" name="terms" id="terms" required checked/>
           I have read all <a href="./terms_&_Condition.html"> Terms & Conditions</a>.
         </label>
 

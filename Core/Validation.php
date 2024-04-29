@@ -32,9 +32,9 @@ class Validation
         if(strlen($value)<=7){
             self::$errors['password'] = "*Password must be at least 8 characters long";
         }
-        else if (!preg_match("/^(?=.*[a-z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]$/", $value)) {
-            self::$errors['password'] = "*Must include at least one letter, one number, and one special character.";
-        }
+        // else if (!preg_match("/^(?=.*[a-z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]$/", $value)) {
+        //     self::$errors['password'] = "*Must include at least one letter, one number, and one special character.";
+        // }
     }
 
     public static function confirmPasswordValidation($password, $confirmPassword)

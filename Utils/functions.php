@@ -1,5 +1,7 @@
 <?php
 
+use Core\Response;
+
 function basePath($path)
 {
     return BASE_PATH . $path;
@@ -8,6 +10,11 @@ function basePath($path)
 function view($viewPath)
 {
     return basePath("/View/" . $viewPath . ".view.php");
+}
+
+function controller($controllerPath)
+{
+    return basePath("/App/controllers/" .$controllerPath. ".php");
 }
 
 function css($cssPath)
@@ -63,10 +70,20 @@ function dd($value)
     die();
 }
 function abort($code = 404)
-    {
-        http_response_code($code);
-    
-        require view("errors/{$code}");
-    
-        die();
+{
+    http_response_code($code);
+
+    require view("errors/{$code}");
+
+    die();
+}
+function authorize($condition, $status=Response::FORBIDDEN){
+    if(! $condition){
+        abort($status);
     }
+}
+
+function login($user){
+    session_start();
+    $_SESSION['$user']=$user;
+}
