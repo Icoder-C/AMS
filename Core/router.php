@@ -3,7 +3,7 @@
 namespace Core;
 
 
-use Core\middlewares\Middleware;
+use App\middlewares\Middleware;
 
 class Router
 {
@@ -12,11 +12,11 @@ class Router
 
     public function add($method, $uri, $controller)
     {
-        $this->routes[]=[
-            'uri'=>$uri, 
-            'method'=> $method, 
-            'controller'=>$controller,
-            'middleware'=>null
+        $this->routes[] = [
+            'uri' => $uri,
+            'method' => $method,
+            'controller' => $controller,
+            'middleware' => null
         ];
 
         return $this;
@@ -52,9 +52,9 @@ class Router
         return $this->add('PUT', $uri, $controller);
     }
 
-    public function only($key){
-        $this->routes[array_key_last($this->routes)]['middleware']=$key;
-
+    public function only($key)
+    {
+        $this->routes[array_key_last($this->routes)]['middleware'] = $key;
     }
 
 
@@ -62,21 +62,8 @@ class Router
     {
         foreach ($this->routes as $route) {
             if ($route['uri'] === $uri && $route['method'] === strtoupper($method)) {
-            
-            if($route['middleware']){
-                $middlewawre=Middleware::MAP[$route['middleware']];
 
-                (new $middlewawre)->handle();
-                // Middleware::resolve();
-            }
-            
-            
-                // if($route['middleware']==='guest'){
-                //     (new Guest)->handle();
-                // }
-                // if($route['middleware']==='auth'){
-                    
-                // }
+                Middleware::resolve($route['middleware']);
 
                 return require basePath($route['controller']);
             }
@@ -93,6 +80,4 @@ class Router
 
         die();
     }
-
-
 }

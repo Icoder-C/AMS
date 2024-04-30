@@ -2,11 +2,6 @@
 $mainLayoutContent=view("auth/sign-in");
 $pageTitle='Sign IN | AMS';
 
-if($_SERVER['REQUEST_METHOD']==='POST'){
-    $username=$_POST['username'];
-    $password=$_POST['password'];
-}
-
 $styles=[
     css("auth/sign-in")
 ];

@@ -27,8 +27,8 @@
             <input type="password" name="password" id="password" />
           </label>
           <span class="error-msg">
-          <?php if (isset($errors['password'])): ?>
-          <?= $errors['password']?>
+          <?php if (isset($errors['feedback'])): ?>
+          <?= $errors['feedback']?>
           <?php endif; ?>
           </span>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace Core\middlewares;
+namespace App\middlewares;
 
 
 class Middleware
@@ -11,12 +11,15 @@ class Middleware
     ];
     public static function resolve($key)
     {
-        if(!$key){
+        if (!$key) {
             return;
         }
-        $middleware=static::MAP[$key];
+        $middleware = static::MAP[$key];
+        // dd($middleware);
 
-        if(!$middleware){
+        (new $middleware)->handle();
+
+        if (!$middleware) {
             throw new \Exception("No matching middleware found for key '{$key}'.");
         }
     }

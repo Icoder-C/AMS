@@ -1,13 +1,14 @@
 <?php
 
-$role='admin';
-$user='Roshan Phuyal';
+$currentUser=$_SESSION['user'];
+$role=$currentUser['role'];
+$user=$currentUser['name'];
 
 
 $dashboardLayout=view("{$role}/dashboard");
 $navLayout=view("{$role}/nav");
 
-$pageTitle='Dashboard | Admin';
+$pageTitle='Dashboard | '.ucfirst($role);
 
 
 $styles=[

@@ -32,3 +32,5 @@ VALUES ('user1@gmail.com', 'Employee One', 'user', '123','active');
 
 SELECT *
 FROM users;
+
+DROP DATABASE AMS;
