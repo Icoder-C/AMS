@@ -27,17 +27,64 @@
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   border: 1px solid #ddd; /* Light grey border for some definition */
   border-radius: 8px;
+}
+.notification-bar h1 {
+  width: 100%;
+  /* border: 2px solid red; Light grey border for some definition */
+}
+#time,
+#date {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: bold;
+  text-align: right;
+  margin: 5px 0 5px 0;
+  padding-right: 5px;
+  font-family: "Iceberg", sans-serif;
+  /* border: 2px solid red; Light grey border for some definition */
+}
+#date{
+  font-size: 1.7rem;
+}
+.dynamic-content li{
+  list-style: none;
+  border: none;
+  font-size: 2rem;
+  margin: 5px;
+}
+.sub-headings{
+  display: flex;
+  flex-direction: row;
+}
+.dynamic-content{
+  min-width: 70%;
+}
+.checkin{
+  text-align: left;
+}
+.date-time{
+  display: flex;
+  flex-direction: column;
+  /* border: 2px solid red; Light grey border for some definition */
+  text-align: right;
+  min-width: 30%;
+}
+.body{
+  width: 100%;
+  padding: 20px;
+  margin-top: 10vh;
+  min-height: 20vh;
   display: flex;
 }
-.notification-bar h1{
-  width: 100%;
+.calander{
+  background-color: var(--grey);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Light grey border for some definition */
+  min-height: 20vh;
 }
-
-#time{
-  width: 100%;
-
-    font-size: 2rem;
-    font-weight: bold;
-    display:block;
-    justify-self: end;
+.map{
+  background-color: var(--grey);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-height: 20vh;
+  border: 1px solid #ddd; /* Light grey border for some definition */
 }

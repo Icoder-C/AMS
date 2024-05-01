@@ -48,8 +48,9 @@ li {
   color: white;
   text-decoration: none;
 }
-.nav-list li:nth-child(3) img,
-.nav-list li:nth-child(4) img {
+#profile,
+#attendance,
+#report {
   width: 2.3vw;
 }
 

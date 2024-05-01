@@ -71,10 +71,9 @@ else {
 }
 
 //mark that the user has logged in.
-$currentUser = $db->query('SELECT * FROM users WHERE email:',
+$currentUser = $db->query('SELECT * FROM users WHERE email= :email',
     [
         'email'=>$email
     ])->find();
-dd($currentUser);
 
 login($currentUser);
