@@ -7,16 +7,16 @@
         <h1>Welcome <?= $user ?> !!!</h1>
         <div class="sub-headings">
             <div class="dynamic-content">
-            <?php if (isset($_SESSION['user']['status'])): ?>
-                <li>
-                    <div class="checkin">Current Status</div>
-                </li>
-                <li>
-                    <div class="checkin">Checked Time</div>
-                </li>
-                <li>
-                    <div class="checkin">Checed Out</div>
-                </li>
+                <?php if (isset($_SESSION['user']['status'])) : ?>
+                    <li>
+                        <div class="checkin">Current Status</div>
+                    </li>
+                    <li>
+                        <div class="checkin">Checked Time</div>
+                    </li>
+                    <li>
+                        <div class="checkin">Checed Out</div>
+                    </li>
                 <?php endif; ?>
             </div>
             <div class="date-time">
@@ -28,11 +28,13 @@
     </div>
 
     <div class="body">
-        <div class="calander">
-
+        <div class="card">
+                <?= require view("partials\calander"); ?>
         </div>
-        <div class="map">
-            
+        <div class="card">
+            <div class="con">
+            <?= require view("partials\map"); ?>
+            </div>
         </div>
     </div>
 </div>

@@ -13,7 +13,14 @@ $pageTitle='Dashboard | '.ucfirst($role);
 
 $styles=[
     css("app/partials/nav"),
-    css('app/dashboard')
+    css('app/dashboard'),
+    css('app/partials/calander'),
+    css('app/partials/map'),
+    [
+        "href"=>"https://unpkg.com/leaflet/dist/leaflet.css"
+    ]
+    
+    
 ];
 
 $headScripts=[
@@ -23,10 +30,13 @@ $headScripts=[
         "crossorigin"=>"anonymous"
     ],
     // js("index")
+    [
+        "src"=>"https://unpkg.com/leaflet/dist/leaflet.js"
+    ]
 
 ];
 $bodyScripts=[
-    js("body/index")
+    // js("body/index")
 ];
 
 require view("app");
