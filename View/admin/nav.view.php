@@ -6,31 +6,31 @@
     <div class="middle">
         <ul class="nav-list">
             <li>
-                <a href="#home">
+                <a href="/dashboard">
                     <img src="<?= res('icons/home-white.svg') ?>" alt="Home Icon" id="home">
                     <span>Home</span>
                 </a>
             </li>
             <li>
-                <a href="#profile">
+                <a href="/profile">
                     <img src="<?= res('icons/user-white.svg') ?>" alt="Profile Icon" id="profile">
                     <span>Profile</span>
                 </a>
             </li>
             <li>
-                <a href="#employees">
+                <a href="/employees">
                     <img src="<?= res('icons/users-white.svg') ?>" alt="Employees-icon" id="employees">
                     <span>Employees</span>
                 </a>
             </li>
             <li>
-                <a href="#attendance">
+                <a href="/attendance">
                     <img src="<?= res('icons/calendar-white.svg') ?>" alt="Attendance Icon" id="attendance">
                     <span>Attendance</span>
                 </a>
             </li>
             <li>
-                <a href="#leave">
+                <a href="/leave">
                     <img src="<?= res('icons/leave-white.svg') ?>" alt="Leave Management Icon" id="leave">
                     <span>Leave</span>
                 </a>

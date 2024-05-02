@@ -48,11 +48,13 @@ function arrayToAttributesString(array $assocArray): string
     $attributes = '';
 
     foreach ($assocArray as $key => $value) {
-        $attributes .= " $key=\"$value\"";
+        // Use htmlspecialchars to escape HTML special characters
+        $attributes .= " $key=\"" . htmlspecialchars($value, ENT_QUOTES, 'UTF-8') . "\"";
     }
 
     return trim($attributes);
 }
+
 
 function render($Content, $data)
 {
@@ -104,4 +106,8 @@ session_destroy();
 $params = session_get_cookie_params();
 
 setcookie('PHPSESSID','',time()-3600,$params['path'],$params['domain'],$params['secure'],$params['httponly']);
+}
+
+function photo($photoPath){
+    return "/Data/images/{$photoPath}";
 }

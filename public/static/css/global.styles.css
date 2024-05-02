@@ -80,6 +80,7 @@ h3{
 p{
   font-size: 1.7rem;
 }
+
 .child2{
   min-height:100%;
   background-color: var(--blue-light);
@@ -93,4 +94,38 @@ p{
   align-content: left;
   text-align: left;
   padding: 20px;
+}
+.accounts-icon {
+  /* border: 2px solid red; */
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+.accounts-icon img {
+  width: 3vw;
+  margin: 0 5px 0 0 ;
+  cursor: pointer;
+  background-color: #ddd;
+  border: 2px solid black;
+  padding: 2px;
+  border-radius: 50%;
+  transform: scale(1);
+  transition: transform 0.5s, border-radius 1s;
+}
+.accounts-icon img:hover{
+  transform: scale(2);
+  border-radius: 0;
+}
+@media (max-width: 768px) {
+  .parent{
+    display: flex;
+    flex-direction: column;
+  }
+  .child{
+  min-width: none;
+  }
+  /* .child2{
+  
+  } */
 }

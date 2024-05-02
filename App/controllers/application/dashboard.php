@@ -18,9 +18,7 @@ $styles=[
     css('app/partials/map'),
     [
         "href"=>"https://unpkg.com/leaflet/dist/leaflet.css"
-    ]
-    
-    
+    ]  
 ];
 
 $headScripts=[

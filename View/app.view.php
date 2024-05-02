@@ -14,7 +14,7 @@
 
     <?php foreach ($headScripts as $headScript) : ?>
         <script <?= is_array($headScript) ? arrayToAttributesString($headScript) : "src=\"{$headScript}\"" ?>></script>
-    <?php endforeach; ?>
+        <?php endforeach; ?>
     <title><?= $pageTitle ?></title>
 </head>
 
@@ -23,9 +23,11 @@
     <main>
         <div class="parent">
             <div class="child">
-            <?php require $navLayout ?>
+                <?php require $navLayout ?>
             </div>
+            
             <div class="child2">
+                <?= require view('partials/icon'); ?>
                 <?php require $dashboardLayout ?>
             </div>
         </div>

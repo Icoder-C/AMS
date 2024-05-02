@@ -65,7 +65,7 @@ class Router
 
                 Middleware::resolve($route['middleware']);
 
-                return require basePath($route['controller']);
+                return require basePath("/App/controllers/".$route['controller']);
             }
         }
         $this->abort();

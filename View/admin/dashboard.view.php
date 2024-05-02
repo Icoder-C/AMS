@@ -27,13 +27,31 @@
         </div>
     </div>
 
+    <div class="staff-info">
+        <div class="sub-container">
+            <div class="tablet">On Duty Staff</div>
+            <div class="input">21</div>
+        </div>
+
+        <div class="sub-container">
+            <div class="tablet">Off Duty Staff</div>
+            <div class="input">21</div>
+        </div>
+
+        <div class="sub-container">
+            <div class="tablet">Staff on eave</div>
+            <div class="input">21</div>
+
+        </div>
+    </div>
+
     <div class="body">
         <div class="card">
-                <?= require view("partials\calander"); ?>
+            <?= require view("partials\calander"); ?>
         </div>
         <div class="card">
             <div class="con">
-            <?= require view("partials\map"); ?>
+                <?= require view("partials\map"); ?>
             </div>
         </div>
     </div>

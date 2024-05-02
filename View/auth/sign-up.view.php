@@ -38,6 +38,17 @@
         </div>
 
         <div class="form-group">
+          <label for="phone">
+            <img src="<?= res('icons/phone-blue.svg') ?>" alt="Phone Icon" class="icon" />
+            Email
+            <input type="text" name="phone" id="phone" placeholder="+977 982369402" value="<?= $_POST['phone'] ?? ''; ?>"/>
+          </label><span class="error-msg">
+          <?php if (isset($errors['phone'])): ?>
+          <?= $errors['phone']?>
+          <?php endif; ?></span>
+        </div>
+
+        <div class="form-group">
           <label for="appointment">
             <img src="<?= res('icons/calendar-blue.svg') ?>" alt="Calendar Icon" class="icon" />
             Date of Appointment

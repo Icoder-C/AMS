@@ -3,28 +3,7 @@
   width: 100%;
   /* border: 2px solid red; */
 }
-.accounts-icon {
-  /* border: 2px solid red; */
-  padding: 10px;
-  width: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-}
-.accounts-icon img {
-  width: 3vw;
-  margin: 0 5px 0 0 ;
-  cursor: pointer;
-  background-color: #ddd;
-  border: 2px solid black;
-  padding: 2px;
-  border-radius: 50%;
-  transform: scale(1);
-  transition: transform 0.5s, border-radius 1s;
-}
-.accounts-icon img:hover{
-  transform: scale(2);
-  border-radius: 0;
-}
+
 .notification-bar {
   width: 100%;
   padding: 20px;
@@ -76,7 +55,6 @@
 }
 .body{
   width: 100%;
-  margin-top: 10vh;
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -94,4 +72,66 @@
   display: flex; /* Enables flexible layouts inside the card */
   justify-content: center; /* Centers the calendar horizontally */
   align-items: center; /* Centers the calendar vertically */
+}
+
+.staff-info{
+  display: flex;
+  gap: 10vw;
+  margin: 5vh;
+  color: #fff;
+  font-size:1.5rem;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+.sub-container{
+  display: flex;
+  background-color: var(--blue);
+  border-radius: 8px;
+  display: flex;
+  font-size: larger;
+}
+.tablet{
+  padding: 3vh;  font-size:2rem;
+  text-align: center;
+}
+.input{
+  padding: 3vh;
+  width: 5vw;
+  border-radius: 8px;
+  background-color: var(--grey);
+  padding: 20px;
+  color: var(--blue);
+  font-size:2.5rem;
+  min-width: 20px;
+  text-align: center;
+  font-weight: bolder;
+}
+.form-container{
+  display: flex;
+  gap: 10vw;
+  margin: 5vh;
+  color: #fff;
+  font-size:1.5rem;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.form-container button{
+  font-size:1.8rem;
+  background-color: var(--blue);
+  padding: 10px 20px 10px 20px;
+  border:2px solid var(--grey);
+  border-radius: 8px;
+  transition: transform 1s;
+}
+.form-container button:hover{
+  transform: scale(1.3);
+  border-radius: 0;
+}
+@media (max-width: 768px) {
+  
 }
