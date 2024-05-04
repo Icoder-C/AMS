@@ -1,24 +1,99 @@
-.profile{
 
+.profile-main {
+  display: flex;
+  width: 100%;
 }
-.profile-main{
+.profile {
+  .profile-image {
+    max-width: 15%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    max-height: 25vh;
+    background-color: var(--grey);
+    border-radius: 8px;
+    margin-top: 20px;
+  }
+  .profile-form {
+    width: 85%;
+    color: var(--font-b);
+    font-size: 1.5rem;
+  }
+  .field {
+    display: block;
+  }
+  form {
+    padding: 5vh 0 5vh 0;
+    padding: 20px;
+  }
+  .topic {
+    display: flex;
+    background-color: var(--blue);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    color: var(--font-p);
+    justify-content: space-between;
+    padding: 5px 20px 5px 20px;
+    margin-bottom: 10px;
+  }
+  h1 {
+    display: inline;
+  }
+  button {
+    color: var(--font-p);
+    border-radius: 8px;
+    font-size: 2.5rem;
+    background: var(--font-b);
+    padding: 10px 30px 10px 30px;
+  }
+  .table {
+    background-color: var(--grey);
+    border: px solid black;
+    margin: 5px 5px 20px 5px;
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    padding-bottom: 20px;
+  }
 
-}
-.profile-image{
+  .field {
+    display: flex;
+    display: flex;
+    font-size: larger;
+    padding: 2px 5vw 2px 5vw;
+    display: flex;
+    align-items: center;
+  }
+  label {
+    font-size: 2rem;
+    width: 50%;
+    margin: 2px;
+    text-align: left;
+    font-weight: bold;
+  }
+  input {
+    width: 50%;
+    margin: 2px;
+    color: var(--blue);
+    font-size: 2.5rem;
+    font-weight: bolder;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 2px 2px 8px;
+    box-sizing: border-box;
+  }
 
-}
-.profile-form{
-
-}
-.form-user{
-
-}
-.topic{
-
-}
-.form-official{
-
-}
-.change-pw{
-
+  input[type="date"],
+  input[type="time"],
+  input {
+    text-align: left;
+    opacity: 0.6;
+    font-size: small;
+    background-color: #fff;
+    height: 30px;
+  }
+  .change-pw button {
+    width: 30%;
+    margin: 20px 35% 0 35%;
+  }
+  .change-pw h1 {
+    opacity: 0;
+  }
 }

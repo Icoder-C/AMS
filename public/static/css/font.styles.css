@@ -13,7 +13,11 @@ html {
   /* font-size: 1vh; Set font size based on the minimum of viewport width and height */
   /* max-width: 100%;
     max-height: 100%; */
-    font-family: "Iceberg", sans-serif;
+    font-family: 'Space Grotesk';
+    font-style: normal;
+    font-weight: 300 700;
+    font-display: swap;
+    /* font-family: "Iceberg", sans-serif; */
     /* font-family: "Montserrat", sans-serif; */
     font-style: normal;
   }

@@ -29,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // dd($errors);
         exit();
     }
-
     if (!password_verify($password, $user['password'])) {
         $errors['feedback'] = 'Password Incorrect';
 

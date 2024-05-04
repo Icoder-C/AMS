@@ -43,12 +43,10 @@
 
     <div class="body">
         <div class="card">
-            <?= require view("partials\calander"); ?>
+            <?php require view("partials\calander"); ?>
         </div>
         <div class="card">
-            <div class="con">
-                <?= require view("partials\map"); ?>
-            </div>
+            <?php require view("partials\map"); ?>
         </div>
     </div>
 </div>

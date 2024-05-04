@@ -27,7 +27,7 @@
             </div>
             
             <div class="child2">
-                <?= require view('partials/icon'); ?>
+                <?php require view('partials/icon'); ?>
                 <?php require $dashboardLayout ?>
             </div>
         </div>

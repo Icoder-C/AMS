@@ -61,18 +61,6 @@
   flex-wrap: wrap;
   justify-content: start;
 }
-.card {
-  min-height: 50vh;
-  border: 1px solid #ddd;
-  box-shadow: 5px 2px 5px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  background-color: #fff;
-  width: calc(50% - 15px); /* Responsive width with 2 cards per row */
-  padding: 20px; /* Added padding for internal spacing */
-  display: flex; /* Enables flexible layouts inside the card */
-  justify-content: center; /* Centers the calendar horizontally */
-  align-items: center; /* Centers the calendar vertically */
-}
 
 .staff-info{
   display: flex;

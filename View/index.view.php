@@ -1,7 +1,6 @@
 <header>
   <nav>
     <div class="company">AMS</div>
-    <div class="nav-toggle" id="navToggle">&#9776;</div> <!-- Mobile menu toggle -->
 
     <div class="middle" id="navMenu">
       <div class="opt"><a href="/">HOME</a></div>

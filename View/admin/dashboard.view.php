@@ -1,8 +1,4 @@
 <div class="main-container">
-    <div class="accounts-icon">
-        <img src="<?= res('icons/user-blue.svg'); ?>" alt="user">
-    </div>
-
     <div class="notification-bar">
         <h1>Welcome <?= $user ?> !!!</h1>
         <div class="sub-headings">
@@ -47,11 +43,11 @@
 
     <div class="body">
         <div class="card">
-            <?= require view("partials\calander"); ?>
+            <?php require view("partials\calander"); ?>
         </div>
         <div class="card">
             <div class="con">
-                <?= require view("partials\map"); ?>
+                <?php require view("partials\map"); ?>
             </div>
         </div>
     </div>

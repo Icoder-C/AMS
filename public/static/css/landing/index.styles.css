@@ -145,7 +145,7 @@ a:hover {
 
 .features h1,
 .contact-section h1 {
-  color: #023e8a;
+  color: var(--blue);
   font-size: 5rem;
   font-weight: bolder;
   display: block;
@@ -184,7 +184,7 @@ a:hover {
 
 /* Style adjustments for headings inside the cards */
 .feature-card h2 {
-  color: #023e8a; /* Dark blue color for headings, as per your color scheme */
+  color: var(--blue);/* Dark blue color for headings, as per your color scheme */
   margin-bottom: 10px; /* Spacing between the title and the paragraph */
   text-align: center;
   font-weight: bold;
@@ -245,7 +245,7 @@ a:hover {
 }
 
 .contact-item a {
-  color: #023e8a;
+  color: var(--blue);
   text-decoration: none;
 }
 
@@ -263,7 +263,7 @@ a:hover {
   gap: 10px;
 }
 .material-icons {
-  color: #023e8a;
+  color: var(--blue);
 }
 
 @media (max-width: 768px) {

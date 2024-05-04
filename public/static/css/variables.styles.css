@@ -103,16 +103,31 @@
     --purple-700: #10002b;
 
     /* My site*/
-    --blue: #023e8a;
+    --bg: #121212;
+    --bgsec:#d4d4d8;
+    --font-p:#BB86FC;
+    --font-b:#303030;
+    --hov-b:#303030;
+
+    --blue: #121212;
+    /* --blue: #023e8a; */
     /* --blue: #2563eb; */
-    --blue-light:#BAC1DA;
+    --blue-light:#fff;
+    /* --blue-light:#BAC1DA; */
     --dark-blue:#003566;
     --grey: #e5e7eb;
     /* --grey: #dad3d3; */
     --orange:#fb5607;
-    /* --green:
-    --zinc:
-    --dark_green:
-    --black:#0d1b2a; */
+    
     --icons-m: min(7vw, 5vh); /* Adjust the values as needed */
+
+    --new-black:#121212;
+    --new-blue:#3700B3;
+
+    /* New Primary */
+    --new-dark-secondary:#121212;
+    --new-dark-primary:#1f1b24;
+    --new-purple--200:#BB86FC;
+    --new-purple--700:#3700B3;
+    --new-teal-200:#03dac5;
   }
