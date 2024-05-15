@@ -16,22 +16,11 @@ $pageTitle='Leave | '.ucfirst($role);
 $styles=[
     css("app/partials/nav"),
     css('app/partials/calander'),
-    css('app/leave'),
-    [
-        "href"=>"https://unpkg.com/leaflet/dist/leaflet.css"
-    ]  
+    css('app/leave')
 ];
 
 $headScripts=[
-    [
-        "src"=>'https://code.jquery.com/jquery-3.7.1.min.js',
-        "integrity"=>"sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=",
-        "crossorigin"=>"anonymous"
-    ],
     // js("index")
-    [
-        "src"=>"https://unpkg.com/leaflet/dist/leaflet.js"
-    ]
 
 ];
 $bodyScripts=[

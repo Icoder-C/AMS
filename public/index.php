@@ -1,5 +1,7 @@
 <?php
 
+use Core\geoLocationProvider;
+
 session_start();
 define("BASE_PATH", dirname(__DIR__));
 require BASE_PATH . "/Utils/functions.php";
@@ -11,10 +13,15 @@ spl_autoload_register(function ($class) {
     require basePath("/{$class}.php");
 });
 
+// dd(geoLocationProvider::getGeoLocation());
+
 require basePath("/Core/db_connect.php");
 
 
-// require basePath("/Core/Config/database.mysqli.php");
+
+// echo var_export(unserialize(file_get_contents('http://www.geoplugin.net/php.gp?ip='.$_SERVER['REMOTE_ADDR'])));
+
+
 
 $router = new \Core\Router();
 

@@ -46,9 +46,7 @@
             <?php require view("partials\calander"); ?>
         </div>
         <div class="card">
-            <div class="con">
-                <?php require view("partials\map"); ?>
-            </div>
+            <?php require view("partials\map"); ?>
         </div>
     </div>
 </div>

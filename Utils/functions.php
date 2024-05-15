@@ -88,26 +88,37 @@ function authorize($condition, $status = Response::FORBIDDEN)
 
 function login($user)
 {
+    $requiredProfileFeilds = $user["address"];
+    $isProfileComplete = TRUE;
+    foreach ($requiredProfileFeilds as $field) {
+        if (!isset($user[$field])) {
+            $isProfileComplete = FALSE;
+            break;
+        }
+    }
     $_SESSION['user'] = [
-            'email' => $user['email'],
-            'name' => $user['name'],
-            'role' => $user['role']
+        'email' => $user['email'],
+        'name' => $user['name'],
+        'role' => $user['role'],
+        'isProfileComplete' => $isProfileComplete
     ];
-    
+
     session_regenerate_id(true);
     header('location: /dashboard');
 }
 
-function logout(){
-    
-$_SESSION=[];
-session_destroy();
+function logout()
+{
 
-$params = session_get_cookie_params();
+    $_SESSION = [];
+    session_destroy();
 
-setcookie('PHPSESSID','',time()-3600,$params['path'],$params['domain'],$params['secure'],$params['httponly']);
+    $params = session_get_cookie_params();
+
+    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
 }
 
-function photo($photoPath){
+function photo($photoPath)
+{
     return "/Data/images/{$photoPath}";
 }

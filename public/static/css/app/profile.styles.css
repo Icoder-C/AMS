@@ -94,6 +94,6 @@
     margin: 20px 35% 0 35%;
   }
   .change-pw h1 {
-    opacity: 0;
+    /* opacity: 0; */
   }
 }

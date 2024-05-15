@@ -1,6 +1,10 @@
 <?php
 
 $router->get('/', 'index.php')->only('guest');
+$router->get('/seed', 'seed.php');
+
+$router->get('/get-location', 'getOfficeLocation.php')->only('auth');
+
 $router->get('/sign-in', 'auth/sign-in.php')->only('guest');
 $router->get('/sign-up', 'auth/sign-up.php')->only('guest');
 

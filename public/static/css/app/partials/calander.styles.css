@@ -19,7 +19,7 @@
 
 /* Highlight weekends with a different background color */
 .weekend {
-  background-color: #cce5ff; /* Soft blue for relaxed weekend vibes */
+  background-color: #e2adb6; /* Soft blue for relaxed weekend vibes */
 }
 
 /* Highlight the selected date */
@@ -68,7 +68,5 @@ select {
   align-items: center; /* Centers the calendar vertically */
 }
 .date-privew {
-  opacity: 0;
-  font-size: 2rem;
-  text-align: center;
+  display: none;
 }

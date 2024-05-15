@@ -1,32 +1,15 @@
-<div class="attend">
-    <div class="body">
-        <div class="card">
-            <div class="con">
-                <?php require view("partials\calander"); ?>
-            </div>
-        </div>
-        <div class="card">
-            <?php require view("partials\map"); ?>
-        </div>
-    </div>
-
-    <div class="form-container">
-        <div class="forms-input">
-            <form action="/check-in" method="post">
-                <button type="submit">Check In</button>
-            </form>
-        </div>
-        <div class="forms-input">
-            <form action="/check-out" method="post">
-                <button type="submit">Check Out</button>
-            </form>
-        </div>
-    </div>
-
+<div class="report">
     <div class="topic">
         <h1>Attendance Record</h1>
     </div>
-
+    <div class="search">
+        <form action="#" method="post">
+            <input type="date" name="start" id="start">
+            <span>to</span>
+            <input type="date" name="start" id="start">
+            <button type="submit">Search</button>
+        </form>
+    </div>
     <div class="table">
         <table>
             <thead>
@@ -60,6 +43,15 @@
                 ?>
             </tbody>
         </table>
-    </div>
 
+    </div>
+    <div class="topic">
+        <h1>Leave Record</h1>
+        <div class="search">
+            <form action="#" method="post">
+                <input type="text" name="year" id="year">
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </div>
 </div>

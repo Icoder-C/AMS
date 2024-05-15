@@ -35,14 +35,7 @@ if (!empty($errors)) {
 $role;
 
 $db = App::resolve(Database::class);
-$ifAny = $db->query('SELECT email FROM users')->find();
-
-if (!$ifAny) {
-    $role = 'admin';
-}
-else{
-    $role = 'user';
-}   
+$ifAny = $db->query('SELECT email FROM users')->find();  
 
 //check if the account already exists
 $user = $db->query('SELECT * FROM users WHERE email=:email', [
@@ -61,19 +54,19 @@ if ($user) {
 }
 //if there is no user existing then store it in database
 else {
-    $db->query('INSERT INTO users(name,email,appointment_date,password,role) VALUES(:name,:email,:appointment_date,:password,:role)', [
+    $db->query('INSERT INTO users_temp(name,email,appointment_date,password) VALUES(:name,:email,:appointment_date,:password)', [
         'name' => $fname,
         'email' => $email,
         'appointment_date' => $doa,
-        'password' => $password,
-        'role' => $role
+        'password' => $password
     ]);
 }
+return require controller('index');
 
 //mark that the user has logged in.
-$currentUser = $db->query('SELECT * FROM users WHERE email= :email',
-    [
-        'email'=>$email
-    ])->find();
+// $currentUser = $db->query('SELECT * FROM users WHERE email= :email',
+//     [
+//         'email'=>$email
+//     ])->find();
 
-login($currentUser);
+// login($currentUser);

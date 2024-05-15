@@ -40,8 +40,8 @@
         <div class="form-group">
           <label for="phone">
             <img src="<?= res('icons/phone-blue.svg') ?>" alt="Phone Icon" class="icon" />
-            Email
-            <input type="text" name="phone" id="phone" placeholder="+977 982369402" value="<?= $_POST['phone'] ?? ''; ?>"/>
+            Phone Number
+            <input type="text" name="phone" id="phone" placeholder="00977 982369402" value="<?= $_POST['phone'] ?? ''; ?>"/>
           </label><span class="error-msg">
           <?php if (isset($errors['phone'])): ?>
           <?= $errors['phone']?>

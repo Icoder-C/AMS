@@ -5,6 +5,7 @@ var map = L.map('map', {
     maxZoom: 30      // Maximum zoom level when zooming in
 });
 
+alert("Hello!");
 // Define the base tile layer with OpenStreetMap tiles
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap contributors'  // Attribution is important for OpenStreetMap

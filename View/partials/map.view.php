@@ -1,2 +1,2 @@
 <div id="map"></div>
-<script src="<?= js("map") ?>"></script>
+<script src="<?= js("app") ?>"></script>
