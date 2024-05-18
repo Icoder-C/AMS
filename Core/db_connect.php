@@ -9,8 +9,7 @@ $container=new Container();
 $container->bind('Core\Database',function (){
     
     $config =require basePath('/Core/Config/config.php');
-
-    return  new Database($config['mysql']);
+    return  new Database($config['postgres']);
 }); 
 App::setContainer($container);
 

@@ -41,7 +41,7 @@
           <label for="phone">
             <img src="<?= res('icons/phone-blue.svg') ?>" alt="Phone Icon" class="icon" />
             Phone Number
-            <input type="text" name="phone" id="phone" placeholder="00977 982369402" value="<?= $_POST['phone'] ?? ''; ?>"/>
+            <input type="text" name="phone" id="phone" placeholder="982369402" value="<?= $_POST['phone'] ?? ''; ?>"/>
           </label><span class="error-msg">
           <?php if (isset($errors['phone'])): ?>
           <?= $errors['phone']?>

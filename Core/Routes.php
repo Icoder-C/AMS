@@ -18,4 +18,6 @@ $router->get('/leave', 'application/leave.php')->only('auth');
 $router->get('/report', 'application/report.php')->only('auth');
 $router->get('/employees', 'application/employees.php')->only('auth');
 
+$router->get('/employees/add-employee', 'application/employees/addEmployees.php')->only('admin');
+
 $router->delete('/session', 'auth/session-destroy.php')->only("auth");

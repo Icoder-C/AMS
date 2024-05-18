@@ -22,7 +22,7 @@ class Validation
 
     public static function phoneNumberValidation($value)
     {
-        if (!preg_match("/^(\+977)?-?9[78]\d{8}$/", $value)) {
+        if (!preg_match("/^9[78]\d{8}$/", $value)) {
             self::$errors['phone'] = "*Invalid Nepali phone number format.";
         }
     }

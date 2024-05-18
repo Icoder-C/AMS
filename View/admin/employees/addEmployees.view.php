@@ -2,6 +2,7 @@
     <div class="profile-main">
         <div class="profile-image">
             <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
+            <input type="image" src="<?php  ?>" alt="">
         </div>
         <div class="profile-form">
             <div class="form-user">
@@ -14,56 +15,47 @@
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>
-                            <input readonly type="text" name="fname" id="fname">
+                            <input type="text" name="fname" id="fname">
                         </div>
 
                         <div class="field"><label for="email">Email
                             </label>
-                            <input readonly type="email" name="email" id="email">
+                            <input type="email" name="email" id="email">
                         </div>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
-                            <input readonly type="text" name="phone" id="phone">
+                            <input type="text" name="phone" id="phone">
                         </div>
 
                         <div class="field"><label for="address">Address
                             </label>
-                            <input readonly type="text" name="address" id="address">
+                            <input type="text" name="address" id="address">
                         </div>
 
                         <div class="field"><label for="dob">Date of Birth
                             </label>
-                            <input readonly type="text" name="dob" id="dob">
+                            <input type="text" name="dob" id="dob">
                         </div>
 
                         <div class="field"><label for="gender">Gender
                             </label>
-                            <div class="radio">
-                                <input readonly type="radio" name="gender" id="male"> <label for="male">Male</label>
-                                <input readonly type="radio" name="gender" id="female"> <label for="female">Female</label>
-                                <input readonly type="radio" name="gender" id="other"> <label for="other">Other</label>
-                            </div>
+                            <input type="text" name="gender" id="gender">
                         </div>
 
                         <div class="field"><label for="married_status">Maritial Status
                             </label>
-                            <select name="married_status" id="married_status">
-                                <option value="">Select</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                            </select>
+                            <input type="text" name="married_status" id="married_status">
                         </div>
 
                         <div class="field"><label for="e_person">Emergency Contact person
                             </label>
-                            <input readonly type="text" name="e_person" id="e_person">
+                            <input type="text" name="e_person" id="e_person">
                         </div>
 
                         <div class="field"><label for="e_phone">Emergency Contact
                             </label>
-                            <input readonly type="text" name="e_phone" id="e_phone">
+                            <input type="text" name="e_phone" id="e_phone">
                         </div>
 
                     </div>
@@ -78,32 +70,51 @@
                     </div>
 
                     <div class="table">
-                        <div class="field"><label for="ofcName">Office Name
+                        <div class="field"><label for="department">Department
                             </label>
-                            <input readonly type="text" name="ofcName" id="ofcName">
+                            <input type="text" name="department" id="department">
                         </div>
-                        <div class="field"><label for="doestablish">Date of Establishment
+                        <div class="field"><label for="position">Position
                             </label>
-                            <input readonly type="date" name="doestablish" id="doestablish">
+                            <input type="text" name="position" id="position">
                         </div>
-                        <div class="field"><label for="latitude">Latitude
+                        <div class="field"><label for="phone">Check In Time
                             </label>
-                            <input readonly type="number" name="latitude" id="latitude">
+                            <input type="time" name="phone" id="phone">
                         </div>
-                        <div class="field"><label for="longitude">Longitude
+                        <div class="field"><label for="check-out">Check Out Time
                             </label>
-                            <input readonly type="number" name="longitude" id="longitude">
+                            <input type="time" name="check-out" id="check-out">
                         </div>
+                        <div class="field"><label for="rate_p_hr">Basic Rate (/hour)
+                            </label>
+                            <input type="number" name="rate_p_hr" id="rate_p_hr">
+                        </div>
+                        <div class="field"><label for="supervisor">Supervisor
+                            </label>
+                            <input type="text" name="supervisor" id="supervisor">
+                        </div>
+                        <div class="field"><label for="emp_id">Employee ID
+                            </label>
+                            <input type="number" name="emp_id" id="emp_id">
+                        </div>
+                        <div class="field"><label for="doa">Date of Appointment
+                            </label>
+                            <input type="date" name="doa" id="doa">
+                        </div>
+
                     </div>
+
                 </form>
             </div>
             <div class="change-pw">
-                <form action="" method="post">
+                <form action="#" method="post">
                     <div class="topic">
                         <h1>Change Password</h1>
-                        <a id="click" href="#" onclick="showHide()">+</a>
+                        <h1>+</h1>
+                        <!-- <button type="button">Edit</button> -->
                     </div>
-                    <div class="table changepassword">
+                    <div class="table">
                         <div class="field"><label for="current-password">Current Password
                             </label>
                             <input type="password" name="current-password" id="current-password">
@@ -116,10 +127,9 @@
                             </label>
                             <input type="password" name="current-password" id="current-password">
                         </div>
-                        <button id="changePw" type="submit">Save Changes</button>
+                        <button type="submit">Save Changes</button>
                     </div>
                 </form>
-                <script src="<?php js("utils")?>"></script>
             </div>
         </div>
     </div>
