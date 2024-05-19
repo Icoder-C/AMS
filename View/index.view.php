@@ -1,4 +1,5 @@
 <header>
+  <div class="navbar">
   <nav>
     <div class="company">AMS</div>
 
@@ -12,6 +13,7 @@
       <div class="btn"><a href="/sign-up">SIGN UP</a></div>
     </div>
   </nav>
+  </div>
 </header>
 <div class="home">
   <div class="content">

@@ -13,7 +13,7 @@ $pageTitle='Add Employee | '.ucfirst($role);
 
 $styles=[
     css("app/partials/nav"),
-    css('app/profile')
+    css('app/logic/addEmployees')
 ];
 
 $headScripts=[

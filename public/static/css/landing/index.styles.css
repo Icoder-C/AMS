@@ -1,5 +1,6 @@
-body,
-html {
+
+  body,
+  html {
   box-sizing: border-box;
   width: 100%;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -67,7 +68,6 @@ nav {
   display: flex;
 }
 .bgimage {
-  height: 80vh;
   width: 50%;
   max-width: 50%;
   display: flex;

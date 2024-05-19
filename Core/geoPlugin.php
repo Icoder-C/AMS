@@ -1,4 +1,6 @@
 <?php
+// dd(geoLocationProvider::getGeoLocation());
+
 /*
 This PHP class is free software: you can redistribute it and/or modify
 the code under the terms of the GNU General Public License as published by

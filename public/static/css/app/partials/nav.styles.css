@@ -1,19 +1,21 @@
-nav {
-  position: fixed;
-  width: 20%;
-  background-color: var(--blue);
-  height: 100vh;
-  color: #fff;
-  font-size: large;
-  margin: none;
-}
-nav {
+.navbarAPP{
+
+  nav {
+    position: fixed;
+    width: 20%;
+    background-color: var(--blue);
+    height: 100vh;
+    color: #fff;
+    font-size: large;
+    margin: none;
+  }
+  nav {
   .top {
     position: top;
     height: 40%;
     border: none;
   }
-
+  
   #logo {
     padding: 2vh;
     margin: 2vh 0 2vh 0;
@@ -53,7 +55,7 @@ nav {
   #report {
     width: 2.3vw;
   }
-
+  
   li:hover {
     background-color: rgb(63, 148, 228);
   }
@@ -85,9 +87,11 @@ nav {
     width: 100%;
     display: flex;
   }
-
+  
   form {
     width: 100%;
     padding-left: none;
   }
+}
+
 }

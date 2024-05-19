@@ -16,8 +16,8 @@ $pageTitle='Employees | '.ucfirst($role);
 
 $styles=[
     css("app/partials/nav"),
-    css('app/partials/calander'),
-    css('app/employees')
+    css('app/employees'),
+    css('app/partials/pagination')
 ];
 
 $headScripts=[

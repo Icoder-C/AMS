@@ -1,10 +1,21 @@
 <div class="employees">
     <?php
-    $statement = $db->query("SELECT * FROM users_temp");
+    $statement = $db->query("SELECT COUNT(*) AS temp_user_count FROM users_temp");
+    $count = $statement->find()['temp_user_count'];
+    $perPage=5;
+    $totalPages=ceil($count/$perPage);
+    $currentPage=getCurrentPage($totalPages);
+    $pages=generatePagination($totalPages, $currentPage);
+    // dd(generatePagination($totalPages,$currentPage));
+    // dd($count);
+    $offSet=($perPage*($currentPage-1));
+    // dd( $count);
+    $query="SELECT * FROM users_temp LIMIT $perPage OFFSET $offSet";
+    $statement = $db->query($query);
     $results = $statement->findAll();
     if ($results): ?>  
 
-        <div class="request">
+        <!-- <div class="request"> -->
             <div class="topic">
                 <h1>New Employees Request</h1>
             </div>
@@ -24,7 +35,7 @@
                     </thead>
                     <tbody>
                         <?php
-                        $i=1;
+                        $i=$offSet+1;
                         foreach ($results as $row) {
                             echo "<tr>";
                             echo "<td>" . $i . "</td>";
@@ -41,8 +52,9 @@
                     </tbody>
                 </table>
             </div>
-
-        </div>
+            
+        <!-- </div> -->
+        <?php require view("partials/pagination");?>
     <?php else: ?>
        
     <?php endif; ?>

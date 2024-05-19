@@ -1,4 +1,9 @@
 <?php
+
+
+
+
+
 $mainLayoutContent=view("index");
 $pageTitle='Attendance Management System (A.M.S.)';
 

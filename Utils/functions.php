@@ -122,3 +122,38 @@ function photo($photoPath)
 {
     return "/Data/images/{$photoPath}";
 }
+
+function generatePagination(int $totalPages, int $currentPage): array
+{
+    if ($totalPages <= 7) return createArray($totalPages);
+
+    if ($currentPage <= 3) return array_merge(createArray(4), ['...', $totalPages - 1, $totalPages]);
+
+    if ($currentPage >= $totalPages - 2) return [1, 2, '...', $totalPages - 3, $totalPages - 2, $totalPages - 1, $totalPages];
+
+    return [1, '...', $currentPage - 1, $currentPage, $currentPage + 1, '...', $totalPages];
+}
+function createPageLinks(int $page)
+{
+    $queryParams = mergeQueryParametes($_GET, ['p' => $page]);
+    $currentPath=parse_url($_SERVER['REQUEST_URI'])["path"];
+    return $currentPath . '?' . $queryParams;
+}
+function getCurrentPage($totalPages){
+    $currentPage=isset($_GET['p'])?(int)$_GET['p']:1;
+    $currentPage = (int)min(max($currentPage, 1), $totalPages);
+    return $currentPage;
+}
+function createArray(int $length): array
+{
+    $arr = [];
+    for ($i = 0; $i < $length; $i++) {
+        $arr[] = $i + 1;
+    }
+
+    return $arr;
+}
+function mergeQueryParametes(array ...$params): string
+{
+    return http_build_query(array_merge(...$params));
+}

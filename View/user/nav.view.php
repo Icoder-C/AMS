@@ -1,3 +1,4 @@
+<div class="navbarAPP">
 <nav>
     <div class="top">
         <img src="<?= res('logo.png') ?>" alt="Company Logo" id="logo">
@@ -47,3 +48,4 @@
         </ul>
     </div>
 </nav>
+</div>

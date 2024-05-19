@@ -4,8 +4,8 @@ return [
     'mysql'=>[
         'host' => 'localhost',
         'port' => 3306,
-        'user' => 'root',
-        'password' => '',
+        // 'user' => 'root',
+        // 'password' => '1234',
         'dbname' => 'AMS',
         'charset' => 'utf8mb4'
     ],

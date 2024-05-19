@@ -12,15 +12,15 @@ class Database
     public function __construct($config, $user = 'root', $password = '')
     {
         //Seting DSN
-        $dsn = 'pgsql:' . http_build_query($config, '', ';');
+        $dsn = 'mysql:' . http_build_query($config, '', ';');
 
-        dd($dsn);
+        // dd($dsn);
 
         // Create a PDO instance
         $this->connection = new PDO($dsn, $user, $password, [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
-        dd($this->connection);
+        // dd($this->connection);
     }
     public function query($query, $params = [])
     {

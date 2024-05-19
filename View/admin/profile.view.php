@@ -8,7 +8,7 @@
                 <form action="#" method="post">
                     <div class="topic">
                         <h1>Personal Details</h1>
-                        <button type="button">Edit</button>
+                        <a href="/employees/edit-profile">Edit</a>
                     </div>
 
                     <div class="table">
@@ -40,20 +40,39 @@
                         <div class="field"><label for="gender">Gender
                             </label>
                             <div class="radio">
-                                <input readonly type="radio" name="gender" id="male"> <label for="male">Male</label>
-                                <input readonly type="radio" name="gender" id="female"> <label for="female">Female</label>
-                                <input readonly type="radio" name="gender" id="other"> <label for="other">Other</label>
+                                <?php
+                                $selectedGender = "M";
+                                $genders = [
+                                    [
+                                        "label" => "Male",
+                                        "value" => "M"
+                                    ],
+                                    [
+                                        "label" => "Female",
+                                        "value" => "F"
+                                    ],
+                                    [
+                                        "label" => "Other",
+                                        "value" => "O"
+                                    ]
+                                ];
+                                foreach ($genders as $gender) :
+                                ?>
+                                    <input type="radio" name="gender" id="<?= $gender['value'] ?>" value="<?= $gender['value'] ?>" <?= is_null($selectedGender) ? '' : 'disabled' ?> <?= $selectedGender === $gender['value'] ? ' checked' : '' ?>>
+                                    <label for="<?= $gender['value'] ?>"><?= $gender['label'] ?></label>
+                                <?php endforeach; ?>
                             </div>
                         </div>
 
                         <div class="field"><label for="married_status">Maritial Status
                             </label>
-                            <select name="married_status" id="married_status">
+                            <!-- <select name="married_status" id="married_status">
                                 <option value="">Select</option>
                                 <option value="Single">Single</option>
                                 <option value="Married">Married</option>
                                 <option value="Divorced">Divorced</option>
-                            </select>
+                            </select> -->
+                            <input readonly type="text" name="married_status" id="married_status" value="">
                         </div>
 
                         <div class="field"><label for="e_person">Emergency Contact person
@@ -84,7 +103,8 @@
                         </div>
                         <div class="field"><label for="doestablish">Date of Establishment
                             </label>
-                            <input readonly type="date" name="doestablish" id="doestablish">
+                            <!-- <input readonly type="date" name="doestablish" id="doestablish"> -->
+                            <input readonly type="text" name="doestablish" id="doestablish">
                         </div>
                         <div class="field"><label for="latitude">Latitude
                             </label>
@@ -101,9 +121,9 @@
                 <form action="" method="post">
                     <div class="topic">
                         <h1>Change Password</h1>
-                        <a id="click" href="#" onclick="showHide()">+</a>
+                        <h1 id="click" onclick="showHide()">+</h1>
                     </div>
-                    <div class="table changepassword">
+                    <div class="table" id="changepassword">
                         <div class="field"><label for="current-password">Current Password
                             </label>
                             <input type="password" name="current-password" id="current-password">
@@ -119,7 +139,8 @@
                         <button id="changePw" type="submit">Save Changes</button>
                     </div>
                 </form>
-                <script src="<?php js("utils")?>"></script>
+                <script src="<?=js("utils")?>">
+                </script>
             </div>
         </div>
     </div>

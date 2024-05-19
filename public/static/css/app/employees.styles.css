@@ -8,42 +8,85 @@
     justify-content: space-between;
     padding: 5px 20px 5px 20px;
     margin-bottom: 10px;
+    border: 2px solid red;
   }
   .table {
+    overflow-x: auto;
+    margin-top: 30px;
+    background-color: #fff;
+    border: 2px solid red;
+    font-size: 1.7rem;
+    padding: 0;
+    margin-bottom:0;
+
     table {
-      margin: 10px 0 20px 0;
       width: 100%;
+      table-layout: auto;
+      border-collapse: collapse;
+      box-shadow: var(--shadom-lg);
+      border: 1px solid var(--gray-200);
+      border: 2px solid red;
     }
-    th {
-      border-radius: 8px;
-      background-color: var(--font-p);
-      color: #fff;
-      font-weight: bolder;
-      font-size: 2.5rem;
-      padding: 5px;
-      text-align: center;
-      margin: 2px;
+
+    thead > tr {
+      background-color: var(--gray-100);
     }
-    tr {
-      margin: 10px;
+
+    thead > tr > th {
+      padding: 0.875rem 1rem;
+      text-align: left;
+      color: var(--gray-700);
+      font-weight: 600;
+      font-size: 1.9rem;
     }
-    td {
-      border-radius: 8px;
-      padding: 5px;
-      font-size: 2rem;
-      background-color: #fff;
-      margin: 10px;
+
+    tbody > tr {
+      border-bottom: 1px solid var(--gray-200);
+      transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+    }
+
+    tbody > tr:hover {
+      background-color: var(--gray-50);
+    }
+
+    tbody > tr > td {
+      padding: 0.875rem 1rem;
+      color: var(--gray-700);
+    }
+
+    td.actions {
+      display: flex;
+      gap: 1rem;
+    }
+
+    td.actions > a {
+      border: 1px solid var(--gray-200);
+      padding: 4px 14px;
+      transition: background-color 0.15s ease;
+    }
+
+    td.actions > a:hover {
+      background-color: var(--gray-200);
     }
   }
-  .approve, .reject {
+  .approve,
+  .reject {
     display: flex;
     justify-content: center;
+    color: #fff;
     text-align: center;
-    color: green;
+    background-color: green;
     font-weight: bold;
-    text-decoration: underline;
+    border-radius: 4px;
+    opacity: 0.7;
+    padding:5px 0;
+    text-decoration: none;
   }
   .reject {
-    color: red;
+    background-color: red;
+  }
+  .approve:hover,
+  .reject:hover{
+    opacity: 1;
   }
 }
