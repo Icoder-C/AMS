@@ -8,13 +8,11 @@
     justify-content: space-between;
     padding: 5px 20px 5px 20px;
     margin-bottom: 10px;
-    border: 2px solid red;
   }
   .table {
     overflow-x: auto;
     margin-top: 30px;
     background-color: #fff;
-    border: 2px solid red;
     font-size: 1.7rem;
     padding: 0;
     margin-bottom:0;
@@ -25,7 +23,6 @@
       border-collapse: collapse;
       box-shadow: var(--shadom-lg);
       border: 1px solid var(--gray-200);
-      border: 2px solid red;
     }
 
     thead > tr {
@@ -88,5 +85,72 @@
   .approve:hover,
   .reject:hover{
     opacity: 1;
+  }
+  .cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    gap: 5px;
+
+    .card {
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+      margin: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      text-align: left;
+      width: calc(24% - 40px);
+    }
+    .img-container {
+      height: 25vh;
+      overflow: hidden;
+      background-color: var(--hov-b);
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+      margin-bottom: 15px;
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: bolder;
+      margin: 5px;
+    }
+    .flex-content {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bolder;
+      margin: 5px;
+      align-items: center;
+    }
+    span {
+      font-size: 1.7rem;
+    }
+    .on, .off, .default{
+      width: 20px;
+      height: 20px;
+      border: 2px solid green;
+      background-color: green;
+      margin: auto;
+    }
+    .off{
+      border: 2px solid red;
+      background-color: red;
+    }
+    .default{
+      border: 2px solid blue;
+      background-color: blue;
+    }
+  }
+  .list-pagination{
+    background-color: #ffffff;
+    margin: 5px 45px 5px 20px;
+    border-radius: 8px;
+  }
+  .request-pagination{
+    padding-top: 10px;
+    background-color: #fff;
   }
 }

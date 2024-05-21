@@ -3,5 +3,5 @@
     require view("admin/employees/newRequests");
     ?>
  <?php
-    require view("admin/employees/showEmployees");
+    require view("admin/employees/listEmployees");
     ?>

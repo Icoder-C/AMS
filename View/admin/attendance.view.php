@@ -10,19 +10,6 @@
         </div>
     </div>
 
-    <div class="form-container">
-        <div class="forms-input">
-            <form action="/check-in" method="post">
-                <button type="submit">Check In</button>
-            </form>
-        </div>
-        <div class="forms-input">
-            <form action="/check-out" method="post">
-                <button type="submit">Check Out</button>
-            </form>
-        </div>
-    </div>
-
     <div class="topic">
         <h1>Attendance Record</h1>
     </div>
