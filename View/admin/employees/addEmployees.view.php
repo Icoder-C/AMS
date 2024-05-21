@@ -25,13 +25,17 @@
                             <input readonly type="text" name="phone" id="phone">
                         </div>
                         <span class="error"></span>
-
+                        <div class="field"><label for="doa">Date of Appointment
+                            </label>
+                            <input type="text" readonly name="doa" id="doa">
+                        </div>
+                        <span class="error"></span>
                     </div>
 
                 </form>
             </div>
             <div class="form-official">
-                <form action="<?= controller("application/employees/logic/addEmployees")?>" method="post">
+                <form action="<?= controller("application/employees/logic/storeEmployees") ?>" method="post">
                     <div class="topic">
                         <h1>Official Details</h1>
                         <!-- <button type="button">Edit</button> -->
@@ -66,16 +70,6 @@
                         <div class="field"><label for="supervisor">Supervisor
                             </label>
                             <input type="text" name="supervisor" id="supervisor">
-                        </div>
-                        <span class="error"></span>
-                        <div class="field"><label for="emp_id">Employee ID
-                            </label>
-                            <input type="number" name="emp_id" id="emp_id">
-                        </div>
-                        <span class="error"></span>
-                        <div class="field"><label for="doa">Date of Appointment
-                            </label>
-                            <input type="date" name="doa" id="doa">
                         </div>
                         <span class="error"></span>
                         <button id="changePw" type="submit">Save Changes</button>

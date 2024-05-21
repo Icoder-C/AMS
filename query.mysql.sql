@@ -34,6 +34,7 @@ CREATE TABLE users (
     rate FLOAT,
     supervisor VARCHAR(40),
     appointment_date DATE,
+    path_photo VARCHAR(255),
     working_status VARCHAR(10),
     password VARCHAR(255),
     PRIMARY KEY (user_id)
