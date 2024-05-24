@@ -42,33 +42,7 @@
       padding: 5px 20px 5px 20px;
       margin-bottom: 10px;
     }
-    .table {
-      table {
-        margin: 10px 0 20px 0;
-        width: 100%;
-      }
-      th {
-        border-radius: 8px;
-        background-color: var(--font-p);
-        color: #fff;
-        font-weight: bolder;
-        font-size: 2.5rem;
-        padding: 5px;
-        text-align: center;
-        margin: 2px;
-      }
-      tr {
-        margin: 10px;
-      }
-      td {
-        border-radius: 8px;
-        padding: 5px;
-        font-size: 2rem;
-        text-align: left;
-        background-color: #fff;
-        margin: 10px;
-      }
-    }
+    
     .search {
       padding: 10px;
       display: flex;
@@ -79,11 +53,13 @@
       input {
         margin: 0 20px 0 20px;
         color: var(--blue);
-        font-size: 2.5rem;
+        font-size: 2rem;
         font-weight: bolder;
         border: none;
         border-radius: 8px;
         padding: 5px 30px 5px 30px;
+        height: 30px;
+        opacity: 0.6;
         box-sizing: border-box;
       }
       button {

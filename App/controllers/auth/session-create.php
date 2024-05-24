@@ -26,13 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return require controller('auth/sign-in', [
             'errors' => $errors
         ]);
-        // dd($errors);
         exit();
     }
     if (!password_verify($password, $user['password'])) {
         $errors['feedback'] = 'Password Incorrect';
 
-        // dd($errors);
 
         return require controller('auth/sign-in', [
             'errors' => $errors

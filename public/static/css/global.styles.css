@@ -82,3 +82,68 @@ p {
     min-width: none;
   }
 }
+.displayPagination{
+  background-color: #ffffff;
+  padding: 20px 0 0 0;
+}
+.request-pagination{
+  padding-top: 10px;
+  background-color: #fff;
+}
+.table {
+  overflow-x: auto;
+  margin-top: 30px;
+  background-color: #fff;
+  font-size: 1.7rem;
+  padding: 0;
+  margin-bottom:0;
+
+  table {
+    width: 100%;
+    table-layout: auto;
+    border-collapse: collapse;
+    box-shadow: var(--shadom-lg);
+    border: 1px solid var(--gray-200);
+  }
+
+  thead > tr {
+    background-color: var(--gray-100);
+  }
+
+  thead > tr > th {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    color: var(--gray-700);
+    font-weight: 600;
+    font-size: 1.9rem;
+  }
+
+  tbody > tr {
+    border-bottom: 1px solid var(--gray-200);
+    transition: background-color cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+  }
+
+  tbody > tr:hover {
+    background-color: var(--gray-50);
+  }
+
+  tbody > tr > td {
+    padding: 0.875rem 1rem;
+    color: var(--gray-700);
+  }
+
+  td.actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  td.actions > a {
+    border: 1px solid var(--gray-200);
+    padding: 4px 14px;
+    transition: background-color 0.15s ease;
+  }
+
+  td.actions > a:hover {
+    background-color: var(--gray-200);
+  }
+}

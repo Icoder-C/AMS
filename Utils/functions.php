@@ -88,21 +88,31 @@ function authorize($condition, $status = Response::FORBIDDEN)
 
 function login($user)
 {
+    // $requiredProfileFeilds = $user["address"];
+    // $isProfileComplete = TRUE;
+    // foreach ($requiredProfileFeilds as $field) {
+    //     if (is_null($user[$field])) {
+    //         $isProfileComplete = FALSE;
+    //         break;
+    //     }
+    // }
     $requiredProfileFeilds = $user["address"];
     $isProfileComplete = TRUE;
-    foreach ($requiredProfileFeilds as $field) {
-        if (!isset($user[$field])) {
+
+        if (is_null( $requiredProfileFeilds)) {
             $isProfileComplete = FALSE;
-            break;
         }
-    }
+
+
+
     $_SESSION['user'] = [
+        'EmployeeID'=> $user['EmployeeID'],
         'email' => $user['email'],
         'name' => $user['name'],
         'role' => $user['role'],
+        'gender'=> $user['gender'],
         'isProfileComplete' => $isProfileComplete
     ];
-
     session_regenerate_id(true);
     header('location: /dashboard');
 }
@@ -156,4 +166,33 @@ function createArray(int $length): array
 function mergeQueryParametes(array ...$params): string
 {
     return http_build_query(array_merge(...$params));
+}
+
+function convertTimeFormat($time) {
+    $dateTime = DateTime::createFromFormat('H:i:s', $time);
+    return $dateTime->format('g:i A');
+}
+
+function WorkedHours($startTime, $endTime) {
+    // Create DateTime objects from the times
+    $startDateTime = DateTime::createFromFormat('g:i A', $startTime);
+    $endDateTime = DateTime::createFromFormat('g:i A', $endTime);
+
+    // Calculate the difference between the times
+    $interval = $startDateTime->diff($endDateTime);
+
+    // Convert the interval to total hours and minutes
+    $hours = $interval->h;
+    $minutes = $interval->i;
+
+    // If the end time is earlier than the start time, adjust for the next day
+    if ($interval->invert) {
+        $hours += 24;
+    }
+
+    // Calculate the total hours worked
+    $totalHoursWorked = $hours + ($minutes / 60);
+    $formattedTotalHours = number_format($totalHoursWorked, 2);
+
+    return $formattedTotalHours." hrs";
 }

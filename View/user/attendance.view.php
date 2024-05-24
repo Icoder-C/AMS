@@ -1,3 +1,28 @@
+<?php
+
+$currentUserID=$_SESSION['user']["EmployeeID"];
+
+$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE EmployeeID=$currentUserID");
+$count = $statement->find()['temp_count'];
+$perPage = 8;
+$totalPages = ceil($count / $perPage);
+$currentPage = getCurrentPage($totalPages);
+$pages = generatePagination($totalPages, $currentPage);
+
+$offSet = ($perPage * ($currentPage - 1));
+
+$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
+            FROM Attendance 
+            INNER JOIN users 
+            ON Attendance.EmployeeID=users.EmployeeID 
+            WHERE Attendance.EmployeeID=$currentUserID
+            ORDER BY users.name ASC, AttendanceDate DESC
+            LIMIT $perPage OFFSET $offSet";
+
+$statement = $db->query($query);
+$results = $statement->findAll();
+?>
+
 <div class="attend">
     <div class="body">
         <div class="card">
@@ -33,26 +58,28 @@
                 <tr>
                     <th>S.N.</th>
                     <th>Date</th>
+                    <th>Name</th>
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Worked Hours</th>
-                    <th>Location</th>
+                    <!-- <th>Location</th> -->
                 </tr>
             </thead>
             <tbody>
                 <?php
-                $statement = $db->query("SELECT * FROM EmployeeTimeSheet");
-                $results = $statement->findAll();
                 if ($results) {
+                    $i = $offSet+1;
                     foreach ($results as $row) {
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($row['S_N']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Date']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Check_In']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Check_Out']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Worked_Hours']) . "</td>";
-                        echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
+                        echo "<td>" . $i . "</td>";
+                        echo "<td>" . htmlspecialchars($row['AttendanceDate']) . "</td>";
+                        echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                        echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckInTime'])) . "</td>";
+                        echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckOutTime'])) . "</td>";
+                        // echo "<td>" . htmlspecialchars($row['Worked_Hours']) . "</td>";
+                        // echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
                         echo "</tr>";
+                        $i += 1;
                     }
                 } else {
                     echo "<tr><td colspan='6'>No data found</td></tr>";
@@ -61,5 +88,7 @@
             </tbody>
         </table>
     </div>
-
+    <div class="list-pagination">
+        <?php require view("partials/pagination"); ?>
+    </div>
 </div>

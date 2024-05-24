@@ -7,7 +7,7 @@ CREATE DATABASE AMS;
 USE AMS;
 
 CREATE TABLE users_temp (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(40),
     email VARCHAR(40) UNIQUE,
     role ENUM("ADMIN", "USER") DEFAULT "USER",
@@ -17,7 +17,7 @@ CREATE TABLE users_temp (
 );
 
 CREATE TABLE users (
-    user_id INT AUTO_INCREMENT NOT NULL,
+    EmployeeID INT AUTO_INCREMENT NOT NULL,
     name VARCHAR(40),
     email VARCHAR(40) UNIQUE,
     role ENUM("ADMIN", "USER") DEFAULT "USER",
@@ -37,8 +37,29 @@ CREATE TABLE users (
     path_photo VARCHAR(255),
     working_status VARCHAR(10),
     password VARCHAR(255),
-    PRIMARY KEY (user_id)
+    PRIMARY KEY (EmployeeID)
 );
+
+CREATE TABLE Attendance (
+    AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT NOT NULL,
+    AttendanceDate DATE NOT NULL,
+    CheckInTime TIME,
+    CheckOutTime TIME,
+    Status VARCHAR(50),
+    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
+);
+
+CREATE TABLE EmployeeLeave (
+    LeaveID INT AUTO_INCREMENT PRIMARY KEY,
+    EmployeeID INT NOT NULL,
+    LeaveType VARCHAR(50) NOT NULL,
+    StartDate DATE NOT NULL,
+    EndDate DATE NOT NULL,
+    Notes TEXT,
+    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
+);
+
 
 INSERT INTO
     users_temp (email, name, type, password)

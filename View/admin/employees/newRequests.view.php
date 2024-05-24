@@ -42,8 +42,8 @@ if ($results) : ?>
                     echo "<td>" . htmlspecialchars($row['email'] ?? NULL) . "</td>";
                     echo "<td>" . htmlspecialchars($row['phone_number'] ?? NULL) . "</td>";
                     echo "<td>" . htmlspecialchars($row['appointment_date'] ?? NULL) . "</td>";
-                    echo "<td> <a href='/employees/add-employee?id=" . $row['user_id'] . " '" . "class='approve'>Approve</a> </td>";
-                    echo "<td> <a href='/employees/add-employee?id=" . $row['user_id'] . " '" . "class='reject'>Reject</a> </td>";
+                    echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='approve'>Approve</a> </td>";
+                    echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='reject'>Reject</a> </td>";
                     echo "</tr>";
                     $i = $i + 1;
                 }

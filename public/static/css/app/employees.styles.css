@@ -144,13 +144,5 @@
       background-color: blue;
     }
   }
-  .list-pagination{
-    background-color: #ffffff;
-    margin: 5px 45px 5px 20px;
-    border-radius: 8px;
-  }
-  .request-pagination{
-    padding-top: 10px;
-    background-color: #fff;
-  }
+
 }

@@ -21,3 +21,4 @@ $router->get('/employees', 'application/employees.php')->only('auth');
 $router->get('/employees/add-employee', 'application/employees/addEmployees.php')->only('admin');
 
 $router->delete('/session', 'auth/session-destroy.php')->only("auth");
+$router->post('/searchRecord', 'application\employees\logic\searchEmployeeRecord.php')->only("auth");

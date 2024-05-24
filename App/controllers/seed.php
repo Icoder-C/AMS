@@ -1,6 +1,5 @@
 <?php
 
-// Assuming $db is the database connection instance
 use Core\App;
 use Core\Database;
 
@@ -84,14 +83,15 @@ $passwords = [
     "password1",
     "pass123"
 ];
-$roles=['ADMIN'];
 
-// Inserting data into the database
+$roles = ['ADMIN'];
+
+// Inserting data into the Employees table
 for ($i = 0; $i < count($names); $i++) {
     $name = $names[$i];
     $email = $emails[$i];
     $appointmentDate = date("Y-m-d", mt_rand($startDate, $endDate));
-    $role=$roles[$i]??"USER";
+    $role = $roles[$i] ?? "USER";
     $password = password_hash($passwords[$i], PASSWORD_BCRYPT);
 
     // Sample query to insert data
@@ -103,6 +103,54 @@ for ($i = 0; $i < count($names); $i++) {
         'role' => $role
     ]);
 }
+
+
+// Generating random attendance data
+function generateRandomAttendance($db, $employeeId) {
+    for ($j = 0; $j < 10; $j++) {
+        $attendanceDate = date("Y-m-d", strtotime("-" . rand(1, 30) . " days"));
+        $checkInTime = date("H:i:s", strtotime(rand(8, 10) . ":" . rand(0, 59)));
+        $checkOutTime = date("H:i:s", strtotime(rand(16, 19) . ":" . rand(0, 59)));
+        $status = rand(0, 9) < 1 ? "Absent" : "Present"; // 10% chance of being absent
+
+        $db->query('INSERT INTO Attendance (EmployeeID, AttendanceDate, CheckInTime, CheckOutTime, Status) VALUES (:employee_id, :attendance_date, :check_in_time, :check_out_time, :status)', [
+            'employee_id' => $employeeId,
+            'attendance_date' => $attendanceDate,
+            'check_in_time' => $checkInTime,
+            'check_out_time' => $checkOutTime,
+            'status' => $status
+        ]);
+    }
+}
+
+// Generating random leave data
+function generateRandomLeave($db, $employeeId) {
+    for ($k = 0; $k < 5; $k++) {
+        $leaveTypeOptions = ['Sick Leave', 'Vacation', 'Maternity Leave', 'Paternity Leave'];
+        $leaveType = $leaveTypeOptions[array_rand($leaveTypeOptions)];
+        $startDate = date("Y-m-d", strtotime("-" . rand(1, 30) . " days"));
+        $endDate = date("Y-m-d", strtotime($startDate . " + " . rand(1, 5) . " days"));
+        $statusOptions = ['Pending', 'Approved', 'Rejected'];
+        $status = $statusOptions[array_rand($statusOptions)];
+        $notes = "Sample note for leave";
+
+        $db->query('INSERT INTO EmployeeLeave (EmployeeID, LeaveType, StartDate, EndDate, Status, Notes) VALUES (:employee_id, :leave_type, :start_date, :end_date, :status, :notes)', [
+            'employee_id' => $employeeId,
+            'leave_type' => $leaveType,
+            'start_date' => $startDate,
+            'end_date' => $endDate,
+            'status' => $status,
+            'notes' => $notes
+        ]);
+    }
+}
+
+// Insert attendance and leave data for employees with IDs from 2 to 21 (excluding admin)
+for ($employeeId = 2; $employeeId <= 21; $employeeId++) {
+    generateRandomAttendance($db, $employeeId);
+    generateRandomLeave($db, $employeeId);
+}
+
 
 $names = [
     "John Doe",
@@ -189,7 +237,7 @@ for ($i = 0; $i < 20; $i++) {
     $appointmentDate = date("Y-m-d", mt_rand($startDate, $endDate));
     $role = "USER"; // Default role
     $password = password_hash($passwords[$i], PASSWORD_BCRYPT);
-
+    
     // Sample query to insert data
     $db->query('INSERT INTO users_temp(name,email,appointment_date,password,role) VALUES(:name,:email,:appointment_date,:password,:role)', [
         'name' => $name,

@@ -17,7 +17,7 @@ $styles=[
     css("app/partials/nav"),
     css('app/partials/calander'),
     css('app/partials/map'),
-    css('app/attendance'),
+    css('app/attendance')
 ];
 
 $headScripts=[

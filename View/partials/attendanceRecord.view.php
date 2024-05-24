@@ -1,9 +1,9 @@
 <?php
 $currentUserID = $_SESSION['user']["EmployeeID"];
 
-$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance");
+$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE EmployeeID=$currentUserID");
 $count = $statement->find()['temp_count'];
-$perPage = 30;
+$perPage = 8;
 $totalPages = ceil($count / $perPage);
 $currentPage = getCurrentPage($totalPages);
 $pages = generatePagination($totalPages, $currentPage);
@@ -14,19 +14,20 @@ $query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime
             FROM Attendance 
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
+            WHERE Attendance.EmployeeID=$currentUserID
             ORDER BY users.name ASC, AttendanceDate DESC
             LIMIT $perPage OFFSET $offSet";
 
 $statement = $db->query($query);
 $results = $statement->findAll();
 ?>
-<div class="attend">
+<div class="report">
     <div class="topic">
         <h1>Attendance Record</h1>
     </div>
     <div class="search">
         <form action="/searchRecord" method="POST">
-            <input type="text" name="EmployeeName" id="EmployeeName" >
+            <input type="text" name="EmployeeName" id="EmployeeName" hidden value="<?= $_SESSION['user']['name'] ?>">
             <input type="date" name="start" id="start">
             <span>to</span>
             <input type="date" name="end" id="end">
