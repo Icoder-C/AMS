@@ -2,8 +2,9 @@
 $statement = $db->query("SELECT COUNT(*) AS temp_user_count FROM users_temp");
 $count = $statement->find()['temp_user_count'];
 $perPage = 5;
+$pagename="New-Requests";
 $totalPages = ceil($count / $perPage);
-$currentPage = getCurrentPage($totalPages);
+$currentPage = getCurrentPage($totalPages,$pagename);
 $pages = generatePagination($totalPages, $currentPage);
 // dd(generatePagination($totalPages,$currentPage));
 // dd($count);

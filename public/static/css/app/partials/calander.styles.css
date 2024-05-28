@@ -4,6 +4,7 @@
   justify-content: center; /* Center calendar horizontally */
   align-items: center; /* Center calendar vertically */
   min-height: 100vh; /* Minimum height to cover the full viewport height */
+  border: 2px solid red;
   padding: 20px; /* Padding to avoid edge touching */
   background-color: #f4f4f4; /* Neutral background color */
 }
@@ -66,6 +67,10 @@ select {
   display: flex; /* Enables flexible layouts inside the card */
   justify-content: center; /* Centers the calendar horizontally */
   align-items: center; /* Centers the calendar vertically */
+
+  form{
+    width: 100%;
+  }
 }
 .date-privew {
   display: none;

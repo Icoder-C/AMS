@@ -39,6 +39,15 @@ CREATE TABLE users (
     password VARCHAR(255),
     PRIMARY KEY (EmployeeID)
 );
+CREATE TABLE office(
+    officeID INT AUTO_INCREMENT PRIMARY KEY,
+    OfficeName VARCHAR(50) ,
+    DateOfEstablishment DATE,
+    Latitude VARCHAR(20),
+    Longitude VARCHAR(20)
+);
+
+DROP TABLE office;
 
 CREATE TABLE Attendance (
     AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
@@ -60,7 +69,6 @@ CREATE TABLE EmployeeLeave (
     FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
 );
 
-
 INSERT INTO
     users_temp (email, name, type, password)
 VALUES (
@@ -76,4 +84,7 @@ VALUES (
         '123'
     );
 
-SELECT * FROM users_temp;
+SELECT * FROM Attendance
+WHERE NULL;
+
+SELECT COALESCE(0,1);

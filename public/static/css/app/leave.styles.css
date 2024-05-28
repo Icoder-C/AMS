@@ -37,7 +37,7 @@
     .img-container {
       height: 25vh;
       overflow: hidden;
-      background-color: var(--hov-b);
+      background-color: #fff;
     }
     img {
       max-width: 100%;
@@ -46,7 +46,7 @@
       margin-bottom: 15px;
     }
     h1 {
-      font-size: 2.5rem;
+      font-size: 2.3rem;
       text-align: center;
       color: var(--blue);
       font-weight: bolder;
@@ -93,5 +93,63 @@
     h2 {
       margin: 20px;
     }
+  }
+  .approve,
+  .reject {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    text-align: center;
+    background-color: green;
+    font-weight: bold;
+    border-radius: 4px;
+    opacity: 0.7;
+    padding:5px 0;
+    text-decoration: none;
+  }
+  .reject {
+    background-color: red;
+  }
+  .approve:hover,
+  .reject:hover{
+    opacity: 1;
+  }
+  .search {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+
+    input {
+      margin: 0 20px 0 20px;
+      color: var(--blue);
+      font-size: 2rem;
+      font-weight: bolder;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 30px 5px 30px;
+      height: 30px;
+      opacity: 0.6;
+      box-sizing: border-box;
+    }
+    button {
+      color: var(--font-p);
+      border-radius: 8px;
+      font-size: 2.5rem;
+      background: var(--font-b);
+      padding: 5px 30px 5px 30px;
+    }
+    input[type="date"]{
+      text-align: left;
+      opacity: 0.6;
+      font-size: small;
+      background-color: #fff;
+      height: 30px;
+    }
+    span{
+        font-size: 1.7rem;
+        font-weight: bolder;
+    };
   }
 }

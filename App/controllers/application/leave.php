@@ -16,7 +16,8 @@ $pageTitle='Leave | '.ucfirst($role);
 $styles=[
     css("app/partials/nav"),
     css('app/partials/calander'),
-    css('app/leave')
+    css('app/leave'),
+    // css('app/report')
 ];
 
 $headScripts=[

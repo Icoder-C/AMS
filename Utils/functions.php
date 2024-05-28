@@ -143,14 +143,14 @@ function generatePagination(int $totalPages, int $currentPage): array
 
     return [1, '...', $currentPage - 1, $currentPage, $currentPage + 1, '...', $totalPages];
 }
-function createPageLinks(int $page)
+function createPageLinks(int $page, string $pagename)
 {
-    $queryParams = mergeQueryParametes($_GET, ['p' => $page]);
+    $queryParams = mergeQueryParametes($_GET, [$pagename => $page]);
     $currentPath=parse_url($_SERVER['REQUEST_URI'])["path"];
     return $currentPath . '?' . $queryParams;
 }
-function getCurrentPage($totalPages){
-    $currentPage=isset($_GET['p'])?(int)$_GET['p']:1;
+function getCurrentPage($totalPages,string $pagename){
+    $currentPage=isset($_GET[$pagename])?(int)$_GET[$pagename]:1;
     $currentPage = (int)min(max($currentPage, 1), $totalPages);
     return $currentPage;
 }

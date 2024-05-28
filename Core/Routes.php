@@ -17,6 +17,10 @@ $router->get('/attendance', 'application/attendance.php')->only('auth');
 $router->get('/leave', 'application/leave.php')->only('auth');
 $router->get('/report', 'application/report.php')->only('auth');
 $router->get('/employees', 'application/employees.php')->only('auth');
+$router->post('/check-in', 'application/employees/logic/checkIn.php')->only('auth');
+$router->post('/check-out', 'application/employees/logic/checkOut.php')->only('auth');
+$router->get('/leave-apply', 'application/employees/applyLeave.php')->only('auth');
+$router->post('/leave-apply', 'application/employees/applyLeave.php')->only('auth');
 
 $router->get('/employees/add-employee', 'application/employees/addEmployees.php')->only('admin');
 

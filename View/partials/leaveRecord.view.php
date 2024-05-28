@@ -5,7 +5,8 @@ $statement = $db->query("SELECT COUNT(*) AS temp_count FROM EmployeeLeave WHERE 
 $count = $statement->find()['temp_count'];
 $perPage = 8;
 $totalPages = ceil($count / $perPage);
-$currentPage = getCurrentPage($totalPages);
+$pagename="view_Leaves_record";
+$currentPage = getCurrentPage($totalPages,$pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
 $offSet = ($perPage * ($currentPage - 1));

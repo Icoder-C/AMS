@@ -5,7 +5,8 @@ $statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE Emp
 $count = $statement->find()['temp_count'];
 $perPage = 8;
 $totalPages = ceil($count / $perPage);
-$currentPage = getCurrentPage($totalPages);
+$pagename="Display_Attendance";
+$currentPage = getCurrentPage($totalPages,$pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
 $offSet = ($perPage * ($currentPage - 1));
@@ -15,7 +16,7 @@ $query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
             WHERE Attendance.EmployeeID=$currentUserID
-            ORDER BY users.name ASC, AttendanceDate DESC
+            ORDER BY AttendanceDate DESC, users.name ASC
             LIMIT $perPage OFFSET $offSet";
 
 $statement = $db->query($query);

@@ -1,23 +1,47 @@
 <?php
 $currentUserID = $_SESSION['user']["EmployeeID"];
+$searchName = '%' . ($_GET['EmployeeName'] ?? '') . '%';
+// $startDate = ($_GET['start'] ?? '') ? $_GET['start'] : '1800-12-12';
+$startDate = $_GET['start'] ?? NULL;
+// $endDate = ($_GET['end'] ?? '') ? $_GET['end'] : '3000-12-12';
+$endDate = $_GET['end'] ?? NULL;
 
-$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance");
+
+$statement = $db->query(
+    "SELECT COUNT(*) AS temp_count
+    FROM Attendance 
+    INNER JOIN users 
+    ON Attendance.EmployeeID=users.EmployeeID 
+    WHERE LOWER(name) LIKE :name",
+    ["name" => $searchName]
+);
+
 $count = $statement->find()['temp_count'];
 $perPage = 30;
 $totalPages = ceil($count / $perPage);
-$currentPage = getCurrentPage($totalPages);
+$pagename = "View_Attendance";
+$currentPage = getCurrentPage($totalPages, $pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
 $offSet = ($perPage * ($currentPage - 1));
+
 
 $query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
             FROM Attendance 
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
+            WHERE LOWER(name) LIKE :name AND
+                COALESCE(AttendanceDate>=:startDate,1)
+                AND
+                COALESCE(AttendanceDate<=:endDate,1)
             ORDER BY users.name ASC, AttendanceDate DESC
             LIMIT $perPage OFFSET $offSet";
 
-$statement = $db->query($query);
+$statement = $db->query($query, [
+    "name" => $searchName,
+    "startDate" => $startDate, 
+    "endDate" => $endDate
+]);
 $results = $statement->findAll();
 ?>
 <div class="attend">
@@ -25,8 +49,8 @@ $results = $statement->findAll();
         <h1>Attendance Record</h1>
     </div>
     <div class="search">
-        <form action="/searchRecord" method="POST">
-            <input type="text" name="EmployeeName" id="EmployeeName" >
+        <form method="GET">
+            <input type="text" name="EmployeeName" id="EmployeeName" placeholder="Employee Name">
             <input type="date" name="start" id="start">
             <span>to</span>
             <input type="date" name="end" id="end">
@@ -43,7 +67,6 @@ $results = $statement->findAll();
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Worked Hours</th>
-                    <!-- <th>Location</th> -->
                 </tr>
             </thead>
             <tbody>

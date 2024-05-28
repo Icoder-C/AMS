@@ -1,0 +1,65 @@
+
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 50vw;
+    margin: auto;
+}
+.form-container h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-align: center;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 4px;
+    padding: 10px;
+}
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 2rem;
+}
+.form-container input, .form-container select, .form-container textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+select{
+    font-size: 1.7rem;
+}
+option{
+    font-size: 2rem;
+}
+.form-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 2rem;
+    cursor: pointer;
+}
+.form-container .btn-apply {
+    background-color: green;
+    color: #fff;
+    margin-bottom: 10px;
+}
+.form-container .btn-cancel {
+    background-color: #bd4c58;
+    color: #fff;
+}
+.error-msg{
+    width: 100%;
+    display: block;
+    min-height: 20px;
+    margin-bottom: 2px;
+    color: red;
+    font-style: italic;
+    padding-left: 10px;
+    font-weight: 600;
+    font-size: 1.7rem;
+    margin: 0 0 10px 0;
+}

@@ -111,12 +111,16 @@
     input {
       margin: 0 20px 0 20px;
       color: var(--blue);
-      font-size: 2.5rem;
       font-weight: bolder;
       border: none;
       border-radius: 8px;
-      padding: 5px 30px 5px 30px;
       box-sizing: border-box;
+      padding: 5px 30px 5px 30px;
+      height: 4vh;
+    }
+    input,
+    input[type="date"]{
+      background-color: #f1f2f3;
     }
     button {
       color: var(--font-p);
@@ -130,7 +134,7 @@
       opacity: 0.6;
       font-size: small;
       background-color: #fff;
-      height: 30px;
+
     }
     span {
       font-size: 1.7rem;
