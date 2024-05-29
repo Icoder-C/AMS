@@ -144,4 +144,9 @@
   .list-pagination{
     background-color: #ffffff;
   }
+  .locationLink{
+    color:blue;
+    text-decoration: underline;
+    font-size: smaller;
+  }
 }

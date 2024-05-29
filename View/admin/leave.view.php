@@ -1,6 +1,6 @@
 <div class="leave">
     <?php
-    $statement = $db->query("SELECT COUNT(*) AS temp_requests FROM EmployeeLeave");
+    $statement = $db->query("SELECT COUNT(*) AS temp_requests FROM EmployeeLeave WHERE EmployeeLeave.Status='Pending'");
     $count = $statement->find()['temp_requests'];
     $perPage = 5;
     $totalPages = ceil($count / $perPage);
@@ -9,15 +9,18 @@
     $pages = generatePagination($totalPages, $currentPage);
     // dd(generatePagination($totalPages,$currentPage));
     // dd($count);
-    $offSet = ($perPage * ($currentPage - 1));
+    $offSet = max(0, $perPage * ($currentPage - 1));
     // dd( $count);
-    $query = "SELECT users.name,StartDate,EndDate,LeaveType,Notes, EmployeeLeave.EmployeeID FROM EmployeeLeave INNER JOIN users ON EmployeeLeave.EmployeeID=users.EmployeeID ORDER BY StartDate ASC LIMIT $perPage OFFSET $offSet";
+    $query = "SELECT users.name,StartDate,EndDate,LeaveType,Notes, EmployeeLeave.EmployeeID 
+                FROM EmployeeLeave INNER JOIN users ON EmployeeLeave.EmployeeID=users.EmployeeID 
+                WHERE EmployeeLeave.Status='Pending'
+                ORDER BY StartDate ASC 
+                LIMIT $perPage OFFSET $offSet";
     $statement = $db->query($query);
     $results = $statement->findAll();
     if ($results) : ?>
-
         <div class="topic">
-            <h1>New Employees Request</h1>
+            <h1>New Leave Request</h1>
         </div>
 
         <div class="table">
@@ -45,7 +48,7 @@
                         echo "<td>" . htmlspecialchars($row['EndDate']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['LeaveType']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Notes']) . "</td>";
-                        echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='approve'>Approve</a> </td>";
+                        echo "<td> <a href='/employees/approve-leave?id=" . $row['EmployeeID'] . " '" . "class='approve'>Approve</a> </td>";
                         echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='reject'>Reject</a> </td>";
                         echo "</tr>";
                         $i = $i + 1;

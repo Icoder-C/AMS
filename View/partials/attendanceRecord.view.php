@@ -1,25 +1,42 @@
 <?php
 $currentUserID = $_SESSION['user']["EmployeeID"];
+$startDate = !empty($_GET['start']) ? $_GET['start'] : NULL;
+$endDate = !empty($_GET['end']) ? $_GET['end'] : NULL;
 
-$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE EmployeeID=$currentUserID");
+
+$statement = $db->query("SELECT COUNT(*) AS temp_count 
+                        FROM Attendance 
+                        WHERE EmployeeID=$currentUserID 
+                        AND (:startDate IS NULL OR AttendanceDate >= :startDate)
+                        AND (:endDate IS NULL OR AttendanceDate <= :endDate)",
+                        [
+                        "startDate" => $startDate, 
+                        "endDate" => $endDate]
+                        );
+
 $count = $statement->find()['temp_count'];
 $perPage = 8;
 $totalPages = ceil($count / $perPage);
-$pagename="Display_Attendance";
-$currentPage = getCurrentPage($totalPages,$pagename);
+$pagename = "Display_Attendance";
+$currentPage = getCurrentPage($totalPages, $pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
-$offSet = ($perPage * ($currentPage - 1));
+$offSet = max(0, $perPage * ($currentPage - 1));
 
 $query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
             FROM Attendance 
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
-            WHERE Attendance.EmployeeID=$currentUserID
-            ORDER BY AttendanceDate DESC, users.name ASC
+            WHERE Attendance.EmployeeID=$currentUserID 
+                    AND (:startDate IS NULL OR AttendanceDate >= :startDate)
+                    AND (:endDate IS NULL OR AttendanceDate <= :endDate)
+            ORDER BY AttendanceDate DESC
             LIMIT $perPage OFFSET $offSet";
 
-$statement = $db->query($query);
+$statement = $db->query($query,[
+    "startDate" => $startDate, 
+    "endDate" => $endDate
+]);
 $results = $statement->findAll();
 ?>
 <div class="report">
@@ -27,8 +44,7 @@ $results = $statement->findAll();
         <h1>Attendance Record</h1>
     </div>
     <div class="search">
-        <form action="/searchRecord" method="POST">
-            <input type="text" name="EmployeeName" id="EmployeeName" hidden value="<?= $_SESSION['user']['name'] ?>">
+        <form method="GET">
             <input type="date" name="start" id="start">
             <span>to</span>
             <input type="date" name="end" id="end">

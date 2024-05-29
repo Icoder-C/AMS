@@ -1,7 +1,14 @@
 <?php
 $currentUserID = $_SESSION['user']["EmployeeID"];
+$searchYear = !empty($_GET['year']) ? $_GET['year'] : NULL;
 
-$statement = $db->query("SELECT COUNT(*) AS temp_count FROM EmployeeLeave WHERE EmployeeID=$currentUserID");
+$statement = $db->query("SELECT COUNT(*) AS temp_count 
+                        FROM EmployeeLeave 
+                        WHERE EmployeeID=$currentUserID
+                        AND (:searchYear IS NULL OR YEAR(StartDate)=:searchYear)",
+                        [
+                            "searchYear" => $searchYear
+                            ]);
 $count = $statement->find()['temp_count'];
 $perPage = 8;
 $totalPages = ceil($count / $perPage);
@@ -16,19 +23,21 @@ $query = "SELECT users.name AS name,StartDate,EndDate,LeaveType,Notes
             INNER JOIN users 
             ON EmployeeLeave.EmployeeID=users.EmployeeID 
             WHERE EmployeeLeave.EmployeeID=$currentUserID
+                AND (:searchYear IS NULL OR YEAR(StartDate)=:searchYear)
             ORDER BY users.name ASC, StartDate DESC
             LIMIT $perPage OFFSET $offSet";
 
-$statement = $db->query($query);
+$statement = $db->query($query,[
+    "searchYear" => $searchYear
+]);
 $results = $statement->findAll();
 ?>
 
 <div class="topic">
     <h1>Leave Record</h1>
     <div class="search">
-        <form action="#" method="post">
-            <input type="text" name="EmployeeName" id="EmployeeName" hidden value="<?= $_SESSION['user']['name'] ?>">
-            <input type="text" name="year" id="year" value="<?= date('Y') ?>">
+        <form method="Get">
+            <input type="number" name="year" id="year" value="<?= $_GET['year']??"" ?>">
             <button type="submit">Search</button>
         </form>
     </div>

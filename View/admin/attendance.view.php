@@ -1,10 +1,12 @@
 <?php
-$currentUserID = $_SESSION['user']["EmployeeID"];
+$currentDate = date('Y-m-d');
 $searchName = '%' . ($_GET['EmployeeName'] ?? '') . '%';
 // $startDate = ($_GET['start'] ?? '') ? $_GET['start'] : '1800-12-12';
-$startDate = $_GET['start'] ?? NULL;
-// $endDate = ($_GET['end'] ?? '') ? $_GET['end'] : '3000-12-12';
-$endDate = $_GET['end'] ?? NULL;
+// $startDate = $_GET['start'] ?? NULL;
+// $endDate = ($_GET['end'] ?? '') ? $_GET['end'] : $currentDate;
+// $endDate =( $_GET['end']) ?? NULL;
+$startDate = !empty($_GET['start']) ? $_GET['start'] : NULL;
+$endDate = !empty($_GET['end']) ? $_GET['end'] : NULL;
 
 
 $statement = $db->query(
@@ -12,10 +14,13 @@ $statement = $db->query(
     FROM Attendance 
     INNER JOIN users 
     ON Attendance.EmployeeID=users.EmployeeID 
-    WHERE LOWER(name) LIKE :name",
-    ["name" => $searchName]
+    WHERE LOWER(name) LIKE :name
+            AND (:startDate IS NULL OR AttendanceDate >= :startDate)
+            AND (:endDate IS NULL OR AttendanceDate <= :endDate)",
+    ["name" => $searchName,
+    "startDate" => $startDate, 
+    "endDate" => $endDate]
 );
-
 $count = $statement->find()['temp_count'];
 $perPage = 30;
 $totalPages = ceil($count / $perPage);
@@ -23,19 +28,20 @@ $pagename = "View_Attendance";
 $currentPage = getCurrentPage($totalPages, $pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
-$offSet = ($perPage * ($currentPage - 1));
+// $offSet = ($perPage * ($currentPage - 1));
+$offSet = max(0, $perPage * ($currentPage - 1));
 
 
-$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
-            FROM Attendance 
-            INNER JOIN users 
-            ON Attendance.EmployeeID=users.EmployeeID 
-            WHERE LOWER(name) LIKE :name AND
-                COALESCE(AttendanceDate>=:startDate,1)
-                AND
-                COALESCE(AttendanceDate<=:endDate,1)
-            ORDER BY users.name ASC, AttendanceDate DESC
-            LIMIT $perPage OFFSET $offSet";
+$query ="SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
+          FROM Attendance 
+          INNER JOIN users 
+          ON Attendance.EmployeeID=users.EmployeeID 
+          WHERE LOWER(name) LIKE :name
+            AND (:startDate IS NULL OR AttendanceDate >= :startDate)
+            AND (:endDate IS NULL OR AttendanceDate <= :endDate)
+          ORDER BY users.name ASC, AttendanceDate DESC
+          LIMIT $perPage OFFSET $offSet";
+
 
 $statement = $db->query($query, [
     "name" => $searchName,

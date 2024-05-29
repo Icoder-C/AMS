@@ -5,7 +5,8 @@ use Core\Database;
 use Core\geoLocationProvider;
 
 // Function to calculate the distance between two points using the Haversine formula
-function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000) {
+function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000)
+{
     // convert from degrees to radians
     $latFrom = deg2rad($latitudeFrom);
     $lonFrom = deg2rad($longitudeFrom);
@@ -21,7 +22,8 @@ function haversineGreatCircleDistance($latitudeFrom, $longitudeFrom, $latitudeTo
 }
 
 // Function to check if the user is within the check-in radius
-function isWithinCheckInZone($userLat, $userLon, $officeLat, $officeLon, $radius = 10) {
+function isWithinCheckInZone($userLat, $userLon, $officeLat, $officeLon, $radius = 20)
+{
     $distance = haversineGreatCircleDistance($userLat, $userLon, $officeLat, $officeLon);
     return $distance <= $radius;
 }
@@ -31,8 +33,8 @@ $locationData = geoLocationProvider::getGeoLocation();
 $lat = $locationData["lat"];
 $long = $locationData["long"];
 
-settype($lat,"float");
-settype($long,"float");
+settype($lat, "float");
+settype($long, "float");
 
 $currentDate = date('Y-m-d');
 $currentTime = date('H:i:s');
@@ -54,12 +56,34 @@ if ($result != "on") {
 
     // Check if the user's location is within the check-in zone
     if (isWithinCheckInZone($lat, $long, $designatedLat, $designatedLon)) {
+        try{
+            $queryCheckIn = "INSERT INTO Attendance(EmployeeID, AttendanceDate, CheckInTime, latitude, longitude, Status) 
+                             VALUES (:EmployeeID, :AttendanceDate, :CheckInTime, :latitude, :longitude, :Status)";
+        $stmt = $db->query($queryCheckIn,[
+            "EmployeeID"=>$empID,
+            "AttendanceDate"=>$currentDate,
+            "CheckInTime"=>$currentTime,
+            "latitude"=>$lat,
+            "longitude"=>$long,
+            "Status"=>"Checked in only"
+        ]);
         echo "Check-in successful!";
-        dd([$currentDate, $currentTime, $lat, $long, $designatedLat, $designatedLon]);
+        }
+        catch(PDOException $e){
+            if($e->getCode()==23000){
+                echo"You have already checked in and out for today.";
+            }
+            else{
+                echo "An error occured while inserting the data: ".$e->getMessage();
+            }
+        }
+        catch(Exception $e){
+            echo "An Unexpected error occurred: ".$e->getMessage();
+        }
+
     } else {
         echo "You are not within the check-in zone.";
     }
 } else {
     echo "You cannot check in as you are already checked in";
 }
-?>

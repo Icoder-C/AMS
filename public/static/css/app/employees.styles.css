@@ -144,5 +144,43 @@
       background-color: blue;
     }
   }
+  .search {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 
+    input {
+      margin: 0 20px 0 20px;
+      color: var(--blue);
+      font-size: 2rem;
+      font-weight: bolder;
+      border: none;
+      border-radius: 8px;
+      padding: 5px 30px 5px 30px;
+      height: 30px;
+      opacity: 0.6;
+      box-sizing: border-box;
+    }
+    button {
+      color: var(--font-p);
+      border-radius: 8px;
+      font-size: 2.5rem;
+      background: var(--font-b);
+      padding: 5px 30px 5px 30px;
+    }
+    input[type="date"]{
+      text-align: left;
+      opacity: 0.6;
+      font-size: small;
+      background-color: #fff;
+      height: 30px;
+    }
+    span{
+        font-size: 1.7rem;
+        font-weight: bolder;
+    }
+
+}
 }

@@ -5,13 +5,13 @@
                 <?php require view("partials\calander"); ?>
             </div>
         </div>
-        <div class="notification">
+        <!-- <div class="notification">
             <h1>Notification</h1>
             <h2>Applied Leave: </h2>
             <h2>Status: </h2>
             <h2>Leave Start Date: </h2>
             <h2>Leave End Date: </h2>
-        </div>
+        </div> -->
 
     </div>
 

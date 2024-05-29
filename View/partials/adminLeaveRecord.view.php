@@ -1,7 +1,18 @@
 <div class="report">
     <?php
-
-    $statement = $db->query("SELECT COUNT(*) AS temp_count FROM EmployeeLeave");
+    $searchName = '%' . ($_GET['EmployeeName'] ?? '') . '%';
+    $searchYear = !empty($_GET['year']) ? $_GET['year'] : NULL;
+    $statement = $db->query("SELECT COUNT(*) AS temp_count 
+                            FROM EmployeeLeave 
+                            INNER JOIN users 
+                            ON EmployeeLeave.EmployeeID=users.EmployeeID 
+                            WHERE EmployeeLeave.Status <>'Pending'
+                            AND LOWER(name) LIKE :searchName
+                            AND (:searchYear IS NULL OR YEAR(StartDate)=:searchYear)", 
+                            [
+                            "searchName" => $searchName,
+                            "searchYear" => $searchYear
+                            ]);
     $count = $statement->find()['temp_count'];
     $perPage = 8;
     $pagename = "Display_leave_records";
@@ -10,16 +21,22 @@
     $currentPage = getCurrentPage($totalPages, $pagename);
     $pages = generatePagination($totalPages, $currentPage);
 
-    $offSet = ($perPage * ($currentPage - 1));
+    $offSet = max(0, $perPage * ($currentPage - 1));
 
     $query = "SELECT users.name AS name,StartDate,EndDate,LeaveType,Notes
             FROM EmployeeLeave 
             INNER JOIN users 
             ON EmployeeLeave.EmployeeID=users.EmployeeID 
+            WHERE EmployeeLeave.Status <>'Pending'
+                AND LOWER(name) LIKE :searchName
+                AND (:searchYear IS NULL OR YEAR(StartDate)=:searchYear)
             ORDER BY users.name ASC, StartDate DESC
             LIMIT $perPage OFFSET $offSet";
 
-    $statement = $db->query($query);
+    $statement = $db->query($query, [
+        "searchName" => $searchName,
+        "searchYear" => $searchYear
+    ]);
     $results = $statement->findAll();
     ?>
 
@@ -27,9 +44,9 @@
         <h1>Leave Record</h1>
     </div>
     <div class="search">
-        <form action="#" method="post">
+        <form method="GET">
             <input type="text" name="EmployeeName" id="EmployeeName">
-            <input type="text" name="year" id="year" value="<?= date('Y') ?>">
+            <input type="number" name="year" id="year" value="">
             <button type="submit">Search</button>
         </form>
     </div>

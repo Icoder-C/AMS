@@ -99,18 +99,18 @@ function login($user)
     $requiredProfileFeilds = $user["address"];
     $isProfileComplete = TRUE;
 
-        if (is_null( $requiredProfileFeilds)) {
-            $isProfileComplete = FALSE;
-        }
+    if (is_null($requiredProfileFeilds)) {
+        $isProfileComplete = FALSE;
+    }
 
 
 
     $_SESSION['user'] = [
-        'EmployeeID'=> $user['EmployeeID'],
+        'EmployeeID' => $user['EmployeeID'],
         'email' => $user['email'],
         'name' => $user['name'],
         'role' => $user['role'],
-        'gender'=> $user['gender'],
+        'gender' => $user['gender'],
         'isProfileComplete' => $isProfileComplete
     ];
     session_regenerate_id(true);
@@ -146,11 +146,12 @@ function generatePagination(int $totalPages, int $currentPage): array
 function createPageLinks(int $page, string $pagename)
 {
     $queryParams = mergeQueryParametes($_GET, [$pagename => $page]);
-    $currentPath=parse_url($_SERVER['REQUEST_URI'])["path"];
+    $currentPath = parse_url($_SERVER['REQUEST_URI'])["path"];
     return $currentPath . '?' . $queryParams;
 }
-function getCurrentPage($totalPages,string $pagename){
-    $currentPage=isset($_GET[$pagename])?(int)$_GET[$pagename]:1;
+function getCurrentPage($totalPages, string $pagename)
+{
+    $currentPage = isset($_GET[$pagename]) ? (int)$_GET[$pagename] : 1;
     $currentPage = (int)min(max($currentPage, 1), $totalPages);
     return $currentPage;
 }
@@ -168,15 +169,38 @@ function mergeQueryParametes(array ...$params): string
     return http_build_query(array_merge(...$params));
 }
 
-function convertTimeFormat($time) {
+function convertTimeFormat($time)
+{
     $dateTime = DateTime::createFromFormat('H:i:s', $time);
-    return $dateTime->format('g:i A');
+    if ($time == NULL) {
+        return "-----";
+    } else {
+        return $dateTime->format('g:i A');
+    }
 }
 
-function WorkedHours($startTime, $endTime) {
-    // Create DateTime objects from the times
-    $startDateTime = DateTime::createFromFormat('g:i A', $startTime);
-    $endDateTime = DateTime::createFromFormat('g:i A', $endTime);
+function WorkedHours($startTime, $endTime){
+    // Check for null or empty values
+    if (empty($startTime) || empty($endTime)) {
+        return "-----";
+    }
+
+    // Detect the format of the time strings and create DateTime objects
+    if (strpos($startTime, 'AM') !== false || strpos($startTime, 'PM') !== false) {
+        // 12-hour format with AM/PM
+        $format = 'g:i A';
+    } else {
+        // 24-hour format
+        $format = 'H:i:s';
+    }
+
+    $startDateTime = DateTime::createFromFormat($format, $startTime);
+    $endDateTime = DateTime::createFromFormat($format, $endTime);
+
+    // Check if DateTime objects were created successfully
+    if ($startDateTime === false || $endDateTime === false) {
+        return "Invalid time format";
+    }
 
     // Calculate the difference between the times
     $interval = $startDateTime->diff($endDateTime);
@@ -190,9 +214,7 @@ function WorkedHours($startTime, $endTime) {
         $hours += 24;
     }
 
-    // Calculate the total hours worked
-    $totalHoursWorked = $hours + ($minutes / 60);
-    $formattedTotalHours = number_format($totalHoursWorked, 2);
+    $formattedTotalHours = $hours . " hrs " . $minutes . " min";
 
-    return $formattedTotalHours." hrs";
+    return $formattedTotalHours;
 }

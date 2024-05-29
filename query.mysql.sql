@@ -47,7 +47,7 @@ CREATE TABLE office(
     Longitude VARCHAR(20)
 );
 
-DROP TABLE office;
+-- DROP TABLE Attendance;
 
 CREATE TABLE Attendance (
     AttendanceID INT AUTO_INCREMENT PRIMARY KEY,
@@ -55,10 +55,12 @@ CREATE TABLE Attendance (
     AttendanceDate DATE NOT NULL,
     CheckInTime TIME,
     CheckOutTime TIME,
+    latitude VARCHAR(20),
+    longitude VARCHAR(20),
     Status VARCHAR(50),
-    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
+    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID),
+    UNIQUE (EmployeeID, AttendanceDate) -- Unique constraint to ensure one record per employee per day
 );
-
 CREATE TABLE EmployeeLeave (
     LeaveID INT AUTO_INCREMENT PRIMARY KEY,
     EmployeeID INT NOT NULL,
@@ -66,6 +68,7 @@ CREATE TABLE EmployeeLeave (
     StartDate DATE NOT NULL,
     EndDate DATE NOT NULL,
     Notes TEXT,
+    Status VARCHAR(50),
     FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
 );
 
@@ -88,3 +91,10 @@ SELECT * FROM Attendance
 WHERE NULL;
 
 SELECT COALESCE(0,1);
+SET FOREIGN_KEY_CHECKS = 0;
+TRUNCATE TABLE users;
+TRUNCATE TABLE users_temp;
+TRUNCATE TABLE office;
+TRUNCATE TABLE Attendance;
+TRUNCATE TABLE EmployeeLeave;
+SET FOREIGN_KEY_CHECKS = 1;

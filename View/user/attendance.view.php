@@ -2,23 +2,23 @@
 
 $currentUserID=$_SESSION['user']["EmployeeID"];
 
-$statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE EmployeeID=$currentUserID");
-$count = $statement->find()['temp_count'];
-$perPage = 8;
-$totalPages = ceil($count / $perPage);
-$pagename="View_Attendance";
-$currentPage = getCurrentPage($totalPages,$pagename);
-$pages = generatePagination($totalPages, $currentPage);
+// $statement = $db->query("SELECT COUNT(*) AS temp_count FROM Attendance WHERE EmployeeID=$currentUserID");
+// $count = $statement->find()['temp_count'];
+// $perPage = 8;
+// $totalPages = ceil($count / $perPage);
+// $pagename="View_Attendance";
+// $currentPage = getCurrentPage($totalPages,$pagename);
+// $pages = generatePagination($totalPages, $currentPage);
 
-$offSet = ($perPage * ($currentPage - 1));
+// $offSet = max(0, $perPage * ($currentPage - 1));
 
-$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
+$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime, latitude, longitude
             FROM Attendance 
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
             WHERE Attendance.EmployeeID=$currentUserID
             ORDER BY users.name ASC, AttendanceDate DESC
-            LIMIT $perPage OFFSET $offSet";
+            LIMIT 10";
 
 $statement = $db->query($query);
 $results = $statement->findAll();
@@ -69,7 +69,7 @@ $results = $statement->findAll();
             <tbody>
                 <?php
                 if ($results) {
-                    $i = $offSet+1;
+                    $i =1;
                     foreach ($results as $row) {
                         echo "<tr>";
                         echo "<td>" . $i . "</td>";
@@ -77,8 +77,8 @@ $results = $statement->findAll();
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckInTime'])) . "</td>";
                         echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckOutTime'])) . "</td>";
-                        // echo "<td>" . htmlspecialchars($row['Worked_Hours']) . "</td>";
-                        // echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
+                        echo "<td>" . WorkedHours(htmlspecialchars($row['CheckInTime']), htmlspecialchars($row['CheckOutTime'])) . "</td>";
+                        // echo "<td>" .'<a class= \'locationLink\' href="https://www.google.com/maps?q=' . htmlspecialchars($row['latitude']) . ',' . htmlspecialchars($row['longitude']) . '" target="_blank">Open Location in Google Maps</a>'."</td>";
                         echo "</tr>";
                         $i += 1;
                     }
@@ -89,7 +89,7 @@ $results = $statement->findAll();
             </tbody>
         </table>
     </div>
-    <div class="list-pagination">
-        <?php require view("partials/pagination"); ?>
-    </div>
+    <!-- <div class="list-pagination">
+        <//?php require view("partials/pagination"); ?>
+    </div> -->
 </div>

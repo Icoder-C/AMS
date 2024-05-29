@@ -8,7 +8,7 @@ $currentPage = getCurrentPage($totalPages,$pagename);
 $pages = generatePagination($totalPages, $currentPage);
 // dd(generatePagination($totalPages,$currentPage));
 // dd($count);
-$offSet = ($perPage * ($currentPage - 1));
+$offSet = max(0, $perPage * ($currentPage - 1));
 // dd( $count);
 $query = "SELECT * FROM users_temp LIMIT $perPage OFFSET $offSet";
 $statement = $db->query($query);
