@@ -8,6 +8,7 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="<?= css('reset') ?>">
+    <link rel="stylesheet" href="<?= css('partials/modal') ?>">
     <link rel="stylesheet" href="<?= css('variables') ?>">
     <link rel="stylesheet" href="<?= css('global') ?>">
     <link rel="stylesheet" href="<?= css('font') ?>">

@@ -1,4 +1,14 @@
+<?php
+
+// dd($_SESSION);
+$response = $_SESSION['modal']['response']?? NULL;
+$image = $_SESSION['modal']['imagePath']?? NULL; 
+$output = $_SESSION['modal']['output']?? NULL; 
+
+require view("partials/modal");
+?>
 <div class="main-container">
+
     <div class="notification-bar">
         <h1>Welcome <?= $user ?> !!!</h1>
         <div class="sub-headings">

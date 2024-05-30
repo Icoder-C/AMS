@@ -48,8 +48,9 @@ $query = "SELECT status FROM users WHERE EmployeeID= :EmployeeID";
 $statement = $db->query($query, ["EmployeeID" => $empID]);
 
 $result = $statement->find();
+// dd($result);
 
-if ($result != "on") {
+if ($result === "on") {
     // Designated location's latitude and longitude
     $designatedLat = 27.6974; // Example: Latitude of the designated location
     $designatedLon = 85.3318; // Example: Longitude of the designated location
@@ -63,25 +64,51 @@ if ($result != "on") {
             $stmt=$db->query($queryCheckOut,[
                     "CheckOutTime"=>$currentTime,
                     "EmployeeID"=>$empID,
-                    "AttendanceDate"=>$currentTime
+                    "AttendanceDate"=>$currentDate
             ]);
-        echo "Check-out successful!";
+            $statement_main_table=$db->query("UPDATE users
+                                        SET Status= 'off'
+                                        WHERE EmployeeID=:EmployeeID",[
+                                        "EmployeeID"=>$empID]);
+            $_SESSION['modal']=[
+                "response"=>'Check Out Sucessful',
+                "imagePath"=>"success.svg"
+            ];
         }
         catch(PDOException $e){
             if($e->getCode()==23000){
-                echo"You have already checked in and out for today.";
+                $_SESSION['modal']=[
+                    "response"=>'You have already checked in and out for today.',
+                    "imagePath"=>"failure.svg"
+                ];
             }
             else{
-                echo "An error occured while inserting the data: ".$e->getMessage();
+                $_SESSION['modal']=[
+                    "response"=>"An error occured while inserting the data: ".$e->getMessage(),
+                    "imagePath"=>"failure.svg"
+                ];
             }
         }
         catch(Exception $e){
-            echo "An Unexpected error occurred: ".$e->getMessage();
+            $_SESSION['modal']=[
+                "response"=>"An Unexpected error occurred: ".$e->getMessage(),
+                "imagePath"=>"failure.svg"
+            ];
         }
 
     } else {
-        echo "You are not within the check-in zone.";
+        $_SESSION['modal']=[
+            "response"=>"You are not within the check-in zone.",
+            "imagePath"=>"failure.svg"
+        ];
     }
 } else {
-    echo "You cannot check in as you are already checked in";
+    $_SESSION['modal']=[
+        "response"=>"You cannot check out as you have already checked out for today",
+        "imagePath"=>"failure.svg"
+    ];
 }
+// dd($_SESSION);
+
+header("location: /");
+

@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="<?= css('reset') ?>">
     <link rel="stylesheet" href="<?= css('variables') ?>">
     <link rel="stylesheet" href="<?= css('global') ?>">
+    <link rel="stylesheet" href="<?= css('app/partials/modal') ?>">
     <link rel="stylesheet" href="<?= css('font') ?>">
     <link rel="stylesheet" href="<?= css('app/partials/pagination') ?>">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />

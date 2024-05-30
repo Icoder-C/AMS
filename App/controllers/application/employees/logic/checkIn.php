@@ -67,23 +67,48 @@ if ($result != "on") {
             "longitude"=>$long,
             "Status"=>"Checked in only"
         ]);
-        echo "Check-in successful!";
+        $statement_main_table=$db->query("UPDATE users
+                                        SET Status= 'on'
+                                        WHERE EmployeeID=:EmployeeID",[
+            "EmployeeID"=>$empID]);
+            $_SESSION['modal']=[
+                "response"=>'Check In Sucessful',
+                "imagePath"=>"success.svg"
+            ];
+
         }
         catch(PDOException $e){
             if($e->getCode()==23000){
-                echo"You have already checked in and out for today.";
+                $_SESSION['modal']=[
+                    "response"=>'You have already checked in and out for today.',
+                    "imagePath"=>"failure.svg"
+                ];
             }
             else{
-                echo "An error occured while inserting the data: ".$e->getMessage();
+                $_SESSION['modal']=[
+                    "response"=>"An error occured while inserting the data: ".$e->getMessage(),
+                    "imagePath"=>"failure.svg"
+                ];
             }
         }
         catch(Exception $e){
-            echo "An Unexpected error occurred: ".$e->getMessage();
+            $_SESSION['modal']=[
+                "response"=>"An Unexpected error occurred: ".$e->getMessage(),
+                "imagePath"=>"failure.svg"
+            ];
         }
-
+        
     } else {
-        echo "You are not within the check-in zone.";
+        $_SESSION['modal']=[
+            "response"=>"You are not within the check-in zone.",
+            "imagePath"=>"failure.svg"
+        ];
     }
 } else {
-    echo "You cannot check in as you are already checked in";
+    $_SESSION['modal']=[
+        "response"=>"You cannot check in as you are already checked in",
+        "imagePath"=>"failure.svg"
+    ];
 }
+
+header("location: /");
