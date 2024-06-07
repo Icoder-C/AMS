@@ -34,6 +34,8 @@ CREATE TABLE users (
     rate FLOAT,
     supervisor VARCHAR(40),
     appointment_date DATE,
+    checkIn TIME,
+    checkOut TIME,
     path_photo VARCHAR(255),
     working_status VARCHAR(10),
     password VARCHAR(255),

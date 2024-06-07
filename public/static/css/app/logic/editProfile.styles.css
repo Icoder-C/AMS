@@ -1,6 +1,7 @@
 .profile-main {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 .profile {
   .profile-image {
@@ -36,13 +37,12 @@
   h1 {
     display: inline;
   }
-  a, button {
+  button {
     color: var(--font-p);
     border-radius: 4px;
     font-size: 2.5rem;
     background: var(--font-b);
     padding: 10px 30px 10px 30px;
-    align-self: center;
   }
   .table {
     background-color: var(--grey);
@@ -52,9 +52,7 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     padding-bottom: 20px;
   }
-
   .field {
-    display: flex;
     display: flex;
     font-size: larger;
     padding: 2px 5vw 2px 5vw;
@@ -74,7 +72,7 @@
     width: 50%;
     margin: 2px;
     color: var(--blue);
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: bolder;
     margin-top: 10px;
     border: none;
@@ -84,7 +82,9 @@
   }
 
   input[type="date"],
+  input[type="text"],
   input[type="time"],
+  input[type="file"],
   select,
   input {
     text-align: left;
@@ -92,11 +92,9 @@
     opacity: 1;
     font-size: small;
     background-color: #fff;
-    height: 30px;
-  }
-  #changePw {
-    width: 30%;
-    margin: 20px 35% 0 35%;
+    align-content: center;
+    height: 4vh;
+    font-size: 1.5rem;
   }
   .radio {
     display: flex;
@@ -106,20 +104,30 @@
       margin-right: 40px;
     }
   }
-  #click {
-    font-size: 5rem;
-    color: var(--font-p);
-    border-radius: 8px;
-    background: var(--font-b);
-    padding: 0 20px;
-    cursor: pointer;
+  .error {
+    display: block;
+    text-align: left;
+    color: red;
+    margin-left: 50%;
+    margin-right: 10px;
+    min-height: 3rem;
   }
-  #changepassword {
-    display: none;
-  }
-  input[type="radio"] {
-    accent-color: #3498db; /* Change this to your desired color */
-  }
-  
 }
-
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#save,
+#cancel {
+  background-color: green;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 2.5rem;
+  padding: 10px 70px 10px 70px;
+  align-self: center;
+  margin: 40px;
+}
+#cancel {
+  background-color: rgb(204, 48, 48);
+}

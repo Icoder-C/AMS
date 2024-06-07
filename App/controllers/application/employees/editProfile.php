@@ -1,22 +1,19 @@
 <?php
 
-
-
 $currentUser=$_SESSION['user'];
 $role=$currentUser['role'];
 $user=$currentUser['name'];
 
 
-$dashboardLayout=view("{$role}/profile");
+$dashboardLayout=view("{$role}/editProfile");
 $navLayout=view("{$role}/nav");
 
-$pageTitle='Profile | '.ucfirst($role);
+$pageTitle='Add Employee | '.ucfirst($role);
 
 
 $styles=[
     css("app/partials/nav"),
-    css('app/partials/calander'),
-    css('app/profile')
+    css('app/logic/editProfile')
 ];
 
 $headScripts=[
@@ -32,6 +29,5 @@ $headScripts=[
 $bodyScripts=[
     // js("body/index")
 ];
-
 
 require view("app");

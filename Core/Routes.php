@@ -24,6 +24,7 @@ $router->post('/leave-apply', 'application/employees/applyLeave.php')->only('aut
 
 $router->get('/employees/add-employee', 'application/employees/addEmployees.php')->only('admin');
 $router->get('/employees/approve-leave', 'application/employees/approveLeave.php')->only('admin');
+$router->get('/profile/edit-profile', 'application/employees/editProfile.php')->only('auth');
 
 
 $router->delete('/session', 'auth/session-destroy.php')->only("auth");

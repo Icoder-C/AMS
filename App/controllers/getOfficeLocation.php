@@ -8,17 +8,17 @@ $db=APP::resolve(Database::class);
 $location=geoLocationProvider::getGeoLocation(); 
 $lat=$location['lat'];
 $long=$location['long'];
-$db->query("INSERT INTO office(Latitude, Longitude) VALUES (:lat, :long)",[
-    "lat"=>$lat,
-    "long"=>$long
-]);
+// $db->query("INSERT INTO office(Latitude, Longitude) VALUES (:lat, :long)",[
+//     "lat"=>$lat,
+//     "long"=>$long
+// ]);
 
-$query="SELECT * FROM office";
-$stmt=$db->query($query);
-$result=$stmt->findAll();
+// $query="SELECT * FROM office";
+// $stmt=$db->query($query);
+// $result=$stmt->findAll();
 
 
-dd($result);
+// dd($result);
 // $lat=27.671376;
 // $long=85.349779;
 

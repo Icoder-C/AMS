@@ -34,7 +34,7 @@ function locateUser(fixedLat, fixedLong) {
         // alert(userLat+" "+userLng);
 
         // Update the view of the map to the current location with an appropriate zoom level
-        map.setView([userLat, userLng], 16);
+        map.setView([userLat, userLng], 14);
 
         // Add a marker to the map at the current location
         var userMarker = L.marker([userLat, userLng], {})
