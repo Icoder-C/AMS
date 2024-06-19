@@ -48,16 +48,16 @@
           <?php endif; ?></span>
         </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
           <label for="appointment">
-            <img src="<?= res('icons/calendar-blue.svg') ?>" alt="Calendar Icon" class="icon" />
+            <img src="</?= res('icons/calendar-blue.svg') ?>" alt="Calendar Icon" class="icon" />
             Date of Appointment
-            <input type="date" name="doa" id="doa" placeholder="dd/mm/yyyy" value="<?= $_POST['doa'] ?? ''; ?>"/>
+            <input type="date" name="doa" id="doa" placeholder="dd/mm/yyyy" value="</?= $_POST['doa'] ?? ''; ?>"/>
           </label><span class="error-msg">
-          <?php if (isset($errors['doa'])): ?>
-          <?= $errors['doa']?>
-          <?php endif; ?></span>
-        </div>
+          </?php if (isset($errors['doa'])): ?>
+          </?= $errors['doa']?>
+          </?php endif; ?></span>
+        </div> -->
 
         <div class="form-group">
           <label for="password">

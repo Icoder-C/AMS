@@ -59,7 +59,7 @@ if ($result['status'] == "on") {
     if (isWithinCheckInZone($lat, $long, $designatedLat, $designatedLon)) {
         try{
             $queryCheckOut="UPDATE Attendance 
-                            SET CheckOutTime= :CheckOutTime, Status='Present';
+                            SET CheckOutTime= :CheckOutTime, Status='Present'
                             WHERE EmployeeID=:EmployeeID AND AttendanceDate=:AttendanceDate";
             $stmt=$db->query($queryCheckOut,[
                     "CheckOutTime"=>$currentTime,

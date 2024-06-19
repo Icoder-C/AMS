@@ -25,7 +25,7 @@ $ofc = $stmt->find();
         </div>
         <div class="profile-form">
             <div class="form-user">
-                <form action="#" method="post" enctype="multipart/form-data">
+                <form action="/edit-profile-validate" method="POST" enctype="multipart/form-data">
                     <div class="topic">
                         <h1>Personal Details</h1>
                     </div>
@@ -35,31 +35,41 @@ $ofc = $stmt->find();
                             </label>
                             <input readonly type="text" name="fname" id="fname" value="<?= $user['name'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['fname'])) : ?>
+                                <?= $errors['fname'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="email">Email
                             </label>
                             <input type="email" name="email" id="email" value="<?= $user['email'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['email'])) : ?>
+                                <?= $errors['email'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
                             <input type="text" name="phone" id="phone" value="<?= $user['phone_number'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['phone'])) : ?>
+                                <?= $errors['phone'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="address">Address
                             </label>
                             <input type="text" name="address" id="address" value="<?= $user['address'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['address'])) : ?>
+                                <?= $errors['address'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="dob">Date of Birth
                             </label>
                             <input type="text" name="dob" id="dob" value="<?= $user['DOB'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['dob'])) : ?>
+                                <?= $errors['dob'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="gender">Gender
                             </label>
@@ -87,7 +97,9 @@ $ofc = $stmt->find();
                                 <?php endforeach; ?>
                             </div>
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['gender'])) : ?>
+                                <?= $errors['gender'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="married_status">Maritial Status
                             </label>
                             <select name="married_status" id="married_status">
@@ -117,25 +129,33 @@ $ofc = $stmt->find();
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['martialStatus'])) : ?>
+                                <?= $errors['martialStatus'] ?>
+                            <?php endif; ?></span>
 
-                        <div class="field"><label for="e_person">Emergency Contact person
+                        <div class="field"><label for="e_person">Emergency Contact Person
                             </label>
                             <input type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['emergencyName'])) : ?>
+                                <?= $errors['emergencyName'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="e_phone">Emergency Contact
                             </label>
                             <input type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact'] ?? NULL ?>">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['emergencyPhone'])) : ?>
+                                <?= $errors['emergencyPhone'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="image">Photo
                             </label>
                             <input type="file" name="image" id="image-upload" value="<?= $user['file'] ?? NULL ?>" accept="image/*">
                         </div>
-                        <span class="error"></span>
+                        <span class="error"><?php if (isset($errors['email'])) : ?>
+                                <?= $errors['email'] ?>
+                            <?php endif; ?></span>
 
                         <div class="buttons">
                             <button type="submit" id="save">Save</button>

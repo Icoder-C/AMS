@@ -20,10 +20,17 @@ class Validation
         }
     }
 
+    public static function addressValidation($value)
+    {
+        if (!is_null($value)) {
+            self::$errors['address'] = "*Full address is required.";
+        }
+    }
+
     public static function phoneNumberValidation($value)
     {
         if (!preg_match("/^9[78]\d{8}$/", $value)) {
-            self::$errors['phone'] = "*Invalid Nepali phone number format.";
+            self::$errors['phone'] = "*Invalid Nepali phone number.";
         }
     }
 
@@ -55,6 +62,38 @@ class Validation
     {
         if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) >= time()) {
             self::$errors['dob'] = "*Invalid date of birth. The date must be in the past.";
+        }
+    }
+    public static function genderValidation($gender)
+    {
+        $genderOptions=["Male", "Female", "Other"];
+        if ($gender===NULL) {
+            self::$errors['gender'] = "*All human beings have a gender.";
+        }
+        elseif(in_array($gender, $genderOptions)){
+            self::$errors['gender'] = "*Invalid gender, Gender must be either Male, Female or Other";
+        }
+    }
+    public static function martialStatusValidate($martialStatus){
+        $martialArray=["Single", "Married", "Divorced"];
+        // dd($martialStatus);
+        if($martialStatus==NULL){
+            self::$errors['martialStatus']="*Invalid input, please select a valid input form the options.";
+        }
+        elseif(in_array($martialStatus, $martialArray)){
+            self::$errors['martialStatus']="*Invalid input, please select a valid input form the options.";
+        }
+    }
+    public static function emergencyNameValidation($value)
+    {
+        if (!preg_match("/^[a-zA-Z' -]+$/", $value)) {
+            self::$errors['emergencyName'] = "*Only letters, apostrophes, dashes, and white space allowed in name.";
+        }
+    }
+    public static function emergencyPhoneValidation($value)
+    {
+        if (!preg_match("/^9[78]\d{8}$/", $value)) {
+            self::$errors['emergencyPhone'] = "*Invalid Nepali phone number.";
         }
     }
 
