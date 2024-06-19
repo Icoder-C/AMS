@@ -48,8 +48,9 @@ $query = "SELECT status FROM users WHERE EmployeeID= :EmployeeID";
 $statement = $db->query($query, ["EmployeeID" => $empID]);
 
 $result = $statement->find();
+// dd($result["status"]);
 
-if ($result != "on") {
+if ($result["status"] != "on") {
     // Designated location's latitude and longitude
     $designatedLat = 27.6974; // Example: Latitude of the designated location
     $designatedLon = 85.3318; // Example: Longitude of the designated location

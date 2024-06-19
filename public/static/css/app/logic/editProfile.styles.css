@@ -11,6 +11,14 @@
     background-color: var(--grey);
     border-radius: 8px;
     margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img{
+    height: 95%;
+    width: 95%;
+    border-radius: 8px;
   }
   .profile-form {
     width: 85%;

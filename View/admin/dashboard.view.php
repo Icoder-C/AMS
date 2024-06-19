@@ -35,7 +35,7 @@
         </div>
 
         <div class="sub-container">
-            <div class="tablet">Staff on eave</div>
+            <div class="tablet">Staff on Leave</div>
             <div class="input">21</div>
 
         </div>

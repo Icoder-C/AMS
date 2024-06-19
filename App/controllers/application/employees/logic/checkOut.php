@@ -48,9 +48,9 @@ $query = "SELECT status FROM users WHERE EmployeeID= :EmployeeID";
 $statement = $db->query($query, ["EmployeeID" => $empID]);
 
 $result = $statement->find();
-// dd($result);
+// dd($result['status']);
 
-if ($result === "on") {
+if ($result['status'] == "on") {
     // Designated location's latitude and longitude
     $designatedLat = 27.6974; // Example: Latitude of the designated location
     $designatedLon = 85.3318; // Example: Longitude of the designated location
@@ -77,6 +77,7 @@ if ($result === "on") {
         }
         catch(PDOException $e){
             if($e->getCode()==23000){
+                dd($e);
                 $_SESSION['modal']=[
                     "response"=>'You have already checked in and out for today.',
                     "imagePath"=>"failure.svg"

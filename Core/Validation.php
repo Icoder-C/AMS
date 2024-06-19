@@ -60,7 +60,7 @@ class Validation
 
     public static function photoFileValidation($file)
     {
-        $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        $allowedMimeTypes = ['image/jpeg','image/jpg', 'image/png', 'image/gif'];
         if (!in_array($file['type'], $allowedMimeTypes)) {
             self::$errors['file'][] = "*Invalid file type. Only JPEG, PNG, and GIF are allowed.";
         }
