@@ -1,6 +1,7 @@
 <?php
 
 namespace Core;
+use DateTime;
 
 class Validation
 {
@@ -16,14 +17,14 @@ class Validation
     public static function nameValidation($value)
     {
         if (!preg_match("/^[a-zA-Z' -]+$/", $value)) {
-            self::$errors['fname'] = "*Only letters, apostrophes, dashes, and white space allowed in name.";
+            self::$errors['fname'] = "*Only letters, apostrophes, dashes, and white space allowed.";
         }
     }
 
     public static function addressValidation($value)
     {
-        if (!is_null($value)) {
-            self::$errors['address'] = "*Full address is required.";
+        if (!$value) {
+            self::$errors['address'] = "*Address is required.";
         }
     }
 
@@ -39,9 +40,9 @@ class Validation
         if(strlen($value)<=7){
             self::$errors['password'] = "*Password must be at least 8 characters long";
         }
-        // else if (!preg_match("/^(?=.*[a-z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]$/", $value)) {
-        //     self::$errors['password'] = "*Must include at least one letter, one number, and one special character.";
-        // }
+        else if (!preg_match("/^(?=.*[a-z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]$/", $value)) {
+            self::$errors['password'] = "*Must include at least one letter, one number, and one special character.";
+        }
     }
 
     public static function confirmPasswordValidation($password, $confirmPassword)
@@ -53,8 +54,50 @@ class Validation
 
     public static function dateOfAppointmentValidation($date)
     {
+        if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) <= time()) {
+            self::$errors['doa'] = "*Invalid date of appointment. The date cannot be of past.";
+        } 
+    }
+
+    public static function startDateValidation($date){
         if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) < time()) {
-            self::$errors['doa'] = "*Invalid date of appointment. The date must be in the future.";
+            self::$errors['startDate'] = "*Invalid start date. The date cannot be of past.";
+        }
+    }
+
+    public static function endDateValidation($startDate,$endDate){
+        if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $endDate) || strtotime($endDate) < time() || isDateGreater($startDate, $endDate)) {
+            self::$errors['endDate'] = "*Invalid end date. The date must be greater than the start date.";
+        }
+    }
+
+    public static function longTextValidation($text){
+        if($text==NULL){
+            self::$errors['longText']="*Reason for leave is required.";
+        }
+        else if(strlen($text)>10000){
+            self::$errors['longText']="*Reason for leave is too long.";
+        }
+    }
+
+    public static function leaveValidation($leave)
+    {
+        $types = [
+            'annual_leave',
+            'casual_leave',
+            'sick_leave',
+            'wedding_leave',
+            'mourn_leave',
+            'paternity_leave',
+            'ethnic_leave',
+            'exam_leave',
+            'maternity_leave'
+        ];;
+        if ($leave===NULL) {
+            self::$errors['type'] = "*Please select a leave type.";
+        }
+        elseif(!in_array($leave, $types)){
+            self::$errors['type'] = "*Invalid leave type, select one from the options provided";
         }
     }
 
@@ -63,6 +106,17 @@ class Validation
         if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) >= time()) {
             self::$errors['dob'] = "*Invalid date of birth. The date must be in the past.";
         }
+        $dob = new DateTime($date);
+        $today = new DateTime();
+    
+        // Calculate the age
+        $age = $today->diff($dob)->y;
+    
+        // Check if the age is less than 18
+        if ($age < 18) {
+            self::$errors['dob'] = "*Invalid date of birth. Employee must be 18 years or older.";
+            return false;
+        }
     }
     public static function genderValidation($gender)
     {
@@ -70,7 +124,7 @@ class Validation
         if ($gender===NULL) {
             self::$errors['gender'] = "*All human beings have a gender.";
         }
-        elseif(in_array($gender, $genderOptions)){
+        elseif(!in_array($gender, $genderOptions)){
             self::$errors['gender'] = "*Invalid gender, Gender must be either Male, Female or Other";
         }
     }
@@ -78,16 +132,16 @@ class Validation
         $martialArray=["Single", "Married", "Divorced"];
         // dd($martialStatus);
         if($martialStatus==NULL){
-            self::$errors['martialStatus']="*Invalid input, please select a valid input form the options.";
+            self::$errors['martialStatus']="*Please select an option.";
         }
-        elseif(in_array($martialStatus, $martialArray)){
+        elseif(!in_array($martialStatus, $martialArray)){
             self::$errors['martialStatus']="*Invalid input, please select a valid input form the options.";
         }
     }
     public static function emergencyNameValidation($value)
     {
         if (!preg_match("/^[a-zA-Z' -]+$/", $value)) {
-            self::$errors['emergencyName'] = "*Only letters, apostrophes, dashes, and white space allowed in name.";
+            self::$errors['emergencyName'] = "*Only letters, apostrophes, dashes, and white space allowed.";
         }
     }
     public static function emergencyPhoneValidation($value)
@@ -100,11 +154,14 @@ class Validation
     public static function photoFileValidation($file)
     {
         $allowedMimeTypes = ['image/jpeg','image/jpg', 'image/png', 'image/gif'];
-        if (!in_array($file['type'], $allowedMimeTypes)) {
-            self::$errors['file'][] = "*Invalid file type. Only JPEG, PNG, and GIF are allowed.";
+        if($file["error"]===4){
+            self::$errors['file']="*Please upload your photo.";
         }
-        if ($file['size'] > 5000000) { // 5MB limit
-            self::$errors['file'][] = "*File size should not exceed 5MB.";
+        else if (!in_array($file['type'], $allowedMimeTypes)) {
+            self::$errors['file'] = "*Invalid file type. Only JPEG, PNG, and GIF are allowed.";
+        }
+        else if ($file['size'] > 5000000) { // 5MB limit
+            self::$errors['file'] = "*File size should not exceed 5MB.";
         }
     }
 

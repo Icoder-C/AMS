@@ -52,17 +52,17 @@ $result = $statement->find();
 
 if ($result['status'] == "on") {
     // Designated location's latitude and longitude
-    $designatedLat = 27.6974; // Example: Latitude of the designated location
-    $designatedLon = 85.3318; // Example: Longitude of the designated location
+    $designatedLat = 27.7348352; // Example: Latitude of the designated location
+    $designatedLon = 85.3147648; // Example: Longitude of the designated location
 
     // Check if the user's location is within the check-in zone
     if (isWithinCheckInZone($lat, $long, $designatedLat, $designatedLon)) {
         try{
             $queryCheckOut="UPDATE Attendance 
-                            SET CheckOutTime= :CheckOutTime, Status='Present'
+                            SET CheckOutTime= NOW(), Status='Present'
                             WHERE EmployeeID=:EmployeeID AND AttendanceDate=:AttendanceDate";
             $stmt=$db->query($queryCheckOut,[
-                    "CheckOutTime"=>$currentTime,
+                    // "CheckOutTime"=>$currentTime,
                     "EmployeeID"=>$empID,
                     "AttendanceDate"=>$currentDate
             ]);

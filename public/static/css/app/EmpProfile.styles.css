@@ -20,16 +20,18 @@
     border-radius: 8px;
   }
   .profile-form {
-    width: 85%;
+    width: 80%;
     color: var(--font-b);
     font-size: 1.5rem;
+    /* margin-left:20px ; */
+    /* border: 2px solid red; */
+    padding: 0 20px;
   }
   .field {
     display: block;
   }
   form {
-    padding: 5vh 0 5vh 0;
-    padding: 20px;
+    padding: 5px;
   }
   .topic {
     display: flex;
@@ -40,6 +42,8 @@
     justify-content: space-between;
     padding: 5px 20px 5px 20px;
     margin-bottom: 10px;
+    /* border: 2px solid red; */
+
   }
   h1 {
     display: inline;
@@ -60,7 +64,32 @@
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
     padding-bottom: 20px;
   }
+  .btns{
+    display: flex;
+    justify-content: center;
+    width: 22vw;
 
+    a{
+      background-color:green;
+      border-radius: 4px;
+      font-size: 2.5rem;
+      padding: 10px 30px 10px 30px;
+      align-self: center;
+      color: #fff;
+      margin: 0 1vw;
+      width: 40%;
+      text-align: center;
+    }
+    button{
+      background-color: rgb(173, 27, 27);
+      border-radius: 4px;
+      font-size: 2.5rem;
+      width: 40%;
+      margin: 0 1vw;
+      color: #fff;
+      padding: 10px 30px 10px 30px;
+    }
+  }
   .field {
     display: flex;
     display: flex;
@@ -124,27 +153,9 @@
   }
   #changepassword {
     display: none;
-    /* display: block; */
   }
   input[type="radio"] {
     accent-color: #3498db; /* Change this to your desired color */
-  }
-  .change-pw{
-    .field{
-      display: flex;
-      font-size: larger;
-      padding: 2px 5vw 2px 5vw;
-      display: flex;
-      align-items: center;
-    }
-    .error {
-      display: block;
-      text-align: left;
-      color: red;
-      margin-left: 50%;
-      margin-right: 10px;
-      min-height: 3rem;
-    }
   }
   
 }

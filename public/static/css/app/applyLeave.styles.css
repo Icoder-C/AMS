@@ -27,6 +27,7 @@
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    font-size: 2rem;;
 }
 select{
     font-size: 1.7rem;
@@ -51,7 +52,7 @@ option{
     background-color: #bd4c58;
     color: #fff;
 }
-.error-msg{
+.error{
     width: 100%;
     display: block;
     min-height: 20px;

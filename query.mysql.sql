@@ -28,7 +28,7 @@ CREATE TABLE users (
     gender VARCHAR(8),
     maritial_status VARCHAR(10),
     emergency_contact_person VARCHAR(40),
-    emergency_contact INT,
+    emergency_contact VARCHAR(10),
     department VARCHAR(30),
     position VARCHAR(20),
     rate FLOAT,
@@ -36,7 +36,7 @@ CREATE TABLE users (
     appointment_date DATE,
     checkIn TIME,
     checkOut TIME,
-    path_photo VARCHAR(255),
+    photo_name VARCHAR(255),
     working_status VARCHAR(10),
     password VARCHAR(255),
     PRIMARY KEY (EmployeeID)

@@ -1,19 +1,17 @@
 <?php
+
 use Core\App;
 use Core\Database;
 
-$db=App::resolve(Database::class);
-$EmployeeID=$_GET["id"];
+$db = App::resolve(Database::class);
+$EmployeeID = $_GET["id"];
 
-$query="SELECT * FROM users_temp WHERE EmployeeID=:EmployeeID";
+$query = "SELECT * FROM users_temp WHERE EmployeeID=:EmployeeID";
 
-$result=$db->query($query,[
-    "EmployeeID"=>$EmployeeID
+$result = $db->query($query, [
+    "EmployeeID" => $EmployeeID
 ])->find();
-
 ?>
-
-
 
 <div class="profile">
     <div class="profile-main">
@@ -27,30 +25,24 @@ $result=$db->query($query,[
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>
-                            <input readonly type="text" name="fname" id="fname" value="<?= $result["name"]?>">
+                            <input readonly type="text" name="fname" id="fname" value="<?= $result["name"] ?>">
                         </div>
                         <span class="error"></span>
 
                         <div class="field"><label for="email">Email
                             </label>
-                            <input readonly type="email" name="email" id="email" value="<?= $result["email"]?>">
+                            <input readonly type="email" name="email" id="email" value="<?= $result["email"] ?>">
                         </div>
                         <span class="error"></span>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
-                            <input readonly type="text" name="phone" id="phone" value="<?= $result["phone_number"]?>">
-                        </div>
-                        <span class="error"></span>
-                        <div class="field"><label for="doa">Date of Appointment
-                            </label>
-                            <input type="text" readonly name="doa" id="doa">
+                            <input readonly type="text" name="phone" id="phone" value="<?= $result["phone_number"] ?>">
                         </div>
                         <span class="error"></span>
                     </div>
                     <div class="topic">
                         <h1>Official Details</h1>
-                        <!-- <button type="button">Edit</button> -->
                     </div>
 
                     <div class="table">
@@ -68,6 +60,11 @@ $result=$db->query($query,[
                         <span class="error"><?php if (isset($errors['position'])) : ?>
                                 <?= $errors['position'] ?>
                             <?php endif; ?></span>
+                        <div class="field"><label for="doa">Date of Appointment
+                            </label>
+                            <input type="date" name="doa" id="doa">
+                        </div>
+                        <span class="error"></span>
                         <div class="field"><label for="phone">Check In Time
                             </label>
                             <input type="time" name="phone" id="phone">

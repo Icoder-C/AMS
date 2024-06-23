@@ -31,7 +31,8 @@ function locateUser(fixedLat, fixedLong) {
         console.log("Longitude:", userLng);
         // You can now use userLat and userLng to do whatever you need
 
-        // alert(userLat+" "+userLng);
+        // alert(fixedLat+"   "+fixedLong);
+        // alert(userLat+"   "+userLng);
 
         // Update the view of the map to the current location with an appropriate zoom level
         map.setView([userLat, userLng], 14);

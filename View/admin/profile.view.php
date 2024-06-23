@@ -18,13 +18,14 @@ $stmt=$db->query("SELECT * FROM office");
 $ofc=$stmt->find();
 
 // dd($ofc);
+// dd();
 
 ?>
 
 <div class="profile">
     <div class="profile-main">
         <div class="profile-image">
-            <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
+            <img src="<?= $user["photo_name"] && file_exists(basePath('/public'.photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg") ?>" alt="profile pic">
         </div>
         <div class="profile-form">
             <div class="form-user">

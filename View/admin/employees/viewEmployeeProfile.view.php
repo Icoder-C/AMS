@@ -6,39 +6,39 @@ use Core\App;
 $db = App::resolve(Database::class);
 
 
-$currentUserID = $_SESSION['user']['EmployeeID'];
+$currentUserID = $_GET['id'];
 
 $statement = $db->query("SELECT * FROM users WHERE EmployeeID = $currentUserID");
 
 $user = $statement->find();
 
-// dd($_SESSION);
-$response = $_SESSION['modal']['response'] ?? NULL;
-$image = $_SESSION['modal']['imagePath'] ?? NULL;
-$output = $_SESSION['modal']['output'] ?? NULL;
-
-require view("partials/modal");
 // dd($user);
 
 $stmt = $db->query("SELECT * FROM office");
 $ofc = $stmt->find();
-// dd(file_exists(basePath('/public'.photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg"));
-// dd(file_exists(photo($user["photo_name"])));
-// dd(photo($user["photo_name"]));
+
+// dd($ofc);
 
 ?>
 
 <div class="profile">
     <div class="profile-main">
         <div class="profile-image">
-            <img src="<?= $user["photo_name"] && file_exists(basePath('/public' . photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg") ?>" alt="profile pic">
+            <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
         </div>
         <div class="profile-form">
             <div class="form-user">
                 <form action="#" method="post">
                     <div class="topic">
                         <h1>Personal Details</h1>
-                        <a href="/profile/edit-profile">Edit</a>
+                        <div class="btns">
+                            <a href="/employees/edit-employees/profile?id=<?= $row['EmployeeID'] ?>">Edit</a>
+                            <form action="/employees/delete-employee" method="post">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <input type="hidden" name="id" value="<?= $row['EmployeeID'] ?>">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </div>
                     </div>
 
                     <div class="table">
@@ -75,15 +75,15 @@ $ofc = $stmt->find();
                                 $genders = [
                                     [
                                         "label" => "Male",
-                                        "value" => "Male"
+                                        "value" => "M"
                                     ],
                                     [
                                         "label" => "Female",
-                                        "value" => "Female"
+                                        "value" => "F"
                                     ],
                                     [
                                         "label" => "Other",
-                                        "value" => "Other"
+                                        "value" => "O"
                                     ]
                                 ];
                                 foreach ($genders as $gender) :
@@ -127,76 +127,25 @@ $ofc = $stmt->find();
                     </div>
 
                     <div class="table">
-                        <div class="field"><label for="department">Department
+                        <div class="field"><label for="ofcName">Office Name
                             </label>
-                            <input type="text" name="department" id="department" <?= $user['department'] ?? NULL ?>>
+                            <input readonly type="text" name="ofcName" id="ofcName" value="<?= $ofc["OfficeName"] ?? NULL ?>">
                         </div>
-                        <div class="field"><label for="position">Position
+                        <div class="field"><label for="doestablish">Date of Establishment
                             </label>
-                            <input type="text" name="position" id="position" <?= $user['position'] ?? NULL ?>>
+                            <!-- <input readonly type="date" name="doestablish" id="doestablish"> -->
+                            <input readonly type="text" name="doestablish" id="doestablish" value="<?= $ofc['DateOfEstablishment'] ?? NULL ?>">
                         </div>
-                        <div class="field"><label for="checkIn">Check In Time
+                        <div class="field"><label for="latitude">Latitude
                             </label>
-                            <input type="time" name="checkIn" id="checkIn" <?= $user['checkIn'] ?? NULL ?>>
+                            <input readonly type="number" name="latitude" id="latitude" value="<?= $ofc["Latitude"] ?? NULL ?>">
                         </div>
-                        <div class="field"><label for="check-out">Check Out Time
+                        <div class="field"><label for="longitude">Longitude
                             </label>
-                            <input type="time" name="check-out" id="check-out" <?= $user['checkOut'] ?? NULL ?>>
+                            <input readonly type="number" name="longitude" id="longitude" value="<?= $ofc["Longitude"] ?? NULL ?>">
                         </div>
-                        <div class="field"><label for="rate_p_hr">Basic Rate (/hour)
-                            </label>
-                            <input type="number" name="rate_p_hr" id="rate_p_hr" <?= $user['rate'] ?? NULL ?>>
-                        </div>
-                        <div class="field"><label for="supervisor">Supervisor
-                            </label>
-                            <input type="text" name="supervisor" id="supervisor" <?= $user['supervisor'] ?? NULL ?>>
-                        </div>
-                        <div class="field"><label for="emp_id">Employee ID
-                            </label>
-                            <input type="number" name="emp_id" id="emp_id" <?= $user['EmployeeID'] ?? NULL ?>>
-                        </div>
-                        <div class="field"><label for="doa">Date of Appointment
-                            </label>
-                            <input type="date" name="doa" id="doa" <?= $user['appointment_date'] ?? NULL ?>>
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-            <div class="change-pw">
-                <form action="/change-password" method="post">
-                    <div class="topic">
-                        <h1>Change Password</h1>
-                        <h1 id="click" onclick="showHide()">+</h1>
-                    </div>
-                    <div class="table" id="changepassword">
-                        <div class="field"><label for="current_password">Current Password
-                            </label>
-                            <input type="password" name="current_password" id="current_password">
-                        </div>
-                            <span class="error"><?php if (isset($errors['currentPassword'])) : ?>
-                                <?= $errors['currentPassword'] ?>
-                            <?php endif; ?></span>
-                        <div class="field"><label for="new_password">New Password
-                            </label>
-                            <input type="password" name="new_password" id="new_password">
-                        </div>
-                        <span class="error"><?php if (isset($errors['password'])) : ?>
-                                <?= $errors['password'] ?>
-                            <?php endif; ?></span>
-                        <div class="field"><label for="confirm_password">Confirm Password
-                            </label>
-                            <input type="password" name="confirm_password" id="confirm_password">
-                        </div>
-                            <span class="error"><?php if (isset($errors['confirmPassword'])) : ?>
-                                <?= $errors['confirmPassword'] ?>
-                            <?php endif; ?></span>
-                        <button id="changePw" type="submit">Save Changes</button>
                     </div>
                 </form>
-                <script src="<?= js("utils") ?>">
-                </script>
             </div>
         </div>
     </div>

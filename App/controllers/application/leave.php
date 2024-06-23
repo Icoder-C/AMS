@@ -28,6 +28,9 @@ $bodyScripts=[
     // js("body/index")
 ];
 
+
 $db=App::resolve(Database::class);
+
+
 
 require view("app");

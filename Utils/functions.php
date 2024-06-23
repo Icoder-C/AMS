@@ -117,6 +117,19 @@ function login($user)
     header('location: /dashboard');
 }
 
+function isDateGreater($date1, $date2) {
+    // Convert the date strings into DateTime objects
+    $datetime1 = new DateTime($date1);
+    $datetime2 = new DateTime($date2);
+
+    // Compare the dates
+    if ($datetime1 > $datetime2) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 function logout()
 {
 

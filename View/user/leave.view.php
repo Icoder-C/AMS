@@ -1,3 +1,12 @@
+<?php
+
+// dd($_SESSION);
+$response = $_SESSION['modal']['response'] ?? NULL;
+$image = $_SESSION['modal']['imagePath'] ?? NULL;
+$output = $_SESSION['modal']['output'] ?? NULL;
+
+require view("partials/modal");
+?>
 <div class="leave">
     <div class="body">
         <div class="card">
@@ -49,7 +58,7 @@
             </div>
             <a href="/leave-apply?sick_leave">Apply</a>
         </div>
-        
+
         <div class="leave-options">
             <div class="img-container"><img src="<?= res('leaves/wedding_leave.png') ?>" alt=""></div>
             <h1>Wedding Leave</h1>
@@ -110,8 +119,5 @@
             </div>
             <a href="/leave-apply?maternity_leave">Apply</a>
         </div>
-
-
     </div>
-
 </div>

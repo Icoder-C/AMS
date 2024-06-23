@@ -52,18 +52,19 @@ $result = $statement->find();
 
 if ($result["status"] != "on") {
     // Designated location's latitude and longitude
-    $designatedLat = 27.6974; // Example: Latitude of the designated location
-    $designatedLon = 85.3318; // Example: Longitude of the designated location
+       
+    $designatedLat = 28.0124; // Example: Latitude of the designated location
+    $designatedLon = 83.9979; // Example: Longitude of the designated location
 
     // Check if the user's location is within the check-in zone
     if (isWithinCheckInZone($lat, $long, $designatedLat, $designatedLon)) {
         try{
             $queryCheckIn = "INSERT INTO Attendance(EmployeeID, AttendanceDate, CheckInTime, latitude, longitude, Status) 
-                             VALUES (:EmployeeID, :AttendanceDate, :CheckInTime, :latitude, :longitude, :Status)";
+                             VALUES (:EmployeeID, :AttendanceDate, NOW(), :latitude, :longitude, :Status)";
         $stmt = $db->query($queryCheckIn,[
             "EmployeeID"=>$empID,
             "AttendanceDate"=>$currentDate,
-            "CheckInTime"=>$currentTime,
+            // "CheckInTime"=>$currentTime,
             "latitude"=>$lat,
             "longitude"=>$long,
             "Status"=>"Checked in only"
