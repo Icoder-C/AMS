@@ -13,6 +13,12 @@ $statement=$db->query("SELECT * FROM users WHERE EmployeeID = $currentUserID");
 $user=$statement->find();
 
 // dd($user);
+$response = $_SESSION['modal']['response'] ?? NULL;
+$image = $_SESSION['modal']['imagePath'] ?? NULL;
+$output = $_SESSION['modal']['output'] ?? NULL;
+
+require view("partials/modal");
+// dd($user);
 
 $stmt=$db->query("SELECT * FROM office");
 $ofc=$stmt->find();
@@ -32,7 +38,7 @@ $ofc=$stmt->find();
                 <form action="#" method="post">
                     <div class="topic">
                         <h1>Personal Details</h1>
-                        <a href="/employees/edit-profile">Edit</a>
+                        <a href="/profile/edit-profile">Edit</a>
                     </div>
 
                     <div class="table">
@@ -64,20 +70,20 @@ $ofc=$stmt->find();
                         <div class="field"><label for="gender">Gender
                             </label>
                             <div class="radio">
-                                <?php
-                                $selectedGender = $user['gender']??NULL;
+                            <?php
+                                $selectedGender = $user['gender'] ?? NULL;
                                 $genders = [
                                     [
                                         "label" => "Male",
-                                        "value" => "M"
+                                        "value" => "Male"
                                     ],
                                     [
                                         "label" => "Female",
-                                        "value" => "F"
+                                        "value" => "Female"
                                     ],
                                     [
                                         "label" => "Other",
-                                        "value" => "O"
+                                        "value" => "Other"
                                     ]
                                 ];
                                 foreach ($genders as $gender) :
@@ -86,27 +92,6 @@ $ofc=$stmt->find();
                                     <label for="<?= $gender['value'] ?>"><?= $gender['label'] ?></label>
                                 <?php endforeach; ?>
                             </div>
-                        </div>
-
-                        <div class="field"><label for="married_status">Maritial Status
-                            </label>
-                            <!-- <select name="married_status" id="married_status">
-                                <option value="">Select</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                            </select> -->
-                            <input readonly type="text" name="married_status" id="married_status" value="<?= $user['maritial_status']??NULL?>">
-                        </div>
-
-                        <div class="field"><label for="e_person">Emergency Contact person
-                            </label>
-                            <input readonly type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person']??NULL?>">
-                        </div>
-
-                        <div class="field"><label for="e_phone">Emergency Contact
-                            </label>
-                            <input readonly type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact']??NULL?>">
                         </div>
 
                     </div>
@@ -142,28 +127,37 @@ $ofc=$stmt->find();
                 </form>
             </div>
             <div class="change-pw">
-                <form action="" method="post">
+                <form action="/change-password" method="post">
                     <div class="topic">
                         <h1>Change Password</h1>
                         <h1 id="click" onclick="showHide()">+</h1>
                     </div>
                     <div class="table" id="changepassword">
-                        <div class="field"><label for="current-password">Current Password
+                        <div class="field"><label for="current_password">Current Password
                             </label>
-                            <input type="password" name="current-password" id="current-password">
+                            <input type="password" name="current_password" id="current_password">
                         </div>
-                        <div class="field"><label for="current-password">New Password
+                            <span class="error"><?php if (isset($errors['currentPassword'])) : ?>
+                                <?= $errors['currentPassword'] ?>
+                            <?php endif; ?></span>
+                        <div class="field"><label for="new_password">New Password
                             </label>
-                            <input type="password" name="current-password" id="current-password">
+                            <input type="password" name="new_password" id="new_password">
                         </div>
-                        <div class="field"><label for="current-password">Confirm Password
+                        <span class="error"><?php if (isset($errors['password'])) : ?>
+                                <?= $errors['password'] ?>
+                            <?php endif; ?></span>
+                        <div class="field"><label for="confirm_password">Confirm Password
                             </label>
-                            <input type="password" name="current-password" id="current-password">
+                            <input type="password" name="confirm_password" id="confirm_password">
                         </div>
+                            <span class="error"><?php if (isset($errors['confirmPassword'])) : ?>
+                                <?= $errors['confirmPassword'] ?>
+                            <?php endif; ?></span>
                         <button id="changePw" type="submit">Save Changes</button>
                     </div>
                 </form>
-                <script src="<?=js("utils")?>">
+                <script src="<?= js("utils") ?>">
                 </script>
             </div>
         </div>

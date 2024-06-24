@@ -123,8 +123,8 @@
     cursor: pointer;
   }
   #changepassword {
-    display: none;
-    /* display: block; */
+    /* display: none; */
+    display: block;
   }
   input[type="radio"] {
     accent-color: #3498db; /* Change this to your desired color */

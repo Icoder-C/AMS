@@ -75,19 +75,16 @@ CREATE TABLE EmployeeLeave (
 );
 
 INSERT INTO
-    users_temp (email, name, type, password)
+    office (OfficeName, DateOfEstablishment,Latitude, Longitude)
 VALUES (
-        'test1@gmail.com',
-        'Roshan Phuyal',
-        'admin',
-        '123'
-    ),
-    (
-        'user1@gmail.com',
-        'User Name',
-        'user',
+        'A.M.S Pvt. Ltd.',
+        NOW(),
+        '23',
         '123'
     );
+
+SELECT * FROM office;
+
 
 SELECT * FROM Attendance
 WHERE NULL;

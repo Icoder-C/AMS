@@ -2,6 +2,7 @@
     <?php
     $searchName = '%' . ($_GET['EmployeeName'] ?? '') . '%';
     $searchYear = !empty($_GET['year']) ? $_GET['year'] : NULL;
+    
     $statement = $db->query("SELECT COUNT(*) AS temp_count 
                             FROM EmployeeLeave 
                             INNER JOIN users 

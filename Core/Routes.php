@@ -23,6 +23,7 @@ $router->get('/leave-apply', 'application/employees/applyLeave.php')->only('auth
 $router->post('/leave-apply', 'application/employees/applyLeave.php')->only('auth');
 $router->post('/edit-profile-validate', 'application/employees/logic/validateEditProfile.php')->only("auth");
 $router->get('/employees/view-profile', 'application/employees/viewEmployeeProfile.php')->only('admin');
+$router->get('/employees/edit-employees-profile', 'application/employees/editEmpProfile.php')->only('admin');
 
 
 $router->post('/leave/validate-leave', 'application/employees/logic/validateLeave.php')->only("auth");

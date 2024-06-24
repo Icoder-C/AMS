@@ -9,11 +9,11 @@ require view("partials/modal");
 ?>
 <div class="leave">
     <div class="body">
-        <div class="card">
+        <!-- <div class="card">
             <div class="con">
-                <?php require view("partials\calander"); ?>
+                </?php require view("partials\calander"); ?>
             </div>
-        </div>
+        </div> -->
         <!-- <div class="notification">
             <h1>Notification</h1>
             <h2>Applied Leave: </h2>
@@ -34,7 +34,7 @@ require view("partials/modal");
             <h1>Annual Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>5</span>
+                <!-- <span>5</span> -->
             </div>
             <a href="/leave-apply?annual_leave">Apply</a>
         </div>
@@ -44,7 +44,7 @@ require view("partials/modal");
             <h1>Casual Leave</h1>
             <div class="flex-content">
                 <h2>Category: Unpaid Leave</h2>
-                <span>15</span>
+                <!-- <span>15</span> -->
             </div>
             <a href="/leave-apply?casual_leave">Apply</a>
         </div>
@@ -54,7 +54,7 @@ require view("partials/modal");
             <h1>Sick Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>15</span>
+                <!-- <span>15</span> -->
             </div>
             <a href="/leave-apply?sick_leave">Apply</a>
         </div>
@@ -64,7 +64,7 @@ require view("partials/modal");
             <h1>Wedding Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>5</span>
+                <!-- <span>5</span> -->
             </div>
             <a href="/leave-apply?wedding_leave">Apply</a>
         </div>
@@ -74,7 +74,7 @@ require view("partials/modal");
             <h1>Mourn Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>13</span>
+                <!-- <span>13</span> -->
             </div>
             <a href="/leave-apply?mourn_leave">Apply</a>
         </div>
@@ -85,7 +85,7 @@ require view("partials/modal");
             <h1>Paternity Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>15</span>
+                <!-- <span>15</span> -->
             </div>
             <a href="/leave-apply?paternity_leave">Apply</a>
         </div>
@@ -95,7 +95,7 @@ require view("partials/modal");
             <h1>Ethnic Festival Leave</h1>
             <div class="flex-content">
                 <h2>Category: Unpaid Leave</h2>
-                <span>10</span>
+                <!-- <span>10</span> -->
             </div>
             <a href="/leave-apply?ethnic_festival_leave">Apply</a>
         </div>
@@ -105,7 +105,7 @@ require view("partials/modal");
             <h1>Examination Leaves</h1>
             <div class="flex-content">
                 <h2>Category: Unpaid Leave</h2>
-                <span>20</span>
+                <!-- <span>20</span> -->
             </div>
             <a href="/leave-apply?examination_leave">Apply</a>
         </div>
@@ -115,7 +115,7 @@ require view("partials/modal");
             <h1>Maternity Leave</h1>
             <div class="flex-content">
                 <h2>Category: Paid Leave</h2>
-                <span>98</span>
+                <!-- <span>98</span> -->
             </div>
             <a href="/leave-apply?maternity_leave">Apply</a>
         </div>

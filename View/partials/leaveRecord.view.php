@@ -16,7 +16,8 @@ $pagename="view_Leaves_record";
 $currentPage = getCurrentPage($totalPages,$pagename);
 $pages = generatePagination($totalPages, $currentPage);
 
-$offSet = ($perPage * ($currentPage - 1));
+
+$offSet = max(0, $perPage * ($currentPage - 1));
 
 $query = "SELECT users.name AS name,StartDate,EndDate,LeaveType,Notes
             FROM EmployeeLeave 
@@ -46,7 +47,7 @@ $results = $statement->findAll();
     <table>
         <thead>
             <tr>
-                <th>S.N.</th>
+            <th>S.N.</th>
                 <th>Name</th>
                 <th>StartDate</th>
                 <th>EndDate</th>

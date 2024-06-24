@@ -194,7 +194,7 @@ function convertTimeFormat($time)
 
 function WorkedHours($startTime, $endTime){
     // Check for null or empty values
-    if (empty($startTime) || empty($endTime)) {
+    if (is_null($startTime) || is_null($endTime)) {
         return "-----";
     }
 

@@ -23,7 +23,7 @@ $pages = generatePagination($totalPages, $currentPage);
 
 $offSet = max(0, $perPage * ($currentPage - 1));
 
-$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime 
+$query = "SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime, Attendance.Status AS Status
             FROM Attendance 
             INNER JOIN users 
             ON Attendance.EmployeeID=users.EmployeeID 
@@ -61,7 +61,7 @@ $results = $statement->findAll();
                     <th>Check In</th>
                     <th>Check Out</th>
                     <th>Worked Hours</th>
-                    <!-- <th>Location</th> -->
+                    <th>Remarks</th>
                 </tr>
             </thead>
             <tbody>
@@ -75,8 +75,9 @@ $results = $statement->findAll();
                         echo "<td>" . htmlspecialchars($row['name']) . "</td>";
                         echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckInTime'])) . "</td>";
                         echo "<td>" . convertTimeFormat(htmlspecialchars($row['CheckOutTime'])) . "</td>";
-                        echo "<td>" . WorkedHours(convertTimeFormat(htmlspecialchars($row['CheckInTime'])), convertTimeFormat(htmlspecialchars($row['CheckOutTime']))) . "</td>";
-                        // echo "<td>" . htmlspecialchars($row['Location']) . "</td>";
+                        echo "<td>" . WorkedHours($row['CheckInTime'], $row['CheckOutTime']) . "</td>";
+                        // echo "<td>" .'<a class= \'locationLink\' href="https://www.google.com/maps?q=' . htmlspecialchars($row['latitude']) . ',' . htmlspecialchars($row['longitude']) . '" target="_blank">Open Location in Google Maps</a>'."</td>";
+                        echo "<td>" . htmlspecialchars($row['Status']) . "</td>";
                         echo "</tr>";
                         $i += 1;
                     }

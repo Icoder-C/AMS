@@ -40,7 +40,6 @@ $ofc = $stmt->find();
                         <h1>Personal Details</h1>
                         <a href="/profile/edit-profile">Edit</a>
                     </div>
-
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>
@@ -129,35 +128,35 @@ $ofc = $stmt->find();
                     <div class="table">
                         <div class="field"><label for="department">Department
                             </label>
-                            <input type="text" name="department" id="department" <?= $user['department'] ?? NULL ?>>
+                            <input type="text" readonly name="department" id="department" <?= $user['department'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="position">Position
                             </label>
-                            <input type="text" name="position" id="position" <?= $user['position'] ?? NULL ?>>
+                            <input type="text" readonly name="position" id="position" <?= $user['position'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="checkIn">Check In Time
                             </label>
-                            <input type="time" name="checkIn" id="checkIn" <?= $user['checkIn'] ?? NULL ?>>
+                            <input type="text" readonly name="checkIn" id="checkIn" <?= $user['checkIn'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="check-out">Check Out Time
                             </label>
-                            <input type="time" name="check-out" id="check-out" <?= $user['checkOut'] ?? NULL ?>>
+                            <input type="text" readonly name="check-out" id="check-out" <?= $user['checkOut'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="rate_p_hr">Basic Rate (/hour)
                             </label>
-                            <input type="number" name="rate_p_hr" id="rate_p_hr" <?= $user['rate'] ?? NULL ?>>
+                            <input type="number" readonly name="rate_p_hr" id="rate_p_hr" <?= $user['rate'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="supervisor">Supervisor
                             </label>
-                            <input type="text" name="supervisor" id="supervisor" <?= $user['supervisor'] ?? NULL ?>>
+                            <input type="text" readonly name="supervisor" id="supervisor" <?= $user['supervisor'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="emp_id">Employee ID
                             </label>
-                            <input type="number" name="emp_id" id="emp_id" <?= $user['EmployeeID'] ?? NULL ?>>
+                            <input type="number" readonly name="emp_id" id="emp_id" <?= $user['EmployeeID'] ?? NULL ?>>
                         </div>
                         <div class="field"><label for="doa">Date of Appointment
                             </label>
-                            <input type="date" name="doa" id="doa" <?= $user['appointment_date'] ?? NULL ?>>
+                            <input type="text" readonly name="doa" id="doa" <?= $user['appointment_date'] ?? NULL ?>>
                         </div>
 
                     </div>
@@ -175,7 +174,7 @@ $ofc = $stmt->find();
                             </label>
                             <input type="password" name="current_password" id="current_password">
                         </div>
-                            <span class="error"><?php if (isset($errors['currentPassword'])) : ?>
+                        <span class="error"><?php if (isset($errors['currentPassword'])) : ?>
                                 <?= $errors['currentPassword'] ?>
                             <?php endif; ?></span>
                         <div class="field"><label for="new_password">New Password
@@ -189,7 +188,7 @@ $ofc = $stmt->find();
                             </label>
                             <input type="password" name="confirm_password" id="confirm_password">
                         </div>
-                            <span class="error"><?php if (isset($errors['confirmPassword'])) : ?>
+                        <span class="error"><?php if (isset($errors['confirmPassword'])) : ?>
                                 <?= $errors['confirmPassword'] ?>
                             <?php endif; ?></span>
                         <button id="changePw" type="submit">Save Changes</button>

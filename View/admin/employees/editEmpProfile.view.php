@@ -31,46 +31,39 @@ $ofc = $stmt->find();
                 <form action="#" method="post">
                     <div class="topic">
                         <h1>Personal Details</h1>
-                        <div class="btns">
-                            <a href="/employees/edit-employees-profile?id=<?= $currentUserID?>">Edit</a>
-                            <form action="/employees/delete-employee" method="post">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="id" value="<?= $currentUserID ?>">
-                                <button type="submit">Delete</button>
-                            </form>
-                        </div>
+
                     </div>
 
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>
-                            <input readonly type="text" name="fname" id="fname" value="<?= $user['name'] ?? NULL ?>">
+                            <input type="text" name="fname" id="fname" value="<?= $user['name'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="email">Email
                             </label>
-                            <input readonly type="email" name="email" id="email" value="<?= $user['email'] ?? NULL ?>">
+                            <input type="email" name="email" id="email" value="<?= $user['email'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
-                            <input readonly type="text" name="phone" id="phone" value="<?= $user['phone_number'] ?? NULL ?>">
+                            <input type="text" name="phone" id="phone" value="<?= $user['phone_number'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="address">Address
                             </label>
-                            <input readonly type="text" name="address" id="address" value="<?= $user['address'] ?? NULL ?>">
+                            <input type="text" name="address" id="address" value="<?= $user['address'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="dob">Date of Birth
                             </label>
-                            <input readonly type="text" name="dob" id="dob" value="<?= $user['DOB'] ?? NULL ?>">
+                            <input type="text" name="dob" id="dob" value="<?= $user['DOB'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="gender">Gender
                             </label>
                             <div class="radio">
-                            <?php
+                                <?php
                                 $selectedGender = $user['gender'] ?? NULL;
                                 $genders = [
                                     [
@@ -96,23 +89,18 @@ $ofc = $stmt->find();
 
                         <div class="field"><label for="married_status">Maritial Status
                             </label>
-                            <!-- <select name="married_status" id="married_status">
-                                <option value="">Select</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                            </select> -->
-                            <input readonly type="text" name="married_status" id="married_status" value="<?= $user['maritial_status'] ?? NULL ?>">
+                            
+                            <input type="text" name="married_status" id="married_status" value="<?= $user['maritial_status'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="e_person">Emergency Contact person
                             </label>
-                            <input readonly type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person'] ?? NULL ?>">
+                            <input type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="e_phone">Emergency Contact
                             </label>
-                            <input readonly type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact'] ?? NULL ?>">
+                            <input type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact'] ?? NULL ?>">
                         </div>
 
                     </div>
@@ -129,37 +117,55 @@ $ofc = $stmt->find();
                     <div class="table">
                         <div class="field"><label for="department">Department
                             </label>
-                            <input readonly type="text" name="department" id="department">
+                            <input type="text" name="department" id="department">
                         </div>
-
+                        <span class="error"><?php if (isset($errors['department'])) : ?>
+                                <?= $errors['department'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="position">Position
                             </label>
-                            <input readonly type="text" name="position" id="position">
+                            <input type="text" name="position" id="position">
                         </div>
-
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="doa">Date of Appointment
                             </label>
-                            <input readonly type="text" name="doa" id="doa">
+                            <input type="text" name="doa" id="doa">
                         </div>
-
+                        <span class="error"></span>
                         <div class="field"><label for="phone">Check In Time
                             </label>
-                            <input readonly type="text" name="phone" id="phone">
+                            <input type="text" name="phone" id="phone">
                         </div>
-
+                        <span class="error"><?php if (isset($errors['checkInTime'])) : ?>
+                                <?= $errors['checkInTime'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="check-out">Check Out Time
                             </label>
-                            <input readonly type="text" name="check-out" id="check-out">
+                            <input type="text" name="check-out" id="check-out">
                         </div>
-
+                        <span class="error"><?php if (isset($errors['checkOutTime'])) : ?>
+                                <?= $errors['checkOutTime'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="rate_p_hr">Basic Rate (/hour)
                             </label>
-                            <input readonly type="text" name="rate_p_hr" id="rate_p_hr">
+                            <input type="text" name="rate_p_hr" id="rate_p_hr">
                         </div>
-
+                        <span class="error"><?php if (isset($errors['basicRate'])) : ?>
+                                <?= $errors['basicRate'] ?>
+                            <?php endif; ?></span>
                         <div class="field"><label for="supervisor">Supervisor
                             </label>
-                            <input readonly type="text" name="supervisor" id="supervisor">
+                            <input type="text" name="supervisor" id="supervisor">
+                        </div>
+                        <span class="error"><?php if (isset($errors['Supervisor'])) : ?>
+                                <?= $errors['Supervisor'] ?>
+                            <?php endif; ?></span>
+
+                        <div class="buttons">
+                            <button type="submit" id="save">Save</button>
+                            <a href="/profile" id="cancel">Cancel</a>
                         </div>
                     </div>
                 </form>

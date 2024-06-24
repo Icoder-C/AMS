@@ -75,8 +75,8 @@ class Validation
         if($text==NULL){
             self::$errors['longText']="*Reason for leave is required.";
         }
-        else if(strlen($text)>10000){
-            self::$errors['longText']="*Reason for leave is too long.";
+        else if(strlen($text)>100){
+            self::$errors['longText']="*Reason for leave is too long. Max characters allowed is 100.";
         }
     }
 
@@ -162,6 +162,51 @@ class Validation
         }
         else if ($file['size'] > 5000000) { // 5MB limit
             self::$errors['file'] = "*File size should not exceed 5MB.";
+        }
+    }
+
+    public static function ofcNameValidation($officeName){
+        if (empty($officeName)) {
+            self::$errors['ofcName'] = '*Office name is required.';
+        } else {
+            // Validate length (example: between 3 and 50 characters)
+            if (strlen($officeName) < 3 || strlen($officeName) > 50) {
+                self::$errors['ofcName'] = '*Office name must be between 3 and 50 characters.';
+            }
+            // Validate characters (allow letters, numbers, spaces, dashes, and dots)
+            if (!preg_match("/^[a-zA-Z0-9\s\-\.]+$/", $officeName)) {
+                self::$errors['ofcName'] = '*Office name can only contain letters, numbers, spaces, dashes, and dots (.)';
+            }
+        }
+    }
+    public static function latitudeValidation($latitude){
+        if (empty($latitude)) {
+            self::$errors['latitude'] = '*Latitude is required.';
+        } else {
+            // Validate latitude range
+            if (!is_numeric($latitude) || $latitude < -90 || $latitude > 90) {
+                self::$errors['latitude'] = '*Latitude must be a numeric value between -90 and 90.';
+            }
+        }
+    }
+    public static function longitudeValidation($longitude){
+        if (empty($longitude)) {
+            self::$errors['longitude'] = '*Longitude is required.';
+        } else {
+            // Validate longitude range
+            if (!is_numeric($longitude) || $longitude < -180 || $longitude > 180) {
+                self::$errors['longitude'] = '*Longitude must be a numeric value between -180 and 180.';
+            }
+        }
+    }
+    public static function dateOfEstdValidation($date)
+    {
+        if (is_null($date)) {
+            self::$errors['ofcName'] = '*Date of establishment is required.';
+        } else {
+            if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) >= time()) {
+                self::$errors['doE'] = "*Invalid date of establishment. The date must be in the past.";
+            }
         }
     }
 

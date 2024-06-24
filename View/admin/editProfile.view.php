@@ -3,168 +3,200 @@
 use Core\Database;
 use Core\App;
 
-$db=App::resolve(Database::class);
+$db = App::resolve(Database::class);
 
+$currentUserID = $_SESSION['user']['EmployeeID'];
 
-$currentUserID=$_SESSION['user']['EmployeeID'];
+$statement = $db->query("SELECT * FROM users WHERE EmployeeID = $currentUserID");
 
-$statement=$db->query("SELECT * FROM users WHERE EmployeeID = $currentUserID");
-
-$user=$statement->find();
+$user = $statement->find();
 
 // dd($user);
-
-$stmt=$db->query("SELECT * FROM office");
-$ofc=$stmt->find();
-
-// dd($ofc);
+$stmt = $db->query("SELECT * FROM office");
+$ofc = $stmt->find();
 
 ?>
 
 <div class="profile">
     <div class="profile-main">
         <div class="profile-image">
-            <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
+            <img src="<?= $user["photo_name"] && file_exists(basePath('/public' . photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg") ?>" alt="profile pic" id='file-preview'>
         </div>
         <div class="profile-form">
             <div class="form-user">
-                <form action="#" method="post">
+                <form action="/edit-profile-validate" method="POST" enctype="multipart/form-data">
                     <div class="topic">
                         <h1>Personal Details</h1>
-                        <a href="/employees/edit-profile">Edit</a>
                     </div>
-
+                    <input type="hidden" name="user" value="admin">
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>
-                            <input readonly type="text" name="fname" id="fname" value="<?= $user['name']??NULL?>">
+                            <input type="text" name="fname" id="fname" value="<?= $_POST['fname'] ?? ($user['name'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['fname'])) : ?>
+                                <?= $errors['fname'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="email">Email
                             </label>
-                            <input readonly type="email" name="email" id="email" value="<?= $user['email']??NULL?>">
+                            <input type="email" name="email" id="email" value="<?= $_POST['email'] ?? ($user['email'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['email'])) : ?>
+                                <?= $errors['email'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
-                            <input readonly type="text" name="phone" id="phone" value="<?= $user['phone_number']??NULL?>">
+                            <input type="text" name="phone" id="phone" value="<?= $_POST['phone'] ?? ($user['phone_number'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['phone'])) : ?>
+                                <?= $errors['phone'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="address">Address
                             </label>
-                            <input readonly type="text" name="address" id="address" value="<?= $user['address']??NULL?>">
+                            <input type="text" name="address" id="address" value="<?= $_POST['address'] ?? ($user['address'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['address'])) : ?>
+                                <?= $errors['address'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="dob">Date of Birth
                             </label>
-                            <input readonly type="text" name="dob" id="dob" value="<?= $user['DOB']??NULL?>">
+                            <input type="date" name="dob" id="dob" value="<?= $_POST['dob'] ?? ($user['DOB'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['dob'])) : ?>
+                                <?= $errors['dob'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="gender">Gender
                             </label>
                             <div class="radio">
                                 <?php
-                                $selectedGender = $user['gender']??NULL;
+                                $selectedGender = $_POST['gender'] ?? ($user['gender'] ?? NULL);
                                 $genders = [
                                     [
                                         "label" => "Male",
-                                        "value" => "M"
+                                        "value" => "Male"
                                     ],
                                     [
                                         "label" => "Female",
-                                        "value" => "F"
+                                        "value" => "Female"
                                     ],
                                     [
                                         "label" => "Other",
-                                        "value" => "O"
+                                        "value" => "Othe"
                                     ]
                                 ];
                                 foreach ($genders as $gender) :
                                 ?>
-                                    <input type="radio" name="gender" id="<?= $gender['value'] ?>" value="<?= $gender['value'] ?>" <?= is_null($selectedGender) ? '' : 'disabled' ?> <?= $selectedGender === $gender['value'] ? ' checked' : '' ?>>
+                                    <input type="radio" name="gender" id="<?= $gender['value'] ?>" value="<?= $gender['value'] ?>" <?= $selectedGender === $gender['value'] ? ' checked' : '' ?>>
                                     <label for="<?= $gender['value'] ?>"><?= $gender['label'] ?></label>
                                 <?php endforeach; ?>
                             </div>
                         </div>
+                        <span class="error"><?php if (isset($errors['gender'])) : ?>
+                                <?= $errors['gender'] ?>
+                            <?php endif; ?>
+                        </span>
 
-                        <div class="field"><label for="married_status">Maritial Status
-                            </label>
-                            <!-- <select name="married_status" id="married_status">
-                                <option value="">Select</option>
-                                <option value="Single">Single</option>
-                                <option value="Married">Married</option>
-                                <option value="Divorced">Divorced</option>
-                            </select> -->
-                            <input readonly type="text" name="married_status" id="married_status" value="<?= $user['maritial_status']??NULL?>">
-                        </div>
-
-                        <div class="field"><label for="e_person">Emergency Contact person
-                            </label>
-                            <input readonly type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person']??NULL?>">
-                        </div>
-
-                        <div class="field"><label for="e_phone">Emergency Contact
-                            </label>
-                            <input readonly type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact']??NULL?>">
-                        </div>
-
-                    </div>
-
-                </form>
-            </div>
-            <div class="form-official">
-                <form action="#" method="post">
-                    <div class="topic">
-                        <h1>Official Details</h1>
-                        <!-- <button type="button">Edit</button> -->
-                    </div>
-
-                    <div class="table">
                         <div class="field"><label for="ofcName">Office Name
                             </label>
-                            <input readonly type="text" name="ofcName" id="ofcName" value="<?= $ofc["OfficeName"]??NULL ?>">
+                            <input  type="text" name="ofcName" id="ofcName" value="<?= $_POST['ofcName'] ?? ($ofc["OfficeName"] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['ofcName'])) : ?>
+                                <?= $errors['ofcName'] ?>
+                            <?php endif; ?>
+                        </span>
+
                         <div class="field"><label for="doestablish">Date of Establishment
                             </label>
-                            <!-- <input readonly type="date" name="doestablish" id="doestablish"> -->
-                            <input readonly type="text" name="doestablish" id="doestablish" value="<?= $ofc['DateOfEstablishment']??NULL ?>">
+                            <!-- <input  type="date" name="doestablish" id="doestablish"> -->
+                            <input  type="date" name="doE" id="doE" value="<?= $_POST['doE'] ?? ($ofc['DateOfEstablishment'] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['doE'])) : ?>
+                                <?= $errors['doE'] ?>
+                            <?php endif; ?>
+                        </span>
+
                         <div class="field"><label for="latitude">Latitude
                             </label>
-                            <input readonly type="number" name="latitude" id="latitude"  value="<?= $ofc["Latitude"]??NULL ?>">
+                            <input  type="text" name="latitude" id="latitude" value="<?= $_POST['latitude'] ?? ($ofc["Latitude"] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['latitude'])) : ?>
+                                <?= $errors['latitude'] ?>
+                            <?php endif; ?>
+                        </span>
+
                         <div class="field"><label for="longitude">Longitude
                             </label>
-                            <input readonly type="number" name="longitude" id="longitude"  value="<?= $ofc["Longitude"]??NULL ?>">
+                            <input  type="text" name="longitude" id="longitude" value="<?= $_POST['longitude'] ?? ($ofc["Longitude"] ?? NULL) ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['longitude'])) : ?>
+                                <?= $errors['longitude'] ?>
+                            <?php endif; ?>
+                        </span>
+
+                        <span id="getLocation">Get Current Location</span>
+
+                        <script>
+                            document.getElementById('getLocation').addEventListener('click', function() {
+                                if (navigator.geolocation) {
+                                    navigator.geolocation.getCurrentPosition(function(position) {
+                                        document.getElementById('latitude').value = position.coords.latitude;
+                                        document.getElementById('longitude').value = position.coords.longitude;
+                                    }, function(error) {
+                                        console.error('Error occurred. Error code: ' + error.code);
+                                        // error.code can be:
+                                        //   0: unknown error
+                                        //   1: permission denied
+                                        //   2: position unavailable (error response from locaton provider)
+                                        //   3: timed out
+                                    });
+                                } else {
+                                    alert('Geolocation is not supported by this browser.');
+                                }
+                            });
+                        </script>
+
+                        <div class="field"><label for="image">Photo
+                            </label>
+                            <input type="file" name="image" id="image-upload" value="<?= $_FILES['image'] ?? ($user['file'] ?? NULL) ?>" accept="image/*">
+                        </div>
+                        <span class="error"><?php if (isset($errors['file'])) : ?>
+                                <?= $errors['file'] ?>
+                            <?php endif; ?></span>
+
+                        <div class="buttons">
+                            <button type="submit" id="save">Save</button>
+                            <a href="/profile" id="cancel">Cancel</a>
+                        </div>
+
                     </div>
+                    <script>
+                        // Insert the JavaScript code here
+                        const input = document.getElementById('image-upload');
+
+                        const previewPhoto = () => {
+                            const file = input.files[0];
+                            if (file) {
+                                const fileReader = new FileReader();
+                                const preview = document.getElementById('file-preview');
+                                fileReader.onload = (event) => {
+                                    preview.setAttribute('src', event.target.result);
+                                };
+                                fileReader.readAsDataURL(file);
+                            }
+                        };
+
+                        input.addEventListener('change', previewPhoto);
+                    </script>
                 </form>
-            </div>
-            <div class="change-pw">
-                <form action="" method="post">
-                    <div class="topic">
-                        <h1>Change Password</h1>
-                        <h1 id="click" onclick="showHide()">+</h1>
-                    </div>
-                    <div class="table" id="changepassword">
-                        <div class="field"><label for="current-password">Current Password
-                            </label>
-                            <input type="password" name="current-password" id="current-password">
-                        </div>
-                        <div class="field"><label for="current-password">New Password
-                            </label>
-                            <input type="password" name="current-password" id="current-password">
-                        </div>
-                        <div class="field"><label for="current-password">Confirm Password
-                            </label>
-                            <input type="password" name="current-password" id="current-password">
-                        </div>
-                        <button id="changePw" type="submit">Save Changes</button>
-                    </div>
-                </form>
-                <script src="<?=js("utils")?>">
-                </script>
             </div>
         </div>
     </div>
+    <?php
+    // $errors=[];
+    ?>
 </div>
