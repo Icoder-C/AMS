@@ -28,7 +28,6 @@ if ($results) : ?>
                     <th>Employee Name</th>
                     <th>Email ID</th>
                     <th>Phone Number</th>
-                    <th>Date of Appointment</th>
                     <th>Approve Request</th>
                     <th>Reject Request</th>
                 </tr>
@@ -42,10 +41,19 @@ if ($results) : ?>
                     echo "<td>" . htmlspecialchars($row['name'] ?? NULL) . "</td>";
                     echo "<td>" . htmlspecialchars($row['email'] ?? NULL) . "</td>";
                     echo "<td>" . htmlspecialchars($row['phone_number'] ?? NULL) . "</td>";
-                    echo "<td>" . htmlspecialchars($row['appointment_date'] ?? NULL) . "</td>";
                     echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='approve'>Approve</a> </td>";
-                    echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='reject'>Reject</a> </td>";
+                    echo "<td> 
+                        <div class='reject'>
+                            <form method='POST' action='/delete-request'>
+                                <input type='hidden' name='_method' value='DELETE'>
+                                <input type='hidden' name='id' value='" . $row['EmployeeID'] . "'>
+                                <input type='hidden' name='requestFor' value='DeleteEmployeeRequest'>
+                                <button type='submit'>Reject</button>
+                            </form>
+                        </div> 
+                    </td>";
                     echo "</tr>";
+                
                     $i = $i + 1;
                 }
                 ?>

@@ -17,7 +17,16 @@
             <p class="lead">
                 The page you’re looking for doesn’t exist.
             </p>
-            <a href="/" class="btn btn-primary">Go Home</a>
+            <?php
+            // Check if HTTP_REFERER is set and not empty
+                if (!empty($_SERVER['HTTP_REFERER'])) {
+                    $previousUrl = $_SERVER['HTTP_REFERER'];
+                    echo "<a href='$previousUrl' class='btn btn-primary'>Go Back</a>";
+                } else {
+                    echo "<a href='/' class='btn btn-primary'>Go Back</a>";
+                }
+            ?>
+            
         </div>
     </div>
 </body>

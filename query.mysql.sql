@@ -60,8 +60,8 @@ CREATE TABLE Attendance (
     latitude VARCHAR(20),
     longitude VARCHAR(20),
     Status VARCHAR(50),
-    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID),
-    UNIQUE (EmployeeID, AttendanceDate) -- Unique constraint to ensure one record per employee per day
+    UNIQUE (EmployeeID, AttendanceDate), -- Unique constraint to ensure one record per employee per day
+    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID) ON DELETE CASCADE
 );
 CREATE TABLE EmployeeLeave (
     LeaveID INT AUTO_INCREMENT PRIMARY KEY,
@@ -71,7 +71,7 @@ CREATE TABLE EmployeeLeave (
     EndDate DATE NOT NULL,
     Notes TEXT,
     Status VARCHAR(50),
-    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID)
+    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID) ON DELETE CASCADE
 );
 
 INSERT INTO
@@ -84,6 +84,7 @@ VALUES (
     );
 
 SELECT * FROM office;
+SELECT * FROM users;
 
 
 SELECT * FROM Attendance

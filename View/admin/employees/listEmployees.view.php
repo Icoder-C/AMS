@@ -1,4 +1,6 @@
 <?php
+
+
 $searchName = '%' . ($_GET['EmployeeName'] ?? '') . '%';
 $EmployeeID=$_SESSION['user']['EmployeeID'];
 

@@ -24,7 +24,7 @@ $ofc = $stmt->find();
 <div class="profile">
     <div class="profile-main">
         <div class="profile-image">
-            <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
+        <img src="<?= $user["photo_name"] && file_exists(basePath('/public' . photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg") ?>" alt="profile pic">
         </div>
         <div class="profile-form">
             <div class="form-user">
@@ -39,11 +39,17 @@ $ofc = $stmt->find();
                             </label>
                             <input type="text" name="fname" id="fname" value="<?= $user['name'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="email">Email
                             </label>
                             <input type="email" name="email" id="email" value="<?= $user['email'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="phone">Phone Number
                             </label>
@@ -54,11 +60,17 @@ $ofc = $stmt->find();
                             </label>
                             <input type="text" name="address" id="address" value="<?= $user['address'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="dob">Date of Birth
                             </label>
                             <input type="text" name="dob" id="dob" value="<?= $user['DOB'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="gender">Gender
                             </label>
@@ -81,27 +93,38 @@ $ofc = $stmt->find();
                                 ];
                                 foreach ($genders as $gender) :
                                 ?>
-                                    <input type="radio" name="gender" id="<?= $gender['value'] ?>" value="<?= $gender['value'] ?>" <?= is_null($selectedGender) ? '' : 'disabled' ?> <?= $selectedGender === $gender['value'] ? ' checked' : '' ?>>
+                                    <input type="radio" name="gender" id="<?= $gender['value'] ?>" value="<?= $gender['value'] ?>" <?= is_null($selectedGender) ? '' : '' ?> <?= $selectedGender === $gender['value'] ? ' checked' : '' ?>>
                                     <label for="<?= $gender['value'] ?>"><?= $gender['label'] ?></label>
                                 <?php endforeach; ?>
                             </div>
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="married_status">Maritial Status
                             </label>
-                            
                             <input type="text" name="married_status" id="married_status" value="<?= $user['maritial_status'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="e_person">Emergency Contact person
                             </label>
                             <input type="text" name="e_person" id="e_person" value="<?= $user['emergency_contact_person'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                         <div class="field"><label for="e_phone">Emergency Contact
                             </label>
                             <input type="text" name="e_phone" id="e_phone" value="<?= $user['emergency_contact'] ?? NULL ?>">
                         </div>
+                        <span class="error"><?php if (isset($errors['position'])) : ?>
+                                <?= $errors['position'] ?>
+                            <?php endif; ?></span>
 
                     </div>
 

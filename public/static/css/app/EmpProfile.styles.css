@@ -77,14 +77,14 @@
       align-self: center;
       color: #fff;
       margin: 0 1vw;
-      width: 40%;
+      min-width: 40%;
       text-align: center;
     }
     button{
       background-color: rgb(173, 27, 27);
       border-radius: 4px;
       font-size: 2.5rem;
-      width: 40%;
+      min-width: 40%;
       margin: 0 1vw;
       color: #fff;
       padding: 10px 30px 10px 30px;

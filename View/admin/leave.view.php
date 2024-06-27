@@ -1,20 +1,27 @@
 <div class="leave">
     <?php
+
+    $response = $_SESSION['modal']['response'] ?? NULL;
+    $image = $_SESSION['modal']['imagePath'] ?? NULL;
+    $output = $_SESSION['modal']['output'] ?? NULL;
+
+    require view("partials/modal");
+
     $statement = $db->query("SELECT COUNT(*) AS temp_requests FROM EmployeeLeave WHERE EmployeeLeave.Status='Pending'");
     $count = $statement->find()['temp_requests'];
     $perPage = 5;
     $totalPages = ceil($count / $perPage);
-    $pagename="Display-leaves";
-    $currentPage = getCurrentPage($totalPages,$pagename);
+    $pagename = "Display-leaves";
+    $currentPage = getCurrentPage($totalPages, $pagename);
     $pages = generatePagination($totalPages, $currentPage);
     // dd(generatePagination($totalPages,$currentPage));
     // dd($count);
     $offSet = max(0, $perPage * ($currentPage - 1));
     // dd( $count);
-    $query = "SELECT users.name,StartDate,EndDate,LeaveType,Notes, EmployeeLeave.EmployeeID 
+    $query = "SELECT users.name,StartDate,EndDate,LeaveType,Notes, EmployeeLeave.EmployeeID, LeaveID
                 FROM EmployeeLeave INNER JOIN users ON EmployeeLeave.EmployeeID=users.EmployeeID 
                 WHERE EmployeeLeave.Status='Pending'
-                ORDER BY StartDate ASC 
+                ORDER BY StartDate DESC 
                 LIMIT $perPage OFFSET $offSet";
     $statement = $db->query($query);
     $results = $statement->findAll();
@@ -48,8 +55,8 @@
                         echo "<td>" . htmlspecialchars($row['EndDate']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['LeaveType']) . "</td>";
                         echo "<td>" . htmlspecialchars($row['Notes']) . "</td>";
-                        echo "<td> <a href='/employees/approve-leave?id=" . $row['EmployeeID'] . " '" . "class='approve'>Approve</a> </td>";
-                        echo "<td> <a href='/employees/add-employee?id=" . $row['EmployeeID'] . " '" . "class='reject'>Reject</a> </td>";
+                        echo "<td> <a href='/employees/approve-leave?id=" . $row['LeaveID'] . "'" . "class='approve'>Approve</a> </td>";
+                        echo "<td> <a href='/employees/reject-leave?id=" . $row['LeaveID'] . "'" . "class='reject'>Reject</a> </td>";
                         echo "</tr>";
                         $i = $i + 1;
                     }
@@ -64,7 +71,7 @@
     <?php else : ?>
 
     <?php endif; ?>
- <?php
-require view("partials/adminLeaveRecord")
- ?>
+    <?php
+    require view("partials/adminLeaveRecord")
+    ?>
 </div>

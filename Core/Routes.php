@@ -29,10 +29,12 @@ $router->get('/employees/edit-employees-profile', 'application/employees/editEmp
 $router->post('/leave/validate-leave', 'application/employees/logic/validateLeave.php')->only("auth");
 $router->post('/add-employee-validate', 'application/employees/logic/validateAddEmployee.php')->only("auth");
 $router->get('/employees/add-employee', 'application/employees/addEmployees.php')->only('admin');
-$router->get('/employees/approve-leave', 'application/employees/approveLeave.php')->only('admin');
+$router->get('/employees/approve-leave', 'application/employees/logic/leaveApprove.php')->only('admin');
+$router->get('/employees/reject-leave', 'application/employees/logic/leaveReject.php')->only('admin');
 $router->get('/profile/edit-profile', 'application/employees/editProfile.php')->only('auth');
 $router->post('/change-password', 'application/employees/logic/changePassword.php')->only("auth");
 
 
+$router->delete('/delete-request', 'application/employees/logic/deleteRequest.php')->only("auth");
 $router->delete('/session', 'auth/session-destroy.php')->only("auth");
 $router->post('/searchRecord', 'application\employees\logic\searchEmployeeRecord.php')->only("auth");

@@ -24,18 +24,18 @@ $ofc = $stmt->find();
 <div class="profile">
     <div class="profile-main">
         <div class="profile-image">
-            <img src="<?= photo("admin.jpg") ?>" alt="profile pic">
+        <img src="<?= $user["photo_name"] && file_exists(basePath('/public' . photo($user["photo_name"]))) ? photo($user["photo_name"]) : photo("admin.jpg") ?>" alt="profile pic">
         </div>
         <div class="profile-form">
             <div class="form-user">
-                <form action="#" method="post">
                     <div class="topic">
                         <h1>Personal Details</h1>
                         <div class="btns">
                             <a href="/employees/edit-employees-profile?id=<?= $currentUserID?>">Edit</a>
-                            <form action="/employees/delete-employee" method="post">
+                            <form action="/delete-request" method="post">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="id" value="<?= $currentUserID ?>">
+                                <input type="hidden" name="requestFor" value="DeleteEmployee">
                                 <button type="submit">Delete</button>
                             </form>
                         </div>
@@ -117,10 +117,8 @@ $ofc = $stmt->find();
 
                     </div>
 
-                </form>
             </div>
             <div class="form-official">
-                <form action="#" method="post">
                     <div class="topic">
                         <h1>Official Details</h1>
                         <!-- <button type="button">Edit</button> -->
@@ -162,7 +160,6 @@ $ofc = $stmt->find();
                             <input readonly type="text" name="supervisor" id="supervisor">
                         </div>
                     </div>
-                </form>
             </div>
         </div>
     </div>

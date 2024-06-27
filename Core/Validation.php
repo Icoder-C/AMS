@@ -6,6 +6,7 @@ use DateTime;
 class Validation
 {
     protected static $errors = [];
+    protected static $checkInTime; // Store check-in time for later comparison
 
     public static function emailValidation($value)
     {
@@ -207,6 +208,73 @@ class Validation
             if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $date) || strtotime($date) >= time()) {
                 self::$errors['doE'] = "*Invalid date of establishment. The date must be in the past.";
             }
+        }
+    }
+    public static function departmentValidation($value) {
+        $validDepartments = ["Human Resources","Finance","IT", "Marketing", "Sales", "Operations", "Customer Support", "Administration"
+        ];
+        if (!in_array($value, $validDepartments)) {
+            self::$errors['department'] = "*Invalid department.";
+        }
+    }
+
+    public static function checkInTimeValidation($value) {
+        $formats = ['H:i', 'h:i A', 'h:i a', 'h:i P', 'h:i p']; // Include common 12-hour formats
+        $valid = false;
+
+        foreach ($formats as $format) {
+            $d = DateTime::createFromFormat($format, $value);
+            if ($d && $d->format($format) === $value) {
+                $valid = true;
+                self::$checkInTime = $d; // Store valid check-in time
+                break;
+            }
+        }
+
+        if (!$valid) {
+            self::$errors['checkInTime'] = "*Invalid check-in time. Format should be HH:MM or HH:MM AM/PM.";
+        }
+    }
+
+    public static function checkOutTimeValidation($value) {
+        $formats = ['H:i', 'h:i A', 'h:i a', 'h:i P', 'h:i p']; // Include common 12-hour formats
+        $valid = false;
+
+        foreach ($formats as $format) {
+            $d = DateTime::createFromFormat($format, $value);
+            if ($d && $d->format($format) === $value) {
+                $valid = true;
+                $checkInTime = self::$checkInTime;
+
+                // Check if check-out time is at least 2 hours after check-in time
+                $interval = $checkInTime->diff($d);
+                if ($interval->h < 2 && $interval->days == 0) {
+                    self::$errors['checkOutTime'] = "*Check-out time must be at least 2 hours after check-in time.";
+                    $valid = false;
+                }
+                break;
+            }
+        }
+
+        if (!$valid && !isset(self::$errors['checkOutTime'])) {
+            self::$errors['checkOutTime'] = "*Invalid check-out time. Format should be HH:MM or HH:MM AM/PM.";
+        }
+    }
+
+    public static function basicRateValidation($value) {
+        if (!is_numeric($value) || $value <= 0) {
+            self::$errors['basicRate'] = "*Basic rate must be a positive number.";
+        }
+        else if($value>300){
+            self::$errors['basicRate'] = "*Basic rate cannot be more than 300.";
+        }
+    }
+
+    public static function positionValidation($value) {
+        $validPositions = ["Manager", "Assistant Manager","Senior Developer", "Junior Developer",
+        "Accountant","HR Specialist","Marketing Coordinator","Sales Representative","Receptionist","Customer Support Representative"];
+        if (!in_array($value, $validPositions)) {
+            self::$errors['position'] = "*Invalid position.";
         }
     }
 

@@ -34,7 +34,7 @@
         </div>
 
         <div class="terms-checkbox">
-          <a href="#">Forgot Password?</a>
+          <!-- <a href="#">Forgot Password?</a> -->
         </div>
 
         <div class="submit-button">
