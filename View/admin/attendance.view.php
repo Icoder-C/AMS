@@ -39,7 +39,7 @@ $query ="SELECT AttendanceDate, users.name AS name, CheckInTime, CheckOutTime, A
           WHERE LOWER(name) LIKE :name
             AND (:startDate IS NULL OR AttendanceDate >= :startDate)
             AND (:endDate IS NULL OR AttendanceDate <= :endDate)
-          ORDER BY users.name ASC, AttendanceDate DESC
+          ORDER BY AttendanceDate DESC, users.name ASC
           LIMIT $perPage OFFSET $offSet";
 
 

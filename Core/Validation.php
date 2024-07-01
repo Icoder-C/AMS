@@ -277,6 +277,12 @@ class Validation
             self::$errors['position'] = "*Invalid position.";
         }
     }
+    public static function supervisorValidation($value)
+    {
+        if (!preg_match("/^[a-zA-Z' -]+$/", $value)) {
+            self::$errors['supervisor'] = "*Only letters, apostrophes, dashes, and white space allowed.";
+        }
+    }
 
     public static function getErrors()
     {

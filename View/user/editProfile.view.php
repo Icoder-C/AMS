@@ -28,7 +28,7 @@ $ofc = $stmt->find();
                     <div class="topic">
                         <h1>Personal Details</h1>
                     </div>
-
+                    <input type="hidden" name="user" value="employee">
                     <div class="table">
                         <div class="field"><label for="fname">Name
                             </label>

@@ -1,5 +1,7 @@
 <?php
 
+use Core\App;
+use Core\Database;
 use Core\Response;
 
 function basePath($path)
@@ -86,33 +88,47 @@ function authorize($condition, $status = Response::FORBIDDEN)
     }
 }
 
+function profileCompleteCheck($currentID){
+
+    $db=App::resolve(Database::class);
+    $query="SELECT address, photo_name FROM users WHERE EmployeeID=$currentID";
+    $user=$db->query($query)->find();
+    $requiredProfileFeilds = ["address","photo_name"];
+    $isProfileComplete = TRUE;
+    foreach ($requiredProfileFeilds as $field) {
+        if (is_null($user[$field])) {
+            $isProfileComplete = FALSE;
+            break;
+        }
+    }
+    $isPhotoAdded=!is_null($user["photo_name"]);
+    return compact("isProfileComplete","isPhotoAdded");
+}
+
 function login($user)
 {
+    // dd($user);
+    
     // $requiredProfileFeilds = $user["address"];
     // $isProfileComplete = TRUE;
-    // foreach ($requiredProfileFeilds as $field) {
-    //     if (is_null($user[$field])) {
-    //         $isProfileComplete = FALSE;
-    //         break;
-    //     }
+
+    // if (is_null($requiredProfileFeilds)) {
+    //     $isProfileComplete = FALSE;
     // }
-    $requiredProfileFeilds = $user["address"];
-    $isProfileComplete = TRUE;
-
-    if (is_null($requiredProfileFeilds)) {
-        $isProfileComplete = FALSE;
-    }
-
-
+    $currentID=$user['EmployeeID'];
+    $checkResult=profileCompleteCheck($currentID);
 
     $_SESSION['user'] = [
-        'EmployeeID' => $user['EmployeeID'],
+        'EmployeeID' => $currentID,
         'email' => $user['email'],
         'name' => $user['name'],
         'role' => $user['role'],
+        'status' => $user['status'],
         'gender' => $user['gender'],
-        'isProfileComplete' => $isProfileComplete
+        'isProfileComplete' => $checkResult['isProfileComplete'],
+        'isPhotoAdded' => $checkResult['isPhotoAdded']
     ];
+    // dd($_SESSION);
     session_regenerate_id(true);
     header('location: /dashboard');
 }
