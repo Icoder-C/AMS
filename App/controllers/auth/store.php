@@ -10,7 +10,6 @@ $errors = [];
 $fname = trim($_POST['fname']);
 $email = trim($_POST['email']);
 $phone = trim($_POST['phone']);
-$doa = trim($_POST['doa']);
 $password = trim($_POST['password']);
 $cpassword = trim($_POST['cpassword']);
 //Validates the user inputs and stores the errors in the $error array
@@ -19,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     Validation::nameValidation($fname ?? NULL);
     Validation::emailValidation($email ?? NULL);
     Validation::phoneNumberValidation($phone ?? NULL);
-    Validation::dateOfAppointmentValidation($doa ?? NULL);
     Validation::passwordValidation($password);
     Validation::confirmPasswordValidation($password, $cpassword);
 }
@@ -64,11 +62,10 @@ else if($unverified_user){
 }
 //if there is no user existing then store it in database
 else {
-    $db->query('INSERT INTO users_temp(name,email,phone_number,appointment_date,password) VALUES(:name,:email,:phone_number,:appointment_date,:password)', [
+    $db->query('INSERT INTO users_temp(name,email,phone_number,password) VALUES(:name,:email,:phone_number,:password)', [
         'name' => $fname,
         'email' => $email,
         'phone_number' => $phone,
-        'appointment_date' => $doa,
         'password' => $password
     ]);
 }

@@ -127,37 +127,37 @@ $ofc = $stmt->find();
                     <div class="table">
                         <div class="field"><label for="department">Department
                             </label>
-                            <input readonly type="text" name="department" id="department">
+                            <input readonly type="text" name="department" id="department" value="<?= $user['department'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="position">Position
                             </label>
-                            <input readonly type="text" name="position" id="position">
+                            <input readonly type="text" name="position" id="position" value="<?= $user['position'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="doa">Date of Appointment
                             </label>
-                            <input readonly type="text" name="doa" id="doa">
+                            <input readonly type="text" name="doa" id="doa" value="<?= $user['appointment_date'] ?? NULL ?>">
                         </div>
 
-                        <div class="field"><label for="phone">Check In Time
+                        <div class="field"><label for="chekIn">Check In Time
                             </label>
-                            <input readonly type="text" name="phone" id="phone">
+                            <input readonly type="text" name="chekIn" id="chekIn" value="<?= convertTimeFormat($user['checkIn']) ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="check-out">Check Out Time
                             </label>
-                            <input readonly type="text" name="check-out" id="check-out">
+                            <input readonly type="text" name="check-out" id="check-out" value="<?= convertTimeFormat($user['checkOut']) ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="rate_p_hr">Basic Rate (/hour)
                             </label>
-                            <input readonly type="text" name="rate_p_hr" id="rate_p_hr">
+                            <input readonly type="text" name="rate_p_hr" id="rate_p_hr" value="<?= $user['rate'] ?? NULL ?>">
                         </div>
 
                         <div class="field"><label for="supervisor">Supervisor
                             </label>
-                            <input readonly type="text" name="supervisor" id="supervisor">
+                            <input readonly type="text" name="supervisor" id="supervisor" value="<?= $user['supervisor'] ?? NULL ?>">
                         </div>
                     </div>
             </div>

@@ -116,9 +116,13 @@
       width: calc(24% - 40px);
     }
     .img-container {
-      height: 25vh;
-      overflow: hidden;
-      background-color: var(--hov-b);
+      box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+      max-height: 25vh;
+      background-color: var(--grey);
+      border-radius: 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     img {
       max-width: 100%;

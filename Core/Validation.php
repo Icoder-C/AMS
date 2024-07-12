@@ -41,7 +41,7 @@ class Validation
         if(strlen($value)<=7){
             self::$errors['password'] = "*Password must be at least 8 characters long";
         }
-        else if (!preg_match("/^(?=.*[a-z])(?=.*\d)(?=.*[$@!%*?&])[A-Za-z\d$@!%*?&]$/", $value)) {
+        else if (!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/", $value)) {
             self::$errors['password'] = "*Must include at least one letter, one number, and one special character.";
         }
     }
@@ -93,7 +93,7 @@ class Validation
             'ethnic_leave',
             'exam_leave',
             'maternity_leave'
-        ];;
+        ];
         if ($leave===NULL) {
             self::$errors['type'] = "*Please select a leave type.";
         }

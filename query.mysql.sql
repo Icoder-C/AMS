@@ -10,8 +10,6 @@ CREATE TABLE users_temp (
     EmployeeID INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(40),
     email VARCHAR(40) UNIQUE,
-    role ENUM("ADMIN", "USER") DEFAULT "USER",
-    appointment_date DATE,
     phone_number VARCHAR(10),
     password VARCHAR(255)
 );
@@ -37,13 +35,13 @@ CREATE TABLE users (
     checkIn TIME,
     checkOut TIME,
     photo_name VARCHAR(255),
-    working_status VARCHAR(10),
     password VARCHAR(255),
     PRIMARY KEY (EmployeeID)
 );
-CREATE TABLE office(
+
+CREATE TABLE office (
     officeID INT AUTO_INCREMENT PRIMARY KEY,
-    OfficeName VARCHAR(50) ,
+    OfficeName VARCHAR(50),
     DateOfEstablishment DATE,
     Latitude VARCHAR(20),
     Longitude VARCHAR(20)
@@ -61,8 +59,9 @@ CREATE TABLE Attendance (
     longitude VARCHAR(20),
     Status VARCHAR(50),
     UNIQUE (EmployeeID, AttendanceDate), -- Unique constraint to ensure one record per employee per day
-    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID) ON DELETE CASCADE
+    FOREIGN KEY (EmployeeID) REFERENCES users (EmployeeID) ON DELETE CASCADE
 );
+
 CREATE TABLE EmployeeLeave (
     LeaveID INT AUTO_INCREMENT PRIMARY KEY,
     EmployeeID INT NOT NULL,
@@ -71,11 +70,16 @@ CREATE TABLE EmployeeLeave (
     EndDate DATE NOT NULL,
     Notes TEXT,
     Status VARCHAR(50),
-    FOREIGN KEY (EmployeeID) REFERENCES users(EmployeeID) ON DELETE CASCADE
+    FOREIGN KEY (EmployeeID) REFERENCES users (EmployeeID) ON DELETE CASCADE
 );
 
 INSERT INTO
-    office (OfficeName, DateOfEstablishment,Latitude, Longitude)
+    office (
+        OfficeName,
+        DateOfEstablishment,
+        Latitude,
+        Longitude
+    )
 VALUES (
         'A.M.S Pvt. Ltd.',
         NOW(),
@@ -84,18 +88,25 @@ VALUES (
     );
 
 SELECT * FROM office;
-SELECT * FROM users;
 
+SELECT * FROM users;
 
 SELECT * FROM Attendance;
 
-SELECT COALESCE(0,1);
+SELECT COALESCE(0, 1);
+
 SET FOREIGN_KEY_CHECKS = 0;
+
 TRUNCATE TABLE users;
+
 TRUNCATE TABLE users_temp;
+
 TRUNCATE TABLE office;
+
 TRUNCATE TABLE Attendance;
+
 TRUNCATE TABLE EmployeeLeave;
+
 SET FOREIGN_KEY_CHECKS = 1;
 
-SELECT COALESCE("b","a");
+SELECT COALESCE("b", "a");
